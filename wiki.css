@@ -1,0 +1,710 @@
+/*
+ * 28dec20edg
+ * 23jun18avw
+ * 26apr18edg
+ * 02jan19abu
+ * 30jan12jk
+ * (c) Software Lab. Alexander Burger
+ */
+
+
+/*********/
+/* Utils */
+.left   {float: left}
+.right  {float: right}
+.clr    {clear: both}
+.norm   {text-align: left}
+.align  {text-align: right}
+.center {text-align: center}
+.black  {color: black}
+.red    {color: red}
+.green  {color: green}
+.blue   {color: blue}
+.bold   {font-weight: bold}
+.mono   {font-family: monospace}
+
+.flex-col {
+   display: flex;
+   flex-direction: column;
+   flex-wrap: wrap;
+   max-width: 100%;
+}
+
+.flex-row {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   margin: 4px;
+   flex-wrap: wrap;
+   align-items: flex-start;
+}
+
+
+/*******************************/
+/* Simple responsive container */
+.container {
+   position: relative;
+   width: 88%;
+   display: block;
+   margin: 0 auto;
+   box-sizing: border-box;
+}
+
+@media screen and (min-width: 900px) {
+   .container {
+      max-width: 768px;
+   }
+}
+
+
+/************/
+/* Defaults */
+fieldset {
+   padding: 0.3em 0.4em 0.7em 0.8em;  /* ie */
+   display: table-cell;
+}
+
+input, textarea, select {
+   font-size: smaller;
+   background-color: #eee;
+}
+
+body {
+   margin: 0;
+   font-family: "Verdana", "Arial", "sans-serif";
+   font-size: 12px;
+   color: #222;
+   /* background-color: #f6f6f6; */
+   background-color: #f9f9f9;
+}
+
+
+/**********************/
+/* Headers/typography */
+h1,h2,h3,h4,h5,h6 {
+   font-family: "Verdana", "Arial", "sans-serif";
+   color: #393e71;
+   margin-top: 2rem;
+   margin-bottom: 1.2rem;
+   line-height: 1.2;
+}
+h1 { font-size: 28px; }
+h2 { font-size: 26px; }
+h3 { font-size: 24px; }
+h4 { font-size: 22px; }
+h5 { font-size: 20px; }
+h6 { font-size: 18px; }
+
+
+/**********************/
+/* Wiki document body */
+#main {
+   font-family: "Verdana", "Arial", "sans-serif";
+   font-size: 16px;
+   line-height: 1.4;
+}
+
+/* List styles */
+#main > ul > li {
+   list-style-type: square;
+}
+
+#main li {
+   margin-bottom: 8px;
+}
+
+#main img {
+   max-width: 100%;
+   height: inherit;
+}
+
+/* Links */
+a {
+   color: #6067af;
+   font-weight: 400;
+   text-decoration: none;
+}
+
+a:hover,
+a:focus {
+   color: #565c9d; /* next darker shade of PL blue */
+   text-decoration: underline;
+}
+
+a:active {
+   color: #4c528c; /* darker yet */
+}
+
+/* Larger fonts for larger screens */
+@media screen and (min-width: 900px) {
+   h1 { font-size: 32px; }
+   h2 { font-size: 30px; }
+   h3 { font-size: 28px; }
+   h4 { font-size: 26px; }
+   h5 { font-size: 24px; }
+   h6 { font-size: 22px; }
+}
+
+
+/********/
+/* Menu */
+#menu {
+   background-color: #17192d;
+   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+   width: 100%;
+   margin-bottom: 64px;
+   display: flex;
+   display: -webkit-flex;
+
+           flex-wrap: wrap;
+   -webkit-flex-wrap: wrap;
+
+           align-items: center;
+   -webkit-align-items: center;
+
+           justify-content: space-around;
+   -webkit-justify-content: space-around;
+}
+
+/* Logo (homepage link) */
+#menu a img {
+   max-width: 100%;
+   height: auto;
+   padding: 12px;
+}
+
+/* Menu links */
+#menu a {
+   font-weight: bold;
+   text-decoration: none;
+   text-transform: uppercase;
+   color: #f6f6f6
+}
+
+#menu a:hover,
+#menu a:focus {
+   color: #bfc2df;
+}
+
+#menu ul {
+   /* remove phantom margin/padding */
+   margin: initial;
+   padding: initial;
+}
+
+#menu ul li {
+   list-style: none;
+   margin: 12px;
+   padding: none;
+}
+
+#menuLogin a {
+   margin: 12px;
+}
+
+/* display "Downloads Documentation Community" inline
+ * on larger screens */
+@media screen and (min-width: 1000px) {
+   #menu ul {
+      display: inline-flex;
+   }
+}
+
+/* Table styles */
+table.wiki, table.wiki td {
+   border-collapse: collapse;
+   border: 1px midnightblue solid;
+   padding: 3px;
+}
+
+
+/********************/
+/* Wiki text search */
+#searchGrp {
+   margin: 8px;
+}
+
+#searchGrp form {
+   margin: 0;
+}
+
+#searchGrp input,
+#searchGrp .submit {
+   border-radius: 2px;
+   padding: 4px;
+   margin: 4px;
+}
+
+#searchGrp input {
+   background-color: #f6f6f6;
+   border: 2px solid #f6f6f6;
+}
+
+#searchGrp .submit {
+   background-color: #17192d;
+   border: 2px solid #aaa;
+   color: #aaa;
+   text-transform: uppercase;
+}
+
+#searchGrp .submit:hover {
+   border-color: #6dc066;
+   color: #6dc066;
+   border-color: #bfc2df;
+   color: #bfc2df;
+}
+
+#searchGrp .submit:active {
+   color: #222;
+   background-color: #bfc2df;
+}
+
+/* Search Results */
+#searchGrp strong {
+   color: #6dc066;  /* PL green */
+}
+
+#searchGrp strong,
+#searchGrp a {
+   margin-left: 22px;
+   text-transform: none;
+}
+
+/* Make search pretty on large screens */
+@media screen and (min-width: 1500px) {
+   #searchGrp {
+      /* menu remains same size, search content
+       * overflows (but looks good) */
+      max-height: 32px;
+   }
+   #searchGrp strong {
+      color: #333;
+   }
+   #searchGrp form {
+      margin-bottom: 24px
+   }
+   /* Links */
+   #searchGrp a {
+      color: #6067af;
+      text-decoration: none;
+   }
+   #searchGrp a:hover,
+   #searchGrp a:focus {
+      color: #565c9d; /* next darker shade of PL blue */
+      text-decoration: underline;
+   }
+   #searchGrp a:active {
+      color: #4c528c; /* darker yet */
+   }
+}
+
+#expires {
+   position: absolute;
+   top: 8px;
+   right: 44px;
+   color: #f05658;
+   font-size: small;
+}
+
+/* Code highlighting */
+.code {
+   color: #333;
+   font-weight: bold;
+   font-family: 'Courier New', monospace;
+   background-color: #eee;
+   border-radius: 4px;
+   padding: 1px 2px;
+   margin-right: 1px;
+   overflow-x: auto;
+   font-size: 14px;
+}
+
+.search {
+   border-style: none;
+}
+
+
+/**********************************/
+/* Wiki document login/edit forms */
+.edit, .login, .dialog, #repl {
+   background-color: #efeff7;
+   border-radius: 4px;
+   border: 1px solid #666;
+   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+}
+
+.edit h3 {
+   margin-top: 1.2rem;
+}
+
+.edit input[type=text], textarea {
+   background: #fff;
+   border: 1px solid #bfc2df;
+   border-radius: 4px;
+   padding: 4px;
+   max-width: 96%;
+}
+
+.edit input[type=text]:focus, textarea:focus {
+   border: 1px solid #9fa3cf;
+}
+
+.login input[type=text]:focus, input[type=password]:focus {
+   border: 1px solid #9fa3cf;
+}
+
+/* same as above, don't know the proper css selector */
+.dialog input[type=text], textarea {
+   background: #fff;
+   border: 1px solid #bfc2df;
+   border-radius: 4px;
+   padding: 4px;
+   max-width: 96%;
+}
+
+.dialog input[type=text]:focus, textarea:focus {
+   border: 1px solid #9fa3cf;
+}
+
+.dialog .grid input[type=text] {
+   width: 100%;
+}
+
+.edit input[type=text] {
+   margin: 0px 4px;
+}
+
+/* Login Form Customizations (modal display)*/
+fieldset.login  {
+   width: 300px;
+   padding: 12px;
+   position: absolute;
+   top: 16%;
+   left: 50%;
+   transform: translate(-50%, 0);
+   box-shadow: 0 16px 32px 0 rgba(0,0,0,0.4);
+}
+
+.login::before {
+   content: "Log In";
+   font-size: 26px;
+   color: #393e71;
+   font-weight: bold;
+}
+
+.login input[type=text], input[type=password] {
+   background: #fff;
+   border: 1px solid #bfc2df;
+   border-radius: 4px;
+   padding: 4px;
+   float: right;
+   max-width: 90%
+}
+
+.login .grid {
+   margin-top: 8px;
+   width: 100%;
+}
+
+/* modal style background for login form */
+.modal {
+   position: fixed; /* Stay in place */
+   z-index: 1; /* Sit on top */
+   left: 0;
+   top: 0;
+   width: 100%; /* Full width */
+   height: 100%; /* Full height */
+   overflow: auto; /* Enable scroll if needed */
+   background-color: rgb(0,0,0); /* Fallback color */
+   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* ask modal */
+fieldset.alert {
+   display: contents;
+}
+
+.modal-inner {
+   width: max-content;
+   padding: 12px;
+   position: absolute;
+   top: 33%;
+   left: 50%;
+   transform: translate(-50%, 0);
+   box-shadow: 0 16px 32px 0 rgba(0,0,0,0.4);
+   background-color: #efeff7;
+   border-radius: 4px;
+   border: 1px solid #666;
+}
+
+/* create account dialog */
+.modal .dialog {
+   z-index: 2;
+   width: 300px;
+   padding: 12px;
+   position: absolute;
+   top: 16%;
+   left: 50%;
+   transform: translate(-50%, 0);
+   box-shadow: 0 16px 32px 0 rgba(0,0,0,0.4);
+}
+
+.modal .dialog .grid input[type=text], input[type=password] {
+   max-width: 90%;
+   float: right;
+}
+
+@media screen and (max-width: 500px) {
+   .login::before {
+      font-size: 22px;
+   }
+}
+
+.modal .dialog h4 {
+   margin: 0.3rem 0;
+}
+
+.modal .dialog .grid {
+   margin-top: 16px;
+}
+
+.modal .error {
+   margin-left: 0px;
+   margin-bottom: 8px;
+   width: max-content;
+}
+
+.modal .grid .error {
+   float: right;
+   margin: 4px 0;
+}
+
+/* Buttons for login/edit/alert forms */
+#repl .submit,
+.dialog .submit,
+.alert .submit,
+.edit .submit,
+.login .submit {
+   font-weight: bold;
+   color: #222;
+   background-color: #D0D0D0;
+   background-image: -moz-linear-gradient(top, #eee, #ccc);
+   background-image: -webkit-linear-gradient(top, #eee, #ccc);
+   background-image: linear-gradient(top, #eee, #ccc);
+   border: 1px solid #666;
+   border-radius: 4px;
+   padding: 4px;
+   box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+}
+
+#repl .submit:hover,
+.dialog .submit:hover,
+.alert .submit:hover,
+.edit .submit:hover,
+.login .submit:hover {
+   background-image: -moz-linear-gradient(top, #fafafa, #ddd);
+   background-image: -webkit-linear-gradient(top, #fafafa, #ddd);
+   background-image: linear-gradient(top, #fafafa, #ddd);
+}
+
+#repl .submit:active,
+.dialog .submit:active,
+.alert .submit:active,
+.edit .submit:active,
+.login .submit:active {
+   box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
+   position: relative;
+   top: 1px;
+}
+
+/* Media grid */
+.media-grid {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   align-items: center;
+   justify-content: space-evenly;
+}
+
+/* hack for naughty text fields on mobile */
+@media screen and (max-width: 500px) {
+   .flex-row input[type=text] {
+      width: 100%;
+   }
+}
+
+.flex-row .submit {
+   margin-bottom: 4px;
+}
+
+.flex-row strong {
+   margin-bottom: 4px;
+}
+
+/* From 'form' GUI */
+.chart {
+   /* width: 100%; */
+   margin: 4px 0px;
+   white-space: nowrap;
+}
+
+.chart td {
+   background-color: #dfe0ef;
+   padding: 0px 4px 2px;
+   border-radius: 3px;
+}
+
+.chart td.T {
+   background-color: #cfd1e7;
+}
+
+.chart td.nil {
+   background-color: white;
+}
+
+.btn {
+   width: 1em;
+}
+
+/* errors */
+.error {
+   color: red;
+   background: yellow;
+   padding: 1px 4px;
+   border-radius: 4px;
+   margin: 0px 4px;
+   font-size: small;
+}
+
+.tiny {
+   font-size: xx-small;
+}
+
+input[type=submit].tiny {
+   padding: 1px 3px;
+   font-weight: bold;
+   border-radius: 3px;
+}
+
+.note, .ask {
+   font-weight: bold;
+}
+
+.alert {
+   display: inline;
+   padding: 1ex;
+   margin: 1ex 0 1ex 5em;
+   background-color: yellow;
+   border: 1px red solid;
+   border-radius: 3px;
+   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+}
+
+.alert input {
+   margin-top: 1ex;
+}
+
+.hint {
+   font-size: small;
+   font-family: sans-serif;
+   line-height: 140%;
+   background-color: rgba(112,112,112,0.3);
+}
+
+.hints {
+   font-size: small;
+   color: black;
+   padding-left: 0.4em;
+   padding-top: 2px;
+   padding-bottom: 2px;
+   border: 1px solid;
+   background-color: white;
+   cursor: default;
+}
+
+#repl {
+   font-size: 16px;
+}
+
+#repl input[type=text], textarea {
+   background: #fff;
+   border: 1px solid #bfc2df;
+   border-radius: 4px;
+   padding: 4px;
+   margin: 4px 0px;
+   width: 100%;
+   max-width: 96%;
+}
+
+#repl input[type=text]:focus, textarea:focus {
+   border: 1px solid #9fa3cf;
+}
+
+/* large screens - fixed in left (article) margin */
+@media screen and (min-width: 1500px) {
+   #repl {
+      margin: 16px;
+      position: fixed;
+      z-index: 1;
+      top: 88px;
+      left: 12px;
+      font-size: 16px;
+   }
+}
+
+#ReplSvg {
+   margin-top: 8px;
+}
+
+/* Alternate search style "slide out tray"
+ * matches repl/diaforms */
+
+/* #searchGrp a, */
+/* #searchGrp strong { */
+/*    color: #6067af; */
+/*    text-decoration: none; */
+/*    padding-left: 8px; */
+/*    text-transform: none; */
+/*    /1* background: #efeff7; *1/ */
+/*    background: #eee; */
+/*    display: inline-block; */
+/*    width: 90%; */
+/*    /1* border-left: 1px solid #666; *1/ */
+/*    /1* border-right: 1px solid #666; *1/ */
+/*    margin-left: 8px; */
+/*    position: relative; */
+/* } */
+
+/* #searchGrp a:before, */
+/* #searchGrp strong:before { */
+/*    box-shadow: -4px 0 4px -4px rgba(0,0,0,0.2) inset; */
+/*    content: " "; */
+/*    height: 100%; */
+/*    position: absolute; */
+/*    top: 0; */
+/*    left: -4px; */
+/*    width: 4px; */
+/* } */
+
+/* #searchGrp a:last-of-type { */
+/*    padding-bottom: 6px; */
+/*    /1* border-bottom: 1px solid #666; *1/ */
+/*    border-bottom-left-radius: 4px; */
+/*    border-bottom-right-radius: 4px; */
+/*    box-shadow: 0 4px 2px -2px rgba(0,0,0,0.2); */
+/* } */
+
+/* #searchGrp strong:last-of-type { */
+/*    padding-bottom: 6px; */
+/*    /1* border-bottom: 1px solid #666; *1/ */
+/*    border-bottom-left-radius: 4px; */
+/*    border-bottom-right-radius: 4px; */
+/*    box-shadow: 0 4px 2px -2px rgba(0,0,0,0.2); */
+/* } */
+
+/* clear search "X" button */
+
+/* #clearSearch { */
+/*    font-weight: bold; */
+/*    color: #ccc; */
+/* } */
