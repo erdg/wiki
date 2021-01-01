@@ -15,10 +15,11 @@
          (: repl)
          DX DY )
       (--)
-      (gui 'line '(+Focus +Able #{+Hint1}# +TextField)
+      (gui 'line '(+Able #{+Hint1}# +TextField)
          '(= (: home view file) (: home repl))
          # '*ReplH
          (*/ DX 4 5) )
+         # DX 4 )
       (----)
       (gui '(+JS +Able +Button) '(= (: home view file) (: home repl)) "Eval"
          '(let Str (val> (: home line))
@@ -63,7 +64,7 @@
 (de <ReplSvg> ()
    # see https://stackoverflow.com/questions/1077041/refresh-image-with-a-new-one-at-the-same-url/9943419#9943419
    # '(date)' and '(time)' to fool browser cache and update image
-   (<img> (pack "http://localhost:" *WikiPort "/" 'repl.cropped.svg "#" (date) (time))) )
+   (<img> (pack "http://localhost:" *WikiPort "/wiki/repl.cropped.svg#" (date) (time))) )
 
 # send latest SVG to the browser
 (de updReplSvg ()
@@ -75,7 +76,8 @@
       (lyVersion)
       (lyLayout)
       (run Music) )
-   (call *Lily "-dcrop" "-dbackend=svg" (tmp "repl.ly"))
+   (call *Lily "-dcrop" "-dbackend=svg" "--output=wiki" (tmp "repl.ly"))
+   # (call *Lily "-dcrop" "-dbackend=svg" (pack "--output=" (tmp)) (tmp "repl.ly"))
    (updReplSvg) )
 
 (de lyEcho()
