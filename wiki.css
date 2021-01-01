@@ -634,8 +634,6 @@ input[type=submit].tiny {
    width: 100%;
    color: #333;
    max-width: 96%;
-   font-family: monospace;
-   /* font-weight: bold; */
 }
 
 #repl input[type=text]:focus, textarea:focus {
