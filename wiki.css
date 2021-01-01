@@ -493,8 +493,9 @@ fieldset.alert {
    background-image: linear-gradient(top, #eee, #ccc);
    border: 1px solid #666;
    border-radius: 4px;
-   padding: 4px;
+   padding: 2px 4px;
    box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+   cursor: pointer;
 }
 
 #repl .submit:hover,
@@ -531,10 +532,6 @@ fieldset.alert {
    .flex-row input[type=text] {
       width: 100%;
    }
-}
-
-.flex-row .submit {
-   margin-bottom: 4px;
 }
 
 .flex-row strong {
@@ -622,6 +619,10 @@ input[type=submit].tiny {
    cursor: default;
 }
 
+#repldiv {
+   margin: 8px;
+}
+
 #repl {
    font-size: 16px;
 }
@@ -638,9 +639,21 @@ input[type=submit].tiny {
 
 #repl input[type=text]:focus, textarea:focus {
    border: 1px solid #9fa3cf;
+   font-family: monospace;
 }
 
-/* large screens - fixed in left (article) margin */
+/* disabled repl buttons */
+#repl .submit[disabled='disabled'] {
+   opacity: 0.6;
+   box-shadow: none;
+   cursor: not-allowed;
+}
+
+#repl .submit[disabled='disabled']:active {
+   top: 0px;
+}
+
+/* large screens - fixed in left margin */
 @media screen and (min-width: 1500px) {
    #repl {
       margin: 16px;
