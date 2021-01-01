@@ -6,6 +6,10 @@
    (form Attr
       (disable (not *Login))
       (=: repl (tmp "repl"))
+      (<div> '(flex-row (style . "justify-content: flex-start;"))
+         (<style> '(style . "width: 24px;")
+            (<img> "wiki/img/small-logo.png") )
+         (<p> '(style . "display: inline; color: #222; font-family: monospace; font-size: 22px; margin: 0px;") "repl") )
       (gui 'view '(+Able +FileField)
          '(<> (: file) (: home repl))
          (: repl)
