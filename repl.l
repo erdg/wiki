@@ -55,9 +55,8 @@
                (clr> (: home line))
                (: home repl) ) ) )
       (--)
-      (gui 'line '(+Able #{+Hint1}# +Mono +TextField)
+      (gui 'line '(+Able +Mono +TextField)
          '(= (: home view file) (: home repl))
-         # '*ReplH
          (*/ DX 4 5) )
       (----)
       (<spread>
