@@ -4,6 +4,7 @@
    (default DX 80  DY 25)
    (serverSentEvent "ReplSvg" '*ReplSvg)
    (form Attr
+      (disable (not *Login))
       (=: repl (tmp "repl"))
       (gui 'view '(+Able +FileField)
          '(<> (: file) (: home repl))
