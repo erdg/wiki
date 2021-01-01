@@ -157,7 +157,8 @@
                (if *Login
                   (baseHRef NIL *SesId "?home")
                   (baseHRef *Port1 "?home") ) )
-            (repl '(id . "repl") 56 24)
+            (<div> '(id . "repldiv")   # to hide - document.getElementById().style.display = none;
+               (repl '(id . "repl") 56 16) )
             (when *WikiMenu
                (in (blob (; (id (car @) (cdr @)) mup) 'txt)
                   (render) ) )
