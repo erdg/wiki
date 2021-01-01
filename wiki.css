@@ -44,7 +44,7 @@
 /* Simple responsive container */
 .container {
    position: relative;
-   width: 88%;
+   width: 92%;
    display: block;
    margin: 0 auto;
    box-sizing: border-box;
@@ -152,7 +152,8 @@ a:active {
    background-color: #17192d;
    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
    width: 100%;
-   margin-bottom: 64px;
+   /* margin-bottom: 64px; */
+   margin-bottom: 32px;
    display: flex;
    display: -webkit-flex;
 
