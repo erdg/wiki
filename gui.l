@@ -157,8 +157,6 @@
                (if *Login
                   (baseHRef NIL *SesId "?home")
                   (baseHRef *Port1 "?home") ) )
-            (<div> '(id . "repldiv")   # to hide - document.getElementById().style.display = none;
-               (repl '(id . "repl") 56 16) )
             (when *WikiMenu
                (in (blob (; (id (car @) (cdr @)) mup) 'txt)
                   (render) ) )
@@ -255,10 +253,12 @@
                ((== 'edit *ID)
                   (let Obj This
                      (ifn (lock Obj)
-                        (form 'edit
-                           (=: obj Obj)
-                           (<h3> NIL (ht:Prin (: obj nm)))
-                           (docFields T) )
+                        (<div> NIL
+                           (repl '(id . "repl") 56 12)
+                           (form 'edit
+                              (=: obj Obj)
+                              (<h3> NIL (ht:Prin (: obj nm)))
+                              (docFields T) ) )
                         (<h2> 'red
                            (prinl
                               "This document is currently edited by user '"
