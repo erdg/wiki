@@ -620,10 +620,7 @@ input[type=submit].tiny {
    cursor: default;
 }
 
-#repldiv {
-   margin: 8px;
-}
-
+/* fieldset */
 #repl {
    font-size: 16px;
 }
@@ -635,12 +632,14 @@ input[type=submit].tiny {
    padding: 4px;
    margin: 4px 0px;
    width: 100%;
+   color: #333;
    max-width: 96%;
+   font-family: monospace;
+   /* font-weight: bold; */
 }
 
 #repl input[type=text]:focus, textarea:focus {
    border: 1px solid #9fa3cf;
-   font-family: monospace;
 }
 
 /* disabled repl buttons */
