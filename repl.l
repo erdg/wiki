@@ -21,11 +21,6 @@
          (: repl)
          DX DY )
       (--)
-      (gui 'line '(+Able #{+Hint1}# +Mono +TextField)
-         '(= (: home view file) (: home repl))
-         # '*ReplH
-         (*/ DX 4 5) )
-      (----)
       (gui '(+JS +Able +Button) '(= (: home view file) (: home repl)) "Eval"
          '(let Str (val> (: home line))
             (out (pack "+" (: home repl))
@@ -59,23 +54,28 @@
                   *ReplF )
                (clr> (: home line))
                (: home repl) ) ) )
-         (--)
-         (<spread>
-            (<style> '(placeholder . "<filename>")
-               (gui 'nm '(+TextField) 20) )
-            (gui '(+JS +Button) "Upload to document"
-               # upload current repl svg to document
-               # feels like a hack, but it works
-               # BUG - need to refresh browser after button click for the new
-               # svg to show up in the "Media" section of the edit form.
-               '(ifn (val> (: home nm))
-                  (error "Please provide a name")
-                  (put!> (get *Top 'obj 'mup) 'bin
-                     (cons
-                        (prog1
-                           (new! '(+Bin) 'nm (val> (: home nm)))
-                           (blob! @ 'd "wiki/repl.cropped.svg") )
-                        (get *Top 'obj 'mup 'bin) ) ) ) ) )
+      (--)
+      (gui 'line '(+Able #{+Hint1}# +Mono +TextField)
+         '(= (: home view file) (: home repl))
+         # '*ReplH
+         (*/ DX 4 5) )
+      (----)
+      (<spread>
+         (<style> '(placeholder . "<filename>")
+            (gui 'nm '(+TextField) 20) )
+         (gui '(+JS +Button) "Upload to document"
+            # upload current repl svg to document
+            # feels like a hack, but it works
+            # BUG - need to refresh browser after button click for the new
+            # svg to show up in the "Media" section of the edit form.
+            '(ifn (val> (: home nm))
+               (error "Please provide a name")
+               (put!> (get *Top 'obj 'mup) 'bin
+                  (cons
+                     (prog1
+                        (new! '(+Bin) 'nm (val> (: home nm)))
+                        (blob! @ 'd "wiki/repl.cropped.svg") )
+                     (get *Top 'obj 'mup 'bin) ) ) ) ) )
       (<ReplSvgDiv>) ) )
 
 (de <ReplSvgDiv> ()
