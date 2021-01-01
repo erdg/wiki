@@ -230,9 +230,9 @@ table.wiki, table.wiki td {
 
 #searchGrp input,
 #searchGrp .submit {
-   border-radius: 2px;
+   border-radius: 4px;
    padding: 4px;
-   margin: 4px;
+   margin: 1px;
 }
 
 #searchGrp input {
