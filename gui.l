@@ -12,7 +12,7 @@
       (html 0 Ttl *Css NIL
          (<ping> 7)
          (<layout>
-            ((220 0 'menu)
+            ((180 0 'menu)
                (<div> @
                   (expires)
                   (<menu>
