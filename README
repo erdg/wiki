@@ -1,11 +1,26 @@
-30dec20edg
+02jan21edg
+
+         The PicoLisp (musical) NoteBook
 
 This is an attempt to turn The PicoLisp Wiki into on interactive PicoLisp
 Notebook (with an emphasis on writing music, as that is where my interest
 lies.) It uses the built-in 'repl' (from '@lib/form.l') and so the server can
 be completely controlled from the browser. Use caution, run locally, etc.
 
-The original README follows:
+To run:
+
+   $ git clone https://github.com/erdg/wiki.git
+   $ git clone https://github.com/erdg/picolisp-lily.git
+   $ pil wiki/main.l picolisp-lily/pond.l -main -go +
+
+Major changes:
+
+   - the metarepl
+   - account creation disabled
+   - modal-style pop-ups for alerts and dialogs
+
+
+The original README follows (and is still relevant):
 
 31jan12abu
 (c) Software Lab. Alexander Burger

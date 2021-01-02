@@ -44,7 +44,7 @@
 /* Simple responsive container */
 .container {
    position: relative;
-   width: 92%;
+   width: 90%;
    display: block;
    margin: 0 auto;
    box-sizing: border-box;
