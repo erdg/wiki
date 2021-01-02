@@ -1,3 +1,5 @@
+# IDEA - tabs for different repl syntax "skins" (normal, macro, lilypond, etc)
+
 # REPL form
 (de repl (Attr DX DY)
    (default DX 80  DY 25)
@@ -30,6 +32,20 @@
                      (flush)
                      (in (list "sh" "-c" (cddr (chop Str)))
                         (echo) ) )
+                  # normal picolisp
+                  # (err NIL
+                  #    (prinl ": " Str)
+                  #    (flush)
+                  #    (catch '(NIL)
+                  #       (in "/dev/null"
+                  #          (up 99 @@@ "@3")
+                  #          (up 99 @@ "@2")
+                  #          (up 99 @ "@1")
+                  #          (setq  "@3" "@2"  "@2" "@1"  "@1" (run (str Str) 99)) )
+                  #       (off *Msg)
+                  #       (println '-> "@1") ) )
+
+                  # picolisp lilypond syntax (e.g. "{ a'4. b'8 c'2~ | c1 }" )
                   (err NIL
                      (prinl ": " Str)
                      (flush)
@@ -38,7 +54,13 @@
                            (up 99 @@@ "@3")
                            (up 99 @@ "@2")
                            (up 99 @ "@1")
-                           (setq  "@3" "@2"  "@2" "@1"  "@1" (run (str Str) 99)) )
+                           (setq
+                              "@3" "@2"
+                              "@2" "@1"
+                              "@1"
+                                 (prog
+                                    (out (tmp "lyrepl") (prin Str))
+                                    (eval (transform (lyread (tmp "lyrepl")))) ) ) )
                         (off *Msg)
                         (println '-> "@1") ) )
                   (and *Msg (prinl @)) ) )
