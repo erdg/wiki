@@ -1,3 +1,9 @@
+# dependency - https://github.com/erdg/picolisp-lily.git
+#
+# currently loaded at app startup
+#
+#  $ ./pil wiki/main.l picolisp-lily/pond.l -main -go +
+
 # tabs for different repl syntax "skins" (standard picolisp and lilypond for
 # now, macro syntax could be added)
 (de metaRepl ()
@@ -18,8 +24,8 @@
             color: #393e71;
             font-family: monospace;
             font-size: 22px;
-            margin: 0px 8px;" )
-         "metapil" ) ) )
+            margin: 0px 16px;" )
+         "metarepl" ) ) )
 
 
 # normal picolisp repl
@@ -108,7 +114,7 @@
                               "@1"
                                  (prog
                                     (out (tmp "lyrepl") (prin Str))
-                                    (eval (transform (lyread (tmp "lyrepl")))) ) ) )
+                                    (eval (lytransform (lyread (tmp "lyrepl")))) ) ) )
                         (off *Msg)
                         (println '-> "@1") ) )
                   (and *Msg (prinl @)) ) )
