@@ -620,10 +620,56 @@ input[type=submit].tiny {
    cursor: default;
 }
 
-/* fieldset */
+/* now the metarepl */
 #repl {
    font-size: 16px;
+   margin: 16px 0px;
+   height: auto;
+   transition: height 1.4s;
 }
+
+#repl fieldset {
+   border: none;
+}
+
+/* metarepl header */
+#repl > .flex-row {
+   margin: 16px 16px;
+}
+
+
+/* metarepl tabs */
+#repl > .tab {
+   margin: 0px 16px;
+   margin-bottom: 1ex;
+   border-collapse: unset;
+   display: flex;
+   font-family: monospace;
+}
+
+#repl > .tab td {
+   padding: 3px 1rem;
+   border-bottom: none;
+}
+
+#repl > .tab .top {
+   background-color: #ddd;
+   color: #333;
+   border-radius: 4px;
+}
+
+#repl > .tab .sub {
+   border-radius: 4px;
+}
+
+#repl .tab .sub:hover {
+   background: #dfe0ef;
+}
+
+#repl .tab .sub a:hover {
+   text-decoration: none;
+}
+
 
 #repl input[type=text], textarea {
    background: #fff;
@@ -634,6 +680,10 @@ input[type=submit].tiny {
    width: 100%;
    color: #333;
    max-width: 96%;
+}
+
+#repl input[type=text] {
+   margin: 8px 0px;
 }
 
 #repl .error {

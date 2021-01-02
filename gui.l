@@ -254,7 +254,8 @@
                   (let Obj This
                      (ifn (lock Obj)
                         (<div> NIL
-                           (repl '(id . "repl") 56 12)
+                           # (repl '(id . "repl") 56 12)
+                           (metaRepl)
                            (form 'edit
                               (=: obj Obj)
                               (<h3> NIL (ht:Prin (: obj nm)))
