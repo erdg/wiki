@@ -82,9 +82,9 @@
          (*/ DX 4 5) )
       (----)
       (<spread>
-         (<style> '(placeholder . "<filename>")
+         (<style> '(placeholder . "<Specify a name>")
             (gui 'nm '(+TextField) 20) )
-         (gui '(+JS +Button) "Upload to document"
+         (gui '(+JS +Button) "Copy to document"
             # upload current repl svg to document
             # feels like a hack, but it works
             # BUG - need to refresh browser after button click for the new
