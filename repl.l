@@ -132,6 +132,7 @@
                   *ReplF )
                (clr> (: home line))
                (: home repl) ) ) )
+      # (gui 'toggle '(+Init +TextField) ,"line" '("line" "area"))
       (<div> '("flex-row right" (style . "margin: 0px 16px"))
          ,"Lilypond Syntax" (gui 'lilypondSyntax '(+Init +Checkbox) T) )
       (--)

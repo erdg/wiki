@@ -67,6 +67,7 @@ fieldset {
 input, textarea, select {
    font-size: smaller;
    background-color: #eee;
+   border-radius: 4px;
 }
 
 body {
@@ -727,7 +728,7 @@ input[type=submit].tiny {
 }
 
 /* large screens - fixed in left margin */
-@media screen and (min-width: 1500px) {
+@media screen and (min-width: 1800px) {
    #repl {
       margin: 16px;
       position: fixed;
