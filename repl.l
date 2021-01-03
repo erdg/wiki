@@ -155,7 +155,7 @@
       # (----)
       (<hr>)
       (<spread>
-         (<style> '(placeholder . "<Specify a name>")
+         (<style> '(placeholder . "<FILENAME>")
             (gui 'nm '(+TextField) 20) )
          (gui '(+JS +Button) "Copy to document"
             # upload current repl svg to document
@@ -163,7 +163,7 @@
             # BUG - need to refresh browser after button click for the new
             # svg to show up in the "Media" section of the edit form.
             '(ifn (val> (: home nm))
-               (error "Please provide a name")
+               (error "Please specify a name")
                (put!> (get *Top 'obj 'mup) 'bin
                   (cons
                      (prog1
