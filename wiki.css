@@ -685,6 +685,11 @@ input[type=submit].tiny {
    margin: 8px 0px;
 }
 
+#repl hr {
+   color: #ddd;
+   margin: 16px 16px 8px 8px;
+}
+
 #repl .error {
    float: right;
    width: max-content;
