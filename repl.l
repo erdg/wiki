@@ -112,9 +112,11 @@
                               "@3" "@2"
                               "@2" "@1"
                               "@1"
-                                 (prog
-                                    (out (tmp "lyrepl") (prin Str))
-                                    (eval (lytransform (lyread (tmp "lyrepl")))) ) ) )
+                                 (ifn (val> (: home lilypondSyntax))
+                                    (run (str Str) 99)
+                                    (prog
+                                       (out (tmp "lyrepl") (prin Str))
+                                       (eval (lytransform (lyread (tmp "lyrepl")))) ) ) ) )
                         (off *Msg)
                         (println '-> "@1") ) )
                   (and *Msg (prinl @)) ) )
@@ -130,6 +132,8 @@
                   *ReplF )
                (clr> (: home line))
                (: home repl) ) ) )
+      (<div> '("flex-row right" (style . "margin: 0px 16px"))
+         ,"Lilypond Syntax" (gui 'lilypondSyntax '(+Init +Checkbox) T) )
       (--)
       (gui 'line '(+Able +Mono +TextField)
          '(= (: home view file) (: home repl))
