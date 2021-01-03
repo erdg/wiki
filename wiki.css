@@ -731,7 +731,7 @@ input[type=submit].tiny {
 }
 
 /* large screens - fixed in left margin */
-@media screen and (min-width: 1800px) {
+@media screen and (min-width: 1600px) {
    #repl {
       margin: 16px;
       position: fixed;
@@ -739,6 +739,7 @@ input[type=submit].tiny {
       top: 88px;
       left: 12px;
       font-size: 16px;
+      max-width: 24%;
    }
 }
 
