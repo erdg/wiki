@@ -73,6 +73,8 @@
                   *ReplF )
                (clr> (: home line))
                (: home repl) ) ) )
+      (gui '(+Style +Button) "closeRepl" "x"
+         '(prog (rollback) (off *ID)) )
       (--)
       (gui 'line '(+Able +Mono +TextField)
          '(= (: home view file) (: home repl))
@@ -134,9 +136,11 @@
                   *ReplF )
                (clr> (: home line))
                (: home repl) ) ) )
-      # (gui 'toggle '(+Init +TextField) ,"line" '("line" "area"))
+      (gui '(+Style +Button) "closeRepl" "x"
+         '(prog (rollback) (off *ID)) )
       (<div> '("flex-row right" (style . "margin: 0px 16px"))
-         ,"Lilypond Syntax" (gui 'lilypondSyntax '(+Init +Checkbox) T) )
+         (<span> '(style . "font-size: smaller") "Lilypond Syntax")
+         (gui 'lilypondSyntax '(+Init +Checkbox) T) )
       (--)
       # (gui 'line '(+Able +Mono +TextField)
       #    '(= (: home view file) (: home repl))
