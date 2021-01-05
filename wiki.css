@@ -743,6 +743,12 @@ input[type=submit].tiny {
    }
 }
 
+@media screen and (min-width: 1800px) {
+   #repl {
+      max-width: 26%;
+   }
+}
+
 #ReplSvg {
    margin-top: 8px;
 }
