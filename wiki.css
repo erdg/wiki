@@ -753,6 +753,23 @@ input[type=submit].tiny {
    margin-top: 8px;
 }
 
+#repl .collapsible.tiny {
+   display: block;
+}
+
+.closeRepl {
+   position: absolute;
+   top: 8px;
+   right: 8px;
+   text-transform: uppercase;
+}
+
+.collapsible-content {
+   max-height: 0px;
+   overflow: hidden;
+   transition: max-height 0.2s ease-out;
+}
+
 /* clear search "X" button */
 
 /* #clearSearch { */
