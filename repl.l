@@ -149,15 +149,17 @@
          (gui 'line '(+Able +Mono +TextField)
             '(= (: home view file) (: home repl))
             (*/ DX 4 5) ) )
-      (<style> '(placeholder . "...or here")
-         (gui 'area '(+Able +Mono +TextField)
-            '(= (: home view file) (: home repl))
-            (*/ DX 4 5) 5) )
-      (<spread>
-         (<style> '(placeholder . "<FILENAME>")
-            (gui 'bufferNm '(+TextField) 20) )
-         (gui '(+Button) "Save Buffer As") )
-      # (----)
+      (gui '(+JS +Tiny +Style +Button) "collapsible" "v")
+      (<div> 'collapsible-content
+         (<style> '(placeholder . "...or here")
+            (gui 'area '(+Able +Mono +TextField)
+               '(= (: home view file) (: home repl))
+               (*/ DX 4 5) 5) )
+         (<spread>
+            (<style> '(placeholder . "<FILENAME>")
+               (gui 'bufferNm '(+TextField) 20) )
+            (gui '(+Button) "Save Buffer As") ) )
+         # (----)
       (<hr>)
       (<spread>
          (<style> '(placeholder . "<FILENAME>")
