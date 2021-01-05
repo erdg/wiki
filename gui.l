@@ -209,47 +209,8 @@
                               (clr> (: home pw))
                               (off *ID) ) )
                         (gui '(+Button) "Cancel" '(off *ID))
+                        # createAccountDialog goes here
                         (<nbsp> 7) ) ) )
-                        # (gui '(+Button) "Create Account"
-                        #    '(dialog NIL
-                        #       (<h4> NIL "Create Account")
-                        #       # (<br> "Please supply at least Login Name and EMail Address.")
-                        #       (<grid> 2
-                        #          "Username*" (gui '(+Focus +Chk +TextField)
-                        #             '(let Nm (val> This)
-                        #                (cond
-                        #                   ((not Nm) "Please supply a login name")
-                        #                   ((db 'nm '+User Nm) "This name is already in use") ) )
-                        #             10 )
-                        #          "Email*" (gui '(+Chk +TextField)
-                        #             '(and
-                        #                *Btn
-                        #                (not (val> This))
-                        #                "Please supply an email address" )
-                        #             20 )
-                        #          "Full Name" (gui '(+TextField) 20) )
-                        #       (<br>)
-                        #       (<br> "Clicking \"OK\" will create a new account,")
-                        #       (<br> "and send a password to you by email.")
-                        #       (<br>)
-                        #       (okButton
-                        #          '(let Pw (pack (randpw 9))
-                        #             (with
-                        #                (new! '(+User)
-                        #                   'nm (val> (field -3))
-                        #                   'pw (passwd Pw)
-                        #                   'role (db 'nm '+Role "Member")
-                        #                   'em (val> (field -2))
-                        #                   'name (val> (field -1)) )
-                        #                (mail "localhost" 25
-                        #                   "noreply@picolisp.com" (: em)
-                        #                   "New Account" NIL
-                        #                   "A new account on picolisp.com was created for you."
-                        #                   NIL
-                        #                   (prinl "You can now log in as: " (: nm))
-                        #                   (prinl "With the password: " Pw) )
-                        #                (off *ID) ) ) )
-                        #       (cancelButton) ) ) ) ) )
                ((== 'edit *ID)
                   (let Obj This
                      (ifn (lock Obj)
@@ -328,6 +289,65 @@
                                  (ht:Prin (: mup sum))
                                  (and (: mup rpl) (recurse)) ) ) ) ) ) ) ) ) ) )
    (off *ID) )
+
+(de collapsibleJS ()
+   (<javascript>
+     "var coll = document.getElementsByClassName('collapsible');
+      var i;
+      for (i = 0; i < coll.length; i++) {
+         coll[i].addEventListener('click', function() {
+            this.classList.toggle('active');
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight){
+               content.style.maxHeight = null;
+            } else {
+               content.style.maxHeight = content.scrollHeight + 'px';
+            }
+         });
+      }" ) )
+
+# temp holding, don't want to delete this
+(de createAccountDialog ()
+   (gui '(+Button) "Create Account"
+      '(dialog NIL
+         (<h4> NIL "Create Account")
+         # (<br> "Please supply at least Login Name and EMail Address.")
+         (<grid> 2
+            "Username*" (gui '(+Focus +Chk +TextField)
+               '(let Nm (val> This)
+                  (cond
+                     ((not Nm) "Please supply a login name")
+                     ((db 'nm '+User Nm) "This name is already in use") ) )
+               10 )
+            "Email*" (gui '(+Chk +TextField)
+               '(and
+                  *Btn
+                  (not (val> This))
+                  "Please supply an email address" )
+               20 )
+            "Full Name" (gui '(+TextField) 20) )
+         (<br>)
+         (<br> "Clicking \"OK\" will create a new account,")
+         (<br> "and send a password to you by email.")
+         (<br>)
+         (okButton
+            '(let Pw (pack (randpw 9))
+               (with
+                  (new! '(+User)
+                     'nm (val> (field -3))
+                     'pw (passwd Pw)
+                     'role (db 'nm '+Role "Member")
+                     'em (val> (field -2))
+                     'name (val> (field -1)) )
+                  (mail "localhost" 25
+                     "noreply@picolisp.com" (: em)
+                     "New Account" NIL
+                     "A new account on picolisp.com was created for you."
+                     NIL
+                     (prinl "You can now log in as: " (: nm))
+                     (prinl "With the password: " Pw) )
+                  (off *ID) ) ) )
+         (cancelButton) ) ) )
 
 # Full-text search
 (de searchWiki (Words Syms Cnt)
