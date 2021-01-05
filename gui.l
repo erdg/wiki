@@ -287,7 +287,8 @@
                                  (<href> (nm> (: mup)) (ext.html This))
                                  (<nbsp>)
                                  (ht:Prin (: mup sum))
-                                 (and (: mup rpl) (recurse)) ) ) ) ) ) ) ) ) ) )
+                                 (and (: mup rpl) (recurse)) ) ) ) ) ) ) ) )
+         (collapsibleJS) ) )
    (off *ID) )
 
 (de collapsibleJS ()
