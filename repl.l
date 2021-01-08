@@ -35,6 +35,8 @@
    (form Attr
       (disable (not *Login))
       (=: repl (tmp "repl"))
+      (gui '(+Tiny +Style +Button) "closeRepl" "X"
+         '(prog (rollback) (off *ID)) )
       (gui 'view '(+Able +FileField)
          '(<> (: file) (: home repl))
          (: repl)
@@ -73,8 +75,6 @@
                   *ReplF )
                (clr> (: home line))
                (: home repl) ) ) )
-      (gui '(+Style +Button) "closeRepl" "x"
-         '(prog (rollback) (off *ID)) )
       (--)
       (gui 'line '(+Able +Mono +TextField)
          '(= (: home view file) (: home repl))
@@ -88,6 +88,8 @@
    (form Attr
       (disable (not *Login))
       (=: repl (tmp "repl"))
+      (gui '(+Tiny +Style +Button) "closeRepl" "X"
+         '(prog (rollback) (off *ID)) )
       (gui 'view '(+Able +FileField)
          '(<> (: file) (: home repl))
          (: repl)
@@ -137,8 +139,6 @@
                   *ReplF )
                (clr> (: home line))
                (: home repl) ) ) )
-      (gui '(+Style +Button) "closeRepl" "x"
-         '(prog (rollback) (off *ID)) )
       (<div> '("flex-row right" (style . "margin: 0px 16px"))
          (<span> '(style . "font-size: smaller") "Lilypond Syntax")
          (gui 'lilypondSyntax '(+Init +Checkbox) T) )

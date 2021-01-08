@@ -758,10 +758,6 @@ input[type=submit].tiny {
 }
 
 .closeRepl {
-   position: absolute;
-   top: 8px;
-   right: 8px;
-   text-transform: uppercase;
 }
 
 .collapsible-content {
