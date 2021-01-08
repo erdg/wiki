@@ -758,6 +758,7 @@ input[type=submit].tiny {
 }
 
 .closeRepl {
+   margin-left: 16px;
 }
 
 .collapsible-content {
