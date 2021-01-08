@@ -161,8 +161,8 @@
       (<spread>
          (<style> '(placeholder . "<FILENAME>")
             (gui 'nm '(+TextField) 20) )
-         (gui '(+JS +Button) "Copy to document"
-            # upload current repl svg to document
+         (gui '(+JS +Button) "Save As"
+            # upload current repl.svg to document
             # feels like a hack, but it works
             # BUG - need to refresh browser after button click for the new
             # svg to show up in the "Media" section of the edit form.
