@@ -155,11 +155,7 @@
          (<style> '(placeholder . "...or here")
             (gui 'area '(+Able +Mono +TextField)
                '(= (: home view file) (: home repl))
-               (*/ DX 4 5) 5) )
-         (<spread>
-            (<style> '(placeholder . "<FILENAME>")
-               (gui 'bufferNm '(+TextField) 20) )
-            (gui '(+Button) "Save Buffer As") ) )
+               (*/ DX 4 5) 5) ) )
          # (----)
       (<hr>)
       (<spread>
