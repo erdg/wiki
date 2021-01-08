@@ -172,7 +172,7 @@
                   (cons
                      (prog1
                         (new! '(+Bin) 'nm (val> (: home nm)))
-                        (blob! @ 'd "wiki/repl.cropped.svg") )
+                        (blob! @ 'd "wiki/img/repl.cropped.svg") )
                      (get *Top 'obj 'mup 'bin) ) ) ) ) )
       (<ReplSvgDiv>) ) )
 
@@ -185,7 +185,7 @@
 (de <ReplSvg> ()
    # see https://stackoverflow.com/questions/1077041/refresh-image-with-a-new-one-at-the-same-url/9943419#9943419
    # '(date)' and '(time)' to fool browser cache and update image
-   (<img> (pack "http://localhost:" *WikiPort "/wiki/repl.cropped.svg#" (date) (time))) )
+   (<img> (pack "http://localhost:" *WikiPort "/wiki/img/repl.cropped.svg#" (date) (time))) )
 
 
 # send latest SVG to the browser
@@ -199,8 +199,7 @@
       (lyVersion)
       (lyLayout)
       (run Music) )
-   (call *Lily "-dcrop" "-dbackend=svg" "--output=wiki" (tmp "repl.ly"))
-   # (call *Lily "-dcrop" "-dbackend=svg" (pack "--output=" (tmp)) (tmp "repl.ly"))
+   (call *Lily "-dcrop" "-dbackend=svg" "--output=wiki/img" (tmp "repl.ly"))
    (updReplSvg) )
 
 (de lyEcho ()
