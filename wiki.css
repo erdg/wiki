@@ -322,6 +322,10 @@ table.wiki, table.wiki td {
    font-size: 14px;
 }
 
+pre.code {
+   border: 1px solid #ddd;
+}
+
 .search {
    border-style: none;
 }
