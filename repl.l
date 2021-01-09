@@ -155,7 +155,7 @@
          (<style> '(placeholder . "...or here")
             (gui 'area '(+Able +Mono +TextField)
                '(= (: home view file) (: home repl))
-               (*/ DX 4 5) 5) ) )
+               (*/ DX 4 5) 6) ) )
          # (----)
       (<hr>)
       (<spread>
