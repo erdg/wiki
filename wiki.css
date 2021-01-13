@@ -335,7 +335,7 @@ pre.code {
 /* Wiki document login/edit forms */
 .edit, .login, .dialog, #repl {
    background-color: #efeff7;
-   border-radius: 4px;
+   border-radius: 8px;
    border: 1px solid #666;
    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
 }
