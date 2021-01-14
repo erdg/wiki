@@ -357,6 +357,10 @@ pre.code {
    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
 }
 
+.edit {
+   font-size: smaller;
+}
+
 .edit h3 {
    margin-top: 1.2rem;
 }
@@ -645,7 +649,7 @@ input[type=submit].tiny {
 
 /* now the metarepl */
 #repl {
-   font-size: 16px;
+   font-size: smaller;
    margin: 16px 0px;
 }
 
