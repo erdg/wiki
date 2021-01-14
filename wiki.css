@@ -555,10 +555,16 @@ fieldset.alert {
    justify-content: space-evenly;
 }
 
-/* hack for naughty text fields on mobile */
+/* hacks for naughty text fields on mobile */
 @media screen and (max-width: 500px) {
    .flex-row input[type=text] {
-      width: 100%;
+      width: 66%;
+   }
+}
+
+@media screen and (max-width: 400px) {
+   .flex-row input[type=text] {
+      width: 56%;
    }
 }
 
