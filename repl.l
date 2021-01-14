@@ -101,7 +101,6 @@
                      (flush)
                      (in (list "sh" "-c" (cddr (chop Str)))
                         (echo) ) )
-                  # picolisp lilypond syntax (e.g. "{ a'4. b'8 c'2~ | c1 }" )
                   (err NIL
                      (prinl ": " Str)
                      (flush)
@@ -114,11 +113,18 @@
                               "@3" "@2"
                               "@2" "@1"
                               "@1"
+                                 # picolisp lilypond syntax (e.g. "{ a'4. b'8 c'2~ | c1 }" )
                                  (ifn (val> (: home lilypondSyntax))
                                     (run (str Str) 99)
-                                    (prog
-                                       (out (tmp "lyrepl") (prin Str))
-                                       (eval (lytransform (lyread (tmp "lyrepl")))) ) ) ) )
+                                    (ifn (val> (: home renderSvg))
+                                       # debug
+                                       (prog
+                                          (out (tmp "lyrepl") (prin Str))
+                                          (eval (lytransform (lyread (tmp "lyrepl")))) )
+                                       # render svg - automatically wrap code with '(ly ...)'
+                                       (prog
+                                          (out (tmp "lyrepl") (prin (pack "(ly " Str " )")))
+                                          (eval (lytransform (lyread (tmp "lyrepl")))) ) ) ) ) )
                         (off *Msg)
                         (println '-> "@1") ) )
                   (and *Msg (prinl @)) ) )
@@ -139,8 +145,10 @@
       (gui '(+Style +Button) "closeRepl" "X"
          '(prog (rollback) (off *ID)) )
       (<div> '("flex-row right" (style . "margin: 0px 16px"))
-         (<span> '(style . "font-size: smaller") "Lilypond Syntax")
-         (gui 'lilypondSyntax '(+Init +Checkbox) T) )
+         (<span> '(style . "font-size: smaller;") "Lilypond Syntax")
+         (gui 'lilypondSyntax '(+Init +Checkbox) T)
+         (<span> '(style . "font-size: smaller; margin-left: 8px;") "Render Svg")
+         (gui 'renderSvg '(+Init +Checkbox) T) )
       (--)
       # (gui 'line '(+Able +Mono +TextField)
       #    '(= (: home view file) (: home repl))
