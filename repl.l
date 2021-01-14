@@ -7,7 +7,6 @@
 # tabs for different repl syntax "skins" (standard picolisp and lilypond for
 # now, macro syntax could be added)
 (de metaRepl ()
-   (collapsibleJS)
    (<div> '(id . "repl")
       (<MetaReplHeader>)
       (<tab>
