@@ -763,15 +763,21 @@ input[type=submit].tiny {
       position: fixed;
       z-index: 1;
       top: 88px;
-      left: 12px;
-      font-size: 16px;
-      max-width: 24%;
+      left: 2ex;
+      width: 23%;
+   }
+   .edit {
    }
 }
 
 @media screen and (min-width: 1800px) {
    #repl {
-      max-width: 26%;
+      width: 26%;
+   }
+   .edit {
+      position: fixed;
+      right: 2ex;
+      width: 26%;
    }
 }
 
