@@ -1,0 +1,123 @@
+#menu {
+   background-color: #1a1a1a;
+   border-bottom: 1px solid #333;
+}
+
+#menu a {
+   color: #ddd;
+}
+
+body {
+   color: #ddd;
+   background-color: #222;
+}
+
+h1, h2, h3, h4, h5, h6 {
+   color: #888;
+}
+
+a {
+   color: #9fa3cf;
+}
+
+a:hover,
+a:focus {
+   color: #9fa3cf;
+   text-decoration: underline;
+}
+
+a:active {
+   color: #afb3d7;
+}
+
+.code {
+   color: #6dc066;
+   /* color: #8acc84; */
+   background-color: #333;
+}
+
+pre.code {
+   border: 1px solid #444;
+}
+
+.login {
+   background: #222;
+   color: #ddd;
+   border: 1px solid #666;
+}
+
+.login::before {
+   color: #999;
+   font-weight: normal;
+}
+
+.login input[type=text], input[type=password] {
+   color: #ddd;
+   background: #333;
+   border: 1px solid #666;
+}
+
+.login input[type=text]:focus, .login input[type=password]:focus {
+   /* border: 1px solid #9fa3cf; */
+   border: 1px solid #888;
+}
+
+#repl, .edit {
+   background: #333;
+   color: #ddd;
+   border: 1px solid #444;
+}
+
+#repl input[type=text], textarea {
+   color: #ddd;
+   background: #2a2a2a;
+   border: 1px solid #444;
+
+}
+
+.edit input[type=text], textarea {
+   color: #ddd;
+   background: #2a2a2a;
+   border: 1px solid #444;
+}
+
+#repl input[type=text]:focus, textarea:focus {
+   border: 1px solid #666;
+}
+
+.edit input[type=text]:focus, textarea:focus {
+   border: 1px solid #666;
+}
+
+.edit hr, #repl hr {
+   color: #666;
+   margin-right: 8px;
+}
+
+#searchGrp strong {
+   color: #6dc066;
+}
+
+#searchGrp input[type=text] {
+   color: #ddd;
+   background: #2a2a2a;
+   border: 2px solid #2a2a2a;
+   padding: 4px;
+}
+
+#searchGrp .submit {
+   color: #888;
+   border: 2px solid #888;
+}
+
+#searchGrp input[type=text]:focus {
+   border: 2px solid #444;
+}
+
+#searchGrp a {
+   color: #ddd;
+}
+
+#searchGrp a:hover {
+   color: #9fa3cf;
+}
