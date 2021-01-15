@@ -18,13 +18,7 @@
    (<div> '(flex-row (style . "justify-content: flex-start;"))
       (<style> '(style . "width: 32px;")
          (<img> "wiki/img/small-logo.png") )
-      (<p>
-         (cons 'style
-            "display: inline;
-            color: #393e71;
-            font-family: monospace;
-            font-size: 22px;
-            margin: 0px 16px;" )
+      (<p> '(id . "replHeaderText")
          "metarepl" ) ) )
 
 
