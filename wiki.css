@@ -332,7 +332,7 @@ table.wiki, table.wiki td {
    font-weight: bold;
    font-family: 'Courier New', monospace;
    background-color: #eee;
-   border-radius: 4px;
+   border-radius: 2px;
    padding: 1px 2px;
    margin-right: 1px;
    overflow-x: auto;
@@ -341,6 +341,7 @@ table.wiki, table.wiki td {
 
 pre.code {
    border: 1px solid #ddd;
+   border-radius: 4px;
 }
 
 .search {
@@ -657,6 +658,14 @@ input[type=submit].tiny {
 #repl {
    font-size: smaller;
    margin: 16px 0px;
+}
+
+#replHeaderText {
+   display: inline;
+   color: #393e71;
+   font-family: monospace;
+   font-size: 22px;
+   margin: 0px 16px;
 }
 
 #repl fieldset {
