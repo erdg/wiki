@@ -1,12 +1,4 @@
-#menu {
-   background-color: #1a1a1a;
-   border-bottom: 1px solid #333;
-}
-
-#menu a {
-   color: #ddd;
-}
-
+/* defaults */
 body {
    color: #ddd;
    background-color: #222;
@@ -14,6 +6,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
    color: #888;
+   text-decoration: underline;
 }
 
 a {
@@ -30,16 +23,48 @@ a:active {
    color: #afb3d7;
 }
 
+
+/* menu */
+#menu {
+   background-color: #1a1a1a;
+   border-bottom: 1px solid #333;
+}
+
+#menu a {
+   color: #ddd;
+}
+
+#menu a:hover, a:focus {
+   color: #9fa3cf;
+}
+
+
+/* code */
 .code {
    color: #6dc066;
    /* color: #8acc84; */
-   background-color: #333;
+   /* color: #bbb; */
+   background-color: #2a2a2a;
+   border-radius: 2px;
 }
 
 pre.code {
-   border: 1px solid #444;
+   border: 1px solid #333;
+   border-radius: 4px;
+   padding-right: 1em;
+   /* width: max-content; */
 }
 
+/* hack to display music svgs */
+#main img {
+   /* background: #eee; */
+   background: #f7efe6;
+   padding: 8px 16px;
+   border-radius: 4px;
+   box-shadow: 0 0 1px 1px #222 inset;
+}
+
+/* login form */
 .login {
    background: #222;
    color: #ddd;
@@ -62,56 +87,74 @@ pre.code {
    border: 1px solid #888;
 }
 
+
+/* repl / edit form */
 #repl, .edit {
-   background: #333;
-   color: #ddd;
-   border: 1px solid #444;
+   background: #1a1a1a;
+   color: #999;
+   border: 1px solid #333;
+}
+
+#repl img {
+   background: initial;
+   padding: 0;
+}
+
+#ReplSvg img {
+   /* background: #eee; */
+   background: #f7efe6;
+   padding: 8px 16px;
+}
+
+#replHeaderText {
+   display: inline;
+   /* color: #7f85bf; */
+   color: #888;
 }
 
 #repl input[type=text], textarea {
    color: #ddd;
    background: #2a2a2a;
-   border: 1px solid #444;
-
+   border: 1px solid #2a2a2a;
 }
 
 .edit input[type=text], textarea {
    color: #ddd;
    background: #2a2a2a;
-   border: 1px solid #444;
+   border: 1px solid #2a2a2a;
 }
 
 #repl input[type=text]:focus, textarea:focus {
-   border: 1px solid #666;
+   border: 1px solid #444;
 }
 
 .edit input[type=text]:focus, textarea:focus {
-   border: 1px solid #666;
+   border: 1px solid #444;
 }
 
 .edit hr, #repl hr {
-   color: #666;
+   color: #333;
    margin-right: 8px;
 }
 
+.edit h3 {
+   text-decoration: none;
+}
+
+/* search */
 #searchGrp strong {
    color: #6dc066;
 }
 
 #searchGrp input[type=text] {
    color: #ddd;
-   background: #2a2a2a;
-   border: 2px solid #2a2a2a;
+   background: #444;
+   border: 1px solid #444;
    padding: 4px;
 }
 
-#searchGrp .submit {
-   color: #888;
-   border: 2px solid #888;
-}
-
 #searchGrp input[type=text]:focus {
-   border: 2px solid #444;
+   border: 1px solid #888;
 }
 
 #searchGrp a {
@@ -120,4 +163,127 @@ pre.code {
 
 #searchGrp a:hover {
    color: #9fa3cf;
+}
+
+/* submit buttons */
+#searchGrp .submit {
+   color: #888;
+   border: 1px solid #888;
+   background: #1a1a1a;
+}
+
+#searchGrp .submit:hover {
+   color: #999;
+   border: 1px solid #999;
+   background: #1a1a1a;
+}
+
+#searchGrp .submit:active {
+   color: #6dc066;
+   border: 1px solid #6dc066;
+   background: #1a1a1a;
+   top: 1px;
+}
+
+#repl .submit,
+.dialog .submit,
+.alert .submit,
+.edit .submit,
+.login .submit {
+   color: #888;
+   border: 1px solid #777;
+   background: #1a1a1a;
+   padding: 2px 4px 2px;
+   box-shadow: unset;
+   /* font-weight: normal; */
+}
+
+#repl .submit:hover,
+.dialog .submit:hover,
+.alert .submit:hover,
+.edit .submit:hover,
+.login .submit:hover {
+   color: #999;
+   border: 1px solid #999;
+   padding: 2px 4px 2px;
+   background: #1a1a1a;
+}
+
+#repl .submit:active,
+.dialog .submit:active,
+.alert .submit:active,
+.edit .submit:active,
+.login .submit:active {
+   color: #6dc066;
+   border: 1px solid #6dc066;
+   background: #111;
+   padding: 2px 4px 2px;
+   top: 1px;
+}
+
+input[type=submit].tiny:hover {
+   padding: 1px 3px;
+   font-weight: bold;
+   border-radius: 3px;
+}
+
+
+/* metarepl tabs */
+#repl > .tab {
+   margin: 0px 16px;
+   margin-bottom: 1ex;
+   border-collapse: unset;
+   display: flex;
+   font-family: monospace;
+}
+
+#repl > .tab td {
+   padding: 3px 1rem;
+   border-bottom: none;
+}
+
+#repl > .tab .top {
+   background-color: #2a2a2a;
+   /* color: #aaa; */
+   color: #6dc066;
+   border-radius: 4px;
+}
+
+#repl > .tab .sub {
+   border-radius: 4px;
+}
+
+#repl .tab .sub:hover {
+   background: #222;
+}
+
+#repl .tab .sub a:hover {
+   text-decoration: none;
+}
+
+
+/* From 'form' GUI */
+.chart {
+   /* width: 100%; */
+   margin: 4px 0px;
+   white-space: nowrap;
+}
+
+.chart td {
+   background-color: #2a2a2a;
+   padding: 0px 4px 2px;
+   border-radius: 3px;
+}
+
+.chart td.T {
+   background-color: #333;
+}
+
+.chart td.nil {
+   background-color: white;
+}
+
+.error {
+   color: #602223;
+   background: #f37779;
 }
