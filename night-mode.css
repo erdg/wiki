@@ -51,7 +51,7 @@ a:active {
 pre.code {
    border: 1px solid #333;
    border-radius: 4px;
-   padding-right: 1em;
+   padding: 0 1em;
    /* width: max-content; */
 }
 
@@ -62,13 +62,14 @@ pre.code {
    padding: 8px 16px;
    border-radius: 4px;
    box-shadow: 0 0 1px 1px #222 inset;
+   margin-bottom: 4px;
 }
 
 /* login form */
 .login {
-   background: #222;
-   color: #ddd;
-   border: 1px solid #666;
+   background: #232323;
+   color: #999;
+   border: 1px solid #333;
 }
 
 .login::before {
