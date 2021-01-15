@@ -66,7 +66,7 @@
                   *ReplF )
                (clr> (: home line))
                (: home repl) ) ) )
-      (gui '(+Style +Button) "closeRepl" "X"
+      (gui '(+Style +Button) "closeRepl" "Close"
          '(prog (rollback) (off *ID)) )
       (--)
       (gui 'line '(+Able +Mono +TextField)
@@ -136,7 +136,7 @@
                   *ReplF )
                (clr> (: home line))
                (: home repl) ) ) )
-      (gui '(+Style +Button) "closeRepl" "X"
+      (gui '(+Style +Button) "closeRepl" "Close"
          '(prog (rollback) (off *ID)) )
       (<div> '("flex-row right" (style . "margin: 0px 16px"))
          (<span> '(style . "font-size: smaller;") "Lilypond Syntax")
