@@ -27,6 +27,9 @@
    (default DX 80  DY 25)
    (form Attr
       (disable (not *Login))
+      (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
+         '(prog
+            (rot *WikiCss) ) )
       (=: repl (tmp "repl"))
       (gui 'view '(+Able +FileField)
          '(<> (: file) (: home repl))
@@ -80,6 +83,9 @@
    (serverSentEvent "ReplSvg" '*ReplSvg)
    (form Attr
       (disable (not *Login))
+      (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
+         '(prog
+            (rot *WikiCss) ) )
       (=: repl (tmp "repl"))
       (gui 'view '(+Able +FileField)
          '(<> (: file) (: home repl))

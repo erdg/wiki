@@ -18,8 +18,9 @@
    *Css 
       "@lib.css"
    *WikiCss
-   (quote
-      "wiki/wiki.css" )
+      (quote
+         "wiki/night-mode.css"
+         "wiki/wiki.css" )
    *WikiPort 5000 )
 
 # (allow "wiki/newlib.css")
