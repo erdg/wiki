@@ -168,11 +168,9 @@
       (<spread>
          (<style> '(placeholder . "<FILENAME>")
             (gui 'nm '(+TextField) 20) )
-         (gui '(+JS +Button) "Save As"
+         (gui '(+Button) "Save As"
             # upload current repl.svg to document
             # feels like a hack, but it works
-            # BUG - need to refresh browser after button click for the new
-            # svg to show up in the "Media" section of the edit form.
             '(ifn (val> (: home nm))
                (error "Please specify a name")
                (put!> (get *Top 'obj 'mup) 'bin
@@ -180,7 +178,10 @@
                      (prog1
                         (new! '(+Bin) 'nm (val> (: home nm)))
                         (blob! @ 'd "wiki/img/repl.cropped.svg") )
-                     (get *Top 'obj 'mup 'bin) ) ) ) ) )
+                     (get *Top 'obj 'mup 'bin) ) )
+               # reload page so new svg appears in media chart
+               # and it still feels like a hack...
+               (url (pack "-" (chop (get *Top 'obj)) ".html?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
       (<ReplSvgDiv>) ) )
 
 
