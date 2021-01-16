@@ -6,7 +6,8 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
    color: #888;
-   text-decoration: underline;
+   /* text-decoration: underline; */
+   /* font-weight: bold; */
 }
 
 a {
@@ -99,6 +100,8 @@ pre.code {
 #repl img {
    background: initial;
    padding: 0;
+   box-shadow: none;
+   border-radius: 0px;
 }
 
 #ReplSvg img {
@@ -127,10 +130,12 @@ pre.code {
 
 #repl input[type=text]:focus, textarea:focus {
    border: 1px solid #444;
+   color: #ddd;
 }
 
 .edit input[type=text]:focus, textarea:focus {
    border: 1px solid #444;
+   color: #ddd;
 }
 
 .edit hr, #repl hr {
@@ -155,6 +160,8 @@ pre.code {
 }
 
 #searchGrp input[type=text]:focus {
+   color: #ddd;
+   background: #444;
    border: 1px solid #888;
 }
 

@@ -88,6 +88,7 @@ h1,h2,h3,h4,h5,h6 {
    margin-bottom: 1.2rem;
    line-height: 1.2;
    font-weight: normal;
+   text-decoration: none;
 }
 h1 { font-size: 28px; }
 h2 { font-size: 26px; }
@@ -117,6 +118,8 @@ h6 { font-size: 18px; }
 #main img {
    max-width: 100%;
    height: inherit;
+   background: none;
+   box-shadow: none;
 }
 
 /* Links */
@@ -247,14 +250,23 @@ table.wiki, table.wiki td {
    margin: 0;
 }
 
-#searchGrp input,
+#searchGrp input[type=text],
 #searchGrp .submit {
+   color: #222;
+   background: #f6f6f6;
    border-radius: 4px;
    padding: 4px;
    margin: 1px;
 }
 
-#searchGrp input {
+#searchGrp input[type=text] {
+   color: #222;
+   background-color: #f6f6f6;
+   border: 2px solid #f6f6f6;
+}
+
+#searchGrp input[type=text]:focus {
+   color: #222;
    background-color: #f6f6f6;
    border: 2px solid #f6f6f6;
 }
@@ -269,13 +281,14 @@ table.wiki, table.wiki td {
 #searchGrp .submit:hover {
    border-color: #6dc066;
    color: #6dc066;
-   border-color: #bfc2df;
+   border: 2px solid #bfc2df;
    color: #bfc2df;
 }
 
 #searchGrp .submit:active {
    color: #222;
    background-color: #bfc2df;
+   border: 2px solid #bfc2df;
 }
 
 /* Search Results */
@@ -341,6 +354,7 @@ table.wiki, table.wiki td {
 pre.code {
    border: 1px solid #ddd;
    border-radius: 4px;
+   padding: 0 1em;
 }
 
 .search {
@@ -352,6 +366,7 @@ pre.code {
 /* Wiki document login/edit forms */
 .edit, .login, .dialog, #repl {
    background-color: #efeff7;
+   color: #222;
    border-radius: 8px;
    border: 1px solid #666;
    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
@@ -366,6 +381,7 @@ pre.code {
 }
 
 .edit input[type=text], textarea {
+   color: #222;
    background: #fff;
    border: 1px solid #bfc2df;
    border-radius: 4px;
@@ -375,14 +391,12 @@ pre.code {
 
 .edit input[type=text]:focus, textarea:focus {
    border: 1px solid #9fa3cf;
-}
-
-.login input[type=text]:focus, input[type=password]:focus {
-   border: 1px solid #9fa3cf;
+   color: #222;
 }
 
 /* same as above, don't know the proper css selector */
 .dialog input[type=text], textarea {
+   color: #222;
    background: #fff;
    border: 1px solid #bfc2df;
    border-radius: 4px;
@@ -391,6 +405,7 @@ pre.code {
 }
 
 .dialog input[type=text]:focus, textarea:focus {
+   color: #222;
    border: 1px solid #9fa3cf;
 }
 
@@ -413,20 +428,26 @@ fieldset.login  {
    box-shadow: 0 16px 32px 0 rgba(0,0,0,0.4);
 }
 
-.login::before {
-   content: "Log In";
-   font-size: 26px;
-   color: #393e71;
-   font-weight: bold;
-}
+/* .login::before { */
+/*    content: "Log In"; */
+/*    font-size: 26px; */
+/*    color: #393e71; */
+/*    font-weight: bold; */
+/* } */
 
 .login input[type=text], input[type=password] {
    background: #fff;
+   color: #222;
    border: 1px solid #bfc2df;
    border-radius: 4px;
    padding: 4px;
    float: right;
    max-width: 90%
+}
+
+.login input[type=text]:focus, input[type=password]:focus {
+   border: 1px solid #9fa3cf;
+   color: #222;
 }
 
 .login .grid {
@@ -531,6 +552,9 @@ fieldset.alert {
 .alert .submit:hover,
 .edit .submit:hover,
 .login .submit:hover {
+   color: #222;
+   background: unset;
+   border: 1px solid #666;
    background-image: -moz-linear-gradient(top, #fafafa, #ddd);
    background-image: -webkit-linear-gradient(top, #fafafa, #ddd);
    background-image: linear-gradient(top, #fafafa, #ddd);
@@ -541,6 +565,9 @@ fieldset.alert {
 .alert .submit:active,
 .edit .submit:active,
 .login .submit:active {
+   color: #222;
+   background: unset;
+   border: 1px solid #666;
    box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
    position: relative;
    top: 1px;
@@ -617,6 +644,12 @@ input[type=submit].tiny {
    border-radius: 3px;
 }
 
+input[type=submit].tiny:active {
+   padding: 1px 3px;
+   font-weight: bold;
+   border-radius: 3px;
+}
+
 .note, .ask {
    font-weight: bold;
 }
@@ -669,6 +702,10 @@ input[type=submit].tiny {
 
 #repl fieldset {
    border: none;
+}
+
+.themeToggle {
+   margin-bottom: 4px;
 }
 
 /* metarepl header */
