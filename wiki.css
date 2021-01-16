@@ -595,6 +595,12 @@ fieldset.alert {
    }
 }
 
+@media screen and (min-width: 1800px) {
+   .flex-row input[type=text] {
+      width: 60%;
+   }
+}
+
 .flex-row strong {
    margin-bottom: 4px;
 }
@@ -705,7 +711,7 @@ input[type=submit].tiny:active {
 }
 
 .themeToggle {
-   margin-bottom: 4px;
+   margin-left: 8px;
 }
 
 /* metarepl header */
@@ -760,6 +766,10 @@ input[type=submit].tiny:active {
 
 #repl input[type=text] {
    margin: 8px 0px;
+}
+
+#repl input[type=text]:focus {
+   color: #222;
 }
 
 #repl hr,
