@@ -27,9 +27,6 @@
    (default DX 80  DY 25)
    (form Attr
       (disable (not *Login))
-      (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
-         '(prog
-            (rot *WikiCss) ) )
       (=: repl (tmp "repl"))
       (gui 'view '(+Able +FileField)
          '(<> (: file) (: home repl))
@@ -71,6 +68,9 @@
                (: home repl) ) ) )
       (gui '(+Style +Button) "closeRepl" "Close"
          '(prog (rollback) (off *ID)) )
+      (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
+         '(prog
+            (rot *WikiCss) ) )
       (--)
       (gui 'line '(+Able +Mono +TextField)
          '(= (: home view file) (: home repl))
@@ -83,9 +83,6 @@
    (serverSentEvent "ReplSvg" '*ReplSvg)
    (form Attr
       (disable (not *Login))
-      (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
-         '(prog
-            (rot *WikiCss) ) )
       (=: repl (tmp "repl"))
       (gui 'view '(+Able +FileField)
          '(<> (: file) (: home repl))
@@ -144,6 +141,9 @@
                (: home repl) ) ) )
       (gui '(+Style +Button) "closeRepl" "Close"
          '(prog (rollback) (off *ID)) )
+      (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
+         '(prog
+            (rot *WikiCss) ) )
       (<div> '("flex-row right" (style . "margin: 0px 16px"))
          (<span> '(style . "font-size: smaller;") "Lilypond Syntax")
          (gui 'lilypondSyntax '(+Init +Checkbox) T)
