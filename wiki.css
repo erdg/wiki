@@ -613,6 +613,7 @@ fieldset.alert {
 }
 
 .chart td {
+   color: #222;
    background-color: #dfe0ef;
    padding: 0px 4px 2px;
    border-radius: 3px;
@@ -711,7 +712,6 @@ input[type=submit].tiny:active {
 }
 
 .themeToggle {
-   margin-left: 8px;
 }
 
 /* metarepl header */
@@ -817,6 +817,21 @@ input[type=submit].tiny:active {
    top: 0px;
 }
 
+/* new laptop / tablet layout */
+@media screen and (min-width: 1200px) {
+   .container {
+      width: 58%;
+      float: right;
+      margin-right: 2%;
+   }
+   #repl {
+      position: fixed;
+      top: 84px;
+      left: 2%;
+      max-width: 36%
+   }
+}
+
 /* large screens - fixed in left margin */
 @media screen and (min-width: 1600px) {
    #repl {
@@ -826,6 +841,11 @@ input[type=submit].tiny:active {
       top: 88px;
       left: 2ex;
       width: 23%;
+   }
+   .container {
+      margin: 0 29%;
+      width: unset;
+      max-width: unset;
    }
    .edit {
    }
@@ -846,12 +866,19 @@ input[type=submit].tiny:active {
    margin-top: 8px;
 }
 
-#repl .collapsible.tiny {
-   display: block;
+#repl input[type=submit].tiny {
+   padding: 1px 3px;
+   border-radius: 3px;
+}
+
+.collapseBtnLabel {
+   display: inline;
+   font-family: monospace;
+   font-size: smaller;
 }
 
 .closeRepl {
-   margin-left: 16px;
+   margin-right: 8px;
 }
 
 .collapsible-content {

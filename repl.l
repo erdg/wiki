@@ -26,7 +26,6 @@
 (de pilRepl (Attr DX DY)
    (default DX 80  DY 25)
    (form Attr
-      (disable (not *Login))
       (=: repl (tmp "repl"))
       (gui 'view '(+Able +FileField)
          '(<> (: file) (: home repl))
@@ -66,15 +65,15 @@
                   *ReplF )
                (clr> (: home line))
                (: home repl) ) ) )
-      (gui '(+Style +Button) "closeRepl" "Close"
-         '(prog (rollback) (off *ID)) )
+      (gui 'line '(+Able +Mono +TextField)
+         '(= (: home view file) (: home repl))
+         (*/ DX 4 5) )
+      (--)
       (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
          '(prog
             (rot *WikiCss) ) )
-      (--)
-      (gui 'line '(+Able +Mono +TextField)
-         '(= (: home view file) (: home repl))
-         (*/ DX 4 5) ) ) )
+      (gui '(+Style +Button) "closeRepl right" "Close"
+         '(prog (rollback) (off *ID)) ) ) )
 
 
 # lilypond repl
@@ -82,13 +81,8 @@
    (default DX 80  DY 25)
    (serverSentEvent "ReplSvg" '*ReplSvg)
    (form Attr
-      (disable (not *Login))
       (=: repl (tmp "repl"))
-      (gui 'view '(+Able +FileField)
-         '(<> (: file) (: home repl))
-         (: repl)
-         DX DY )
-      (--)
+      (<hr>)
       (gui '(+JS +Able +Button) '(= (: home view file) (: home repl)) "Eval"
          '(let Str (or (val> (: home line)) (val> (: home area)))
             (out (pack "+" (: home repl))
@@ -139,11 +133,6 @@
                   *ReplF )
                (clr> (: home line))
                (: home repl) ) ) )
-      (gui '(+Style +Button) "closeRepl" "Close"
-         '(prog (rollback) (off *ID)) )
-      (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
-         '(prog
-            (rot *WikiCss) ) )
       (<div> '("flex-row right" (style . "margin: 0px 16px"))
          (<span> '(style . "font-size: smaller;") "Lilypond Syntax")
          (gui 'lilypondSyntax '(+Init +Checkbox) T)
@@ -153,17 +142,25 @@
       # (gui 'line '(+Able +Mono +TextField)
       #    '(= (: home view file) (: home repl))
       #    (*/ DX 4 5) )
-      (<style> '(placeholder . "code to eval (or file to edit) goes here...")
+      (<style> '(placeholder . "e.g. { a'2 b'2 c''1 }")
          (gui 'line '(+Able +Mono +TextField)
             '(= (: home view file) (: home repl))
             (*/ DX 4 5) ) )
+      (<p> 'collapseBtnLabel "input ")
       (gui '(+JS +Tiny +Style +Button) "collapsible" "v")
       (<div> 'collapsible-content
-         (<style> '(placeholder . "...or here")
-            (gui 'area '(+Able +Mono +TextField)
-               '(= (: home view file) (: home repl))
-               (*/ DX 4 5) 6) ) )
-         # (----)
+         (gui 'area '(+Able +Mono +TextField)
+            '(= (: home view file) (: home repl))
+            (*/ DX 4 5) 6) )
+      # (----)
+      (<hr>)
+         (<p> 'collapseBtnLabel "output")
+      (gui '(+JS +Tiny +Style +Button) "collapsible" "v")
+      (<div> 'collapsible-content
+         (gui 'view '(+Able +FileField)
+            '(<> (: file) (: home repl))
+            (: repl)
+            DX DY ) )
       (<hr>)
       (<spread>
          (<style> '(placeholder . "<FILENAME>")
@@ -182,12 +179,18 @@
                # manually reload page so new svg appears in media chart
                # NOTE - this will have to be changed if more tabs are added to the metarepl
                (url (pack "-" (chop (get *Top 'obj)) ".html?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
-               # can't use '(url *Url)' because *Url seems to be inconsistent.
+      # can't use '(url *Url)' because *Url seems to be inconsistent.
                # sometimes it is "!ping" other times it is "!ssEvt" (because lilRepl
                # creates an SSE). all this is probably because I don't *really* understand
                # how to use the PL form/gui stuff, I just hack away until the desired results
                # are achieved.
-      (<ReplSvgDiv>) ) )
+               (<ReplSvgDiv>)
+      (--)
+      (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
+         '(prog
+            (rot *WikiCss) ) )
+      (gui '(+Style +Button) "closeRepl right" "Close"
+         '(prog (rollback) (off *ID)) ) ) )
 
 
 (de <ReplSvgDiv> ()
