@@ -75,9 +75,6 @@
          '(= (: home view file) (: home repl))
          (*/ DX 4 5) )
       (--)
-      (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
-         '(prog
-            (rot *WikiCss) ) )
       (gui '(+Style +Button) "closeRepl right" "Close"
          '(prog (rollback) (off *ID)) ) ) )
 
@@ -185,16 +182,13 @@
                # manually reload page so new svg appears in media chart
                # NOTE - this will have to be changed if more tabs are added to the metarepl
                (url (pack "-" (chop (get *Top 'obj)) ".html?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
-      # can't use '(url *Url)' because *Url seems to be inconsistent.
+               # can't use '(url *Url)' because *Url seems to be inconsistent.
                # sometimes it is "!ping" other times it is "!ssEvt" (because lilRepl
                # creates an SSE). all this is probably because I don't *really* understand
                # how to use the PL form/gui stuff, I just hack away until the desired results
                # are achieved.
                (<ReplSvgDiv>)
       (--)
-      (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
-         '(prog
-            (rot *WikiCss) ) )
       (gui '(+Style +Button) "closeRepl right" "Close"
          '(prog (rollback) (off *ID)) ) ) )
 
