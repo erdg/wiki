@@ -116,11 +116,22 @@ h6 { font-size: 18px; }
    margin-bottom: 8px;
 }
 
+/* #main img { */
+/*    max-width: 100%; */
+/*    height: inherit; */
+/*    background: none; */
+/*    box-shadow: none; */
+/* } */
+
+/* display music svgs "on paper" */
 #main img {
-   max-width: 100%;
-   height: inherit;
-   background: none;
-   box-shadow: none;
+   display: block;
+   background: #faf5f0;
+   padding: 16px;
+   border-radius: 4px;
+   box-shadow: 0 0 3px 1px #ddd inset;
+   border: solid 1px #ddd;
+   margin-bottom: 4px;
 }
 
 /* Links */
@@ -710,6 +721,25 @@ input[type=submit].tiny:active {
 
 #repl fieldset {
    border: none;
+}
+
+/* music svgs */
+#repl img {
+   background: initial;
+   padding: 0;
+   box-shadow: none;
+   border-radius: 0px;
+   border: none;
+}
+
+#ReplSvg img {
+   display: block;
+   background: #faf5f0;
+   padding: 16px;
+   border-radius: 4px;
+   box-shadow: 0 0 3px 1px #ccc inset;
+   border: solid 1px #ccc;
+   margin-bottom: 4px;
 }
 
 .themeToggle {
