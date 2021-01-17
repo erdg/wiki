@@ -826,7 +826,7 @@ input[type=submit].tiny:active {
    }
    #repl {
       position: fixed;
-      top: 84px;
+      top: 90px;
       left: 2%;
       max-width: 36%
    }
