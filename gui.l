@@ -454,7 +454,7 @@
       (gui '(+Rid +Button) "Preview"
          '(setq *MupTxt (: home mup 1)  *MupImg (: home mup 4)) )
       (when Flg
-         (gui '(+Button) "Close"
+         (gui '(+Button) "Cancel"
             '(prog (rollback) (off *ID)) )
          (saveButton
             '(let Obj (: home obj)
@@ -467,7 +467,20 @@
                   (commit 'upd) )
                (apply 'newMup> (: home mup) Obj)
                (off *ID)
-               (url (pack (ext.html (or (: home org) Obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) ) ) )
+               (url (pack (ext.html (or (: home org) Obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) )
+         (gui '(+Button) "Save & Close"
+            '(let Obj (: home obj)
+               (when (: home org)  # Reply
+                  (dbSync)
+                  (put> (: home org mup) 'rpl
+                     (append
+                        (: home org mup rpl)
+                        (cons (setq Obj (new (db: +Doc) '(+Doc)))) ) )
+                  (commit 'upd) )
+               (apply 'newMup> (: home mup) Obj)
+               (off *ID)
+               (url (ext.html (or (: home org) Obj))) ) )
+         ) ) )
 
 (de findBin (Nm Lst)
    (setq Nm (fold Nm))
