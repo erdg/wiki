@@ -134,7 +134,8 @@ h6 { font-size: 18px; }
    background: #faf5f0;
    padding: 16px;
    border-radius: 4px;
-   box-shadow: 0 0 8px 1px #eee inset;
+   /* box-shadow: 0 0 8px 1px #eee inset; */
+   box-shadow: 1px 1px 4px #ddd inset;
    border: 1px solid #ddd;
    margin-bottom: 4px;
 }
@@ -370,7 +371,7 @@ table.wiki, table.wiki td {
 }
 
 pre.code {
-   box-shadow: 1px 1px 2px #eee;
+   box-shadow: 1px 1px 2px #ddd inset;
    border: 1px solid #ddd;
    border-radius: 4px;
    padding: 0 1em;
@@ -744,7 +745,8 @@ input[type=submit].tiny:active {
    background: #faf5f0;
    padding: 16px;
    border-radius: 4px;
-   box-shadow: 0 0 8px 1px #ddd inset;
+   /* box-shadow: 0 0 8px 1px #ddd inset; */
+   box-shadow: 1px 1px 4px #ddd inset;
    border: solid 1px #ccc;
    margin-bottom: 4px;
 }
@@ -773,6 +775,9 @@ input[type=submit].tiny:active {
 }
 
 #repl > .tab .top {
+   box-shadow: 1px 1px 1px #666 inset;
+   /* box-shadow: none; */
+   border: none;
    background-color: #ddd;
    color: #333;
    border-radius: 4px;
