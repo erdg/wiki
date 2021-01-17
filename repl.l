@@ -175,9 +175,8 @@
                         (new! '(+Bin) 'nm (val> (: home nm)))
                         (blob! @ 'd "wiki/img/repl.cropped.svg") )
                      (get *Top 'obj 'mup 'bin) ) )
-               # manually reload page so new svg appears in media chart
-               # NOTE - this will have to be changed if more tabs are added to the metarepl
-               (url (pack "-" (chop (get *Top 'obj)) ".html?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
+               # reload page so new svg appears in media chart
+               (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
                # can't use '(url *Url)' because *Url seems to be inconsistent.
                # sometimes it is "!ping" other times it is "!ssEvt" (because lilRepl
                # creates an SSE). all this is probably because I don't *really* understand
