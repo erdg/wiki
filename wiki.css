@@ -123,7 +123,12 @@ h6 { font-size: 18px; }
 /*    box-shadow: none; */
 /* } */
 
-/* display music svgs "on paper" */
+/* display music svgs "on paper"
+ *
+ * NOTE - this will make actual images look dumb and will need to be changed.
+ * Ideally, a class could be attached to wiki markup. Need to look into
+ * extending '${...}' to add classes.
+ */
 #main img {
    display: block;
    background: #faf5f0;
