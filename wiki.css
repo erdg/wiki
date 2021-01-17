@@ -134,8 +134,8 @@ h6 { font-size: 18px; }
    background: #faf5f0;
    padding: 16px;
    border-radius: 4px;
-   box-shadow: 0 0 3px 1px #ddd inset;
-   border: solid 1px #ddd;
+   box-shadow: 0 0 8px 1px #eee inset;
+   border: 1px solid #ddd;
    margin-bottom: 4px;
 }
 
@@ -366,9 +366,11 @@ table.wiki, table.wiki td {
    margin-right: 1px;
    overflow-x: auto;
    font-size: 14px;
+   width: max-content;
 }
 
 pre.code {
+   box-shadow: 1px 1px 2px #eee;
    border: 1px solid #ddd;
    border-radius: 4px;
    padding: 0 1em;
@@ -742,7 +744,7 @@ input[type=submit].tiny:active {
    background: #faf5f0;
    padding: 16px;
    border-radius: 4px;
-   box-shadow: 0 0 3px 1px #ccc inset;
+   box-shadow: 0 0 8px 1px #ddd inset;
    border: solid 1px #ccc;
    margin-bottom: 4px;
 }
