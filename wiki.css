@@ -740,6 +740,12 @@ input[type=submit].tiny:active {
    border: none;
 }
 
+#ReplSvg {
+   overflow: auto;
+   margin-top: 8px;
+   max-height: 300px;
+}
+
 #ReplSvg img {
    display: block;
    background: #faf5f0;
@@ -879,8 +885,7 @@ input[type=submit].tiny:active {
    .container {
       margin-right: 4%;
       width: 62%;
-      max-width: unset;
-      float: unset;
+      /* max-width: unset; */
    }
 }
 
@@ -898,6 +903,7 @@ input[type=submit].tiny:active {
       margin: 0 29%;
       width: unset;
       max-width: unset;
+      float: unset;
    }
    .edit {
    }
@@ -912,10 +918,6 @@ input[type=submit].tiny:active {
       right: 2ex;
       width: 26%;
    }
-}
-
-#ReplSvg {
-   margin-top: 8px;
 }
 
 #repl input[type=submit].tiny {
