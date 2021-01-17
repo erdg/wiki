@@ -429,7 +429,7 @@
       (<div> 'flex-col
          (<div> 'flex-row (<strong> "Specify a name") (gui 'nm '(+TextField) 30) )
          (<div> 'flex-row
-            (gui '(+Button) "Fetch from page"
+            (gui '(+Button) "Fetch from Page"
                '(let Nm (val> (: home nm))
                   (nond
                      (Nm (error "Please specify a name"))
@@ -438,7 +438,7 @@
                      (NIL (push (: home mup -3) @)) ) ) )
             (gui '(+Val +TextField) fold 30) )
          (<div> 'flex-row
-            (gui '(+Drop +Button) '(field 1) "Upload directly"
+            (gui '(+Drop +Button) '(field 1) "Upload Directly"
                '(nond
                   ((: drop) (error "Please select or drag&drop a file"))
                   ((val> (: home nm)) (error "Please specify a name"))
