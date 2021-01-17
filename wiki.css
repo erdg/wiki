@@ -854,7 +854,7 @@ input[type=submit].tiny:active {
    .container {
       width: 58%;
       float: right;
-      margin-right: 2%;
+      margin-right: 3%;
    }
    #repl {
       position: fixed;
@@ -864,15 +864,23 @@ input[type=submit].tiny:active {
    }
 }
 
+@media screen and (min-width: 1400px) {
+   .container {
+      margin-right: 4%;
+      width: 62%;
+      max-width: unset;
+   }
+}
+
 /* large screens - fixed in left margin */
 @media screen and (min-width: 1600px) {
    #repl {
       margin: 16px;
       position: fixed;
       z-index: 1;
-      top: 88px;
-      left: 2ex;
-      width: 23%;
+      top: 90px;
+      left: 1ex;
+      width: 22%;
    }
    .container {
       margin: 0 29%;
