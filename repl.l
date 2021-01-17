@@ -5,13 +5,19 @@
 #  $ ./pil wiki/main.l picolisp-lily/pond.l -main -go +
 
 # tabs for different repl syntax "skins" (standard picolisp and lilypond for
-# now, macro syntax could be added)
+# now, "macro" syntax could be added)
 (de metaRepl ()
    (<div> '(id . "repl")
       (<MetaReplHeader>)
       (<tab>
-         ("picolisp" (pilRepl NIL 56 12))
-         ("lilypond" (lilRepl NIL 56 12)) ) ) )
+         ("picolisp" (pilRepl NIL 56 16))
+         ("lilypond" (lilRepl NIL 56 16))
+         ("options"
+            (form NIL
+               (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
+                  '(prog
+                     (rot *WikiCss) ) ) ) )
+         ) ) )
 
 
 (de <MetaReplHeader> ()
