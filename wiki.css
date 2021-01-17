@@ -880,6 +880,7 @@ input[type=submit].tiny:active {
       margin-right: 4%;
       width: 62%;
       max-width: unset;
+      float: unset;
    }
 }
 
