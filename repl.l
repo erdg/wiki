@@ -85,7 +85,7 @@
    (serverSentEvent "ReplSvg" '*ReplSvg)
    (form Attr
       (=: repl (tmp "repl"))
-      (<hr>)
+      # (<hr>)
       (gui '(+JS #{+Able}# +Button) #{'(= (: home view file) (: home repl))}# "Eval"
          '(let Str (or (val> (: home line)) (val> (: home area)))
             (out (pack "+" (: home repl))
