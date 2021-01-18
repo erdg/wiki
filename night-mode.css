@@ -42,8 +42,8 @@ a:active {
 /* code */
 .code {
    color: #6dc066;
-   /* color: #8acc84; */
-   /* color: #bbb; */
+   color: #8acc84;
+   color: #bbb;
    background-color: #2a2a2a;
    border-radius: 2px;
 }
