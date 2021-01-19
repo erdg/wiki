@@ -44,7 +44,7 @@
 /* Simple responsive container */
 .container {
    position: relative;
-   width: 90%;
+   width: 92%;
    display: block;
    margin: 0 auto;
    box-sizing: border-box;
@@ -135,9 +135,10 @@ h6 { font-size: 18px; }
    padding: 16px;
    border-radius: 4px;
    /* box-shadow: 0 0 8px 1px #eee inset; */
-   box-shadow: 1px 1px 4px #ddd inset;
+   box-shadow: none;
    border: 1px solid #ddd;
-   margin-bottom: 4px;
+   margin-bottom: 1em;
+   max-width: 92%;
 }
 
 /* Links */
@@ -367,14 +368,16 @@ table.wiki, table.wiki td {
    margin-right: 1px;
    overflow-x: auto;
    font-size: 14px;
-   width: max-content;
 }
 
 pre.code {
-   box-shadow: 1px 1px 2px #ddd inset;
+   /* box-shadow: 0 0 8px 1px #ddd inset; */
+   box-shadow: none;
    border: 1px solid #ddd;
    border-radius: 4px;
    padding: 0 1em;
+   width: min-content;
+   max-width: 92%;
 }
 
 .search {
@@ -752,9 +755,10 @@ input[type=submit].tiny:active {
    padding: 16px;
    border-radius: 4px;
    /* box-shadow: 0 0 8px 1px #ddd inset; */
-   box-shadow: 1px 1px 4px #ddd inset;
+   box-shadow: none;
    border: solid 1px #ccc;
    margin-bottom: 4px;
+   max-width: 92%
 }
 
 .themeToggle {
@@ -782,14 +786,11 @@ input[type=submit].tiny:active {
 
 #repl > .tab .top {
    box-shadow: none;
-   /* border: none; */
-   border-bottom: 1px solid #666;
+   border: none;
+   border:radius: 4px;
+   /* border-bottom: 1px solid #666; */
    background-color: #ddd;
    color: #333;
-   border-top-left-radius: 4px;
-   border-top-right-radius: 4px;
-   border-bottom-left-radius: unset;
-   border-bottom-right-radius: unset;
 }
 
 #repl > .tab .sub {

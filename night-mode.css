@@ -5,7 +5,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-   color: #888;
+   color: #999;
    /* font-weight: bold; */
 }
 
@@ -41,17 +41,18 @@ a:active {
 
 /* code */
 .code {
-   color: #6dc066;
+   /* color: #6dc066; */
    color: #8acc84;
-   color: #bbb;
-   background-color: #2a2a2a;
+   /* color: #bbb; */
+   background-color: #333;
    border-radius: 2px;
 }
 
 pre.code {
    /* box-shadow: 1px 1px 1px #1a1a1a inset; */
    box-shadow: none;
-   border: 1px solid #333;
+   /* border: 1px solid #333; */
+   border:none;
    border-radius: 4px;
    padding: 0 1em;
    /* width: max-content; */
@@ -60,15 +61,15 @@ pre.code {
 /* hack to display music svgs */
 #main img {
    display: block;
-   /* background: #eee; */
-   background: #f7efe6;
+   /* background: #f7efe6; */
+   background: #ded7cf;
    padding: 16px;
    border-radius: 4px;
-   /* box-shadow: 1px 1px 2px #1a1a1a inset; */
-   /* border: none; */
-   box-shadow: 0 0 8px 1px #aaa inset;
-   border: 1px solid #aaa;
-   margin-bottom: 4px;
+   border: none;
+   /* box-shadow: 0 0 8px 1px #aaa inset; */
+   box-shadow: none;
+   /* border: 1px solid #aaa; */
+   margin-bottom: 1em;
 }
 
 /* login form */
@@ -112,10 +113,12 @@ pre.code {
 
 #ReplSvg img {
    /* background: #eee; */
-   background: #f7efe6;
+   /* background: #f7efe6; */
+   background: #d6d5d4;
    padding: 16px;
    border-radius: 4px;
-   box-shadow: 0 0 8px 1px #aaa inset;
+   /* box-shadow: 0 0 8px 1px #aaa inset; */
+   box-shadow: none;
    border: 1px solid #aaa;
    margin-bottom: 4px;
 }
@@ -261,17 +264,17 @@ input[type=submit].tiny:hover {
 }
 
 #repl > .tab .top {
-   box-shadow: 1px 1px 1px #111 inset;
+   /* box-shadow: 1px 1px 1px #111 inset; */
    /* border-bottom: 1px solid #366033; */
    border-bottom: none;
    background-color: #2a2a2a;
    /* color: #aaa; */
    color: #6dc066;
-   /* border-radius: 4px; */
-   border-top-left-radius: 4px;
-   border-top-right-radius: 4px;
-   border-bottom-left-radius: unset;
-   border-bottom-right-radius: unset;
+   border-radius: 4px;
+   /* border-top-left-radius: 4px; */
+   /* border-top-right-radius: 4px; */
+   /* border-bottom-left-radius: unset; */
+   /* border-bottom-right-radius: unset; */
 }
 
 #repl > .tab .sub {
