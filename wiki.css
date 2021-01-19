@@ -871,28 +871,28 @@ input[type=submit].tiny:active {
    top: 0px;
 }
 
-/* new laptop / tablet layout */
-@media screen and (min-width: 1200px) {
-   .container {
-      width: 58%;
-      float: right;
-      margin-right: 3%;
-   }
-   #repl {
-      position: fixed;
-      top: 90px;
-      left: 2%;
-      max-width: 36%
-   }
-}
+/* /1* new laptop / tablet layout *1/ */
+/* @media screen and (min-width: 1200px) { */
+/*    .container { */
+/*       width: 58%; */
+/*       float: right; */
+/*       margin-right: 3%; */
+/*    } */
+/*    #repl { */
+/*       position: fixed; */
+/*       top: 90px; */
+/*       left: 2%; */
+/*       max-width: 36% */
+/*    } */
+/* } */
 
-@media screen and (min-width: 1400px) {
-   .container {
-      margin-right: 4%;
-      width: 62%;
-      /* max-width: unset; */
-   }
-}
+/* @media screen and (min-width: 1400px) { */
+/*    .container { */
+/*       margin-right: 4%; */
+/*       width: 62%; */
+/*       /1* max-width: unset; *1/ */
+/*    } */
+/* } */
 
 /* large screens - fixed in left margin */
 @media screen and (min-width: 1600px) {
