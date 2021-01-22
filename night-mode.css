@@ -27,7 +27,7 @@ a:active {
 /* menu */
 #menu {
    background-color: #1a1a1a;
-   border-bottom: 1px solid #333;
+   border-bottom: 1px solid #3a3a3a;
 }
 
 #menu a {
@@ -41,33 +41,35 @@ a:active {
 
 /* code */
 .code {
-   /* color: #6dc066; */
    color: #8acc84;
-   /* color: #bbb; */
    background-color: #333;
    border-radius: 2px;
 }
 
 pre.code {
    /* box-shadow: 1px 1px 1px #1a1a1a inset; */
-   box-shadow: none;
    /* border: 1px solid #333; */
-   border:none;
+   box-shadow: none;
+   border: none;
    border-radius: 4px;
    padding: 0 1em;
    /* width: max-content; */
 }
 
+pre.code:hover {
+   background-color: #363636;
+   border: none;
+}
+
 /* hack to display music svgs */
 #main img {
    display: block;
-   /* background: #f7efe6; */
    background: #ded7cf;
    padding: 16px;
    border-radius: 4px;
+   box-shadow: none;
    border: none;
    /* box-shadow: 0 0 8px 1px #aaa inset; */
-   box-shadow: none;
    /* border: 1px solid #aaa; */
    margin-bottom: 1em;
 }
@@ -91,7 +93,6 @@ pre.code {
 }
 
 .login input[type=text]:focus, .login input[type=password]:focus {
-   /* border: 1px solid #9fa3cf; */
    border: 1px solid #888;
 }
 
@@ -100,7 +101,7 @@ pre.code {
 #repl, .edit {
    background: #1d1d1d;
    color: #999;
-   border: 1px solid #333;
+   border: 1px solid #3a3a3a;
 }
 
 #repl img {
@@ -112,12 +113,9 @@ pre.code {
 }
 
 #ReplSvg img {
-   /* background: #eee; */
-   /* background: #f7efe6; */
-   background: #d6d5d4;
+   background: #ded7cf;
    padding: 16px;
    border-radius: 4px;
-   /* box-shadow: 0 0 8px 1px #aaa inset; */
    box-shadow: none;
    border: 1px solid #aaa;
    margin-bottom: 4px;
@@ -132,23 +130,25 @@ pre.code {
 #repl input[type=text], textarea {
    color: #ddd;
    background: #2a2a2a;
-   border: 1px solid #2a2a2a;
+   border: 1px solid #666;
 }
 
 .edit input[type=text], textarea {
    color: #ddd;
    background: #2a2a2a;
-   border: 1px solid #2a2a2a;
+   border: 1px solid #666;
 }
 
-#repl input[type=text]:focus, textarea:focus {
-   border: 1px solid #444;
+#repl input[type=text]:focus, #repl textarea:focus {
    color: #ddd;
+   border: 1px solid #888;
+   background: #2c2c2c;
 }
 
 .edit input[type=text]:focus, textarea:focus {
-   border: 1px solid #444;
    color: #ddd;
+   border: 1px solid #888;
+   background: #2c2c2c;
 }
 
 .edit hr, #repl hr {
@@ -167,14 +167,14 @@ pre.code {
 
 #searchGrp input[type=text] {
    color: #ddd;
-   background: #444;
-   border: 1px solid #444;
+   background: #2a2a2a;
+   border: 1px solid #666;
    padding: 4px;
 }
 
 #searchGrp input[type=text]:focus {
    color: #ddd;
-   background: #444;
+   background: #2c2c2c;
    border: 1px solid #888;
 }
 
@@ -211,12 +211,13 @@ pre.code {
 .alert .submit,
 .edit .submit,
 .login .submit {
+   /* color: #888; */
+   /* border: 1px solid #888; */
    color: #888;
-   border: 1px solid #777;
+   border: 1px solid #888;
    background: #1a1a1a;
    padding: 2px 4px 2px;
    box-shadow: unset;
-   /* font-weight: normal; */
 }
 
 #repl .submit:hover,
@@ -315,4 +316,17 @@ input[type=submit].tiny:hover {
 .error {
    color: #602223;
    background: #f37779;
+}
+
+.modal-inner {
+   width: max-content;
+   padding: 12px;
+   position: absolute;
+   top: 33%;
+   left: 50%;
+   transform: translate(-50%, 0);
+   box-shadow: 0 16px 32px 0 rgba(0,0,0,0.4);
+   background-color: #333;
+   border-radius: 4px;
+   border: 1px solid #666;
 }
