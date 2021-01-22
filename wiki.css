@@ -770,7 +770,7 @@ input[type=submit].tiny:active {
 
 /* metarepl header */
 #repl > .flex-row {
-   margin: 16px 16px;
+   margin: 16px 16px 0px;
 }
 
 
