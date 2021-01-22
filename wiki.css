@@ -827,6 +827,7 @@ input[type=submit].tiny:active {
 
 #repl input[type=text]:focus {
    color: #222;
+   background: #fff
 }
 
 #repl hr,
@@ -860,7 +861,9 @@ input[type=submit].tiny:active {
    margin-left: 0;
 }
 
-#repl input[type=text]:focus, textarea:focus {
+#repl input[type=text]:focus, #repl textarea:focus {
+   background: #fff;
+   color: #222;
    border: 1px solid #9fa3cf;
 }
 
