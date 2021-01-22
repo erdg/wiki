@@ -293,7 +293,7 @@
    (off *ID) )
 
 # normal html button
-(de <btn> (Attr . Prg)
+(de <htmlbutton> (Attr . Prg)
    (tag 'button Attr 2 Prg) )
 
 # click to copy code blocks
