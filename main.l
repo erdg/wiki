@@ -28,6 +28,8 @@
 
 (load "wiki/er.l" "wiki/lib.l" "wiki/gui.l")
 
+(push1 '*JS "wiki/js/clipboard.min.js")
+
 (permission
    Wiki        "Edit Wiki Documents"
    System      "Edit System Data"

@@ -167,7 +167,7 @@
                                        (pack (car S)) )
                                     (prin "???") ) ) )
                            (":"  # Pre-formatted
-                              ((if (= "^J" (peek)) <pre> <span>) 'code
+                              ((if (= "^J" (peek)) <pre> <span>) '(code (title . "click to copy"))
                                  (renderBlock ht:Prin)) )
                            ("\\" (prin "{"))  # Escaped brace
                            ("#" (renderBlock prog))  # Comment

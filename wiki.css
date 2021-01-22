@@ -380,6 +380,11 @@ pre.code {
    max-width: 92%;
 }
 
+pre.code:hover {
+   background: #ebebeb;
+   border: 1px solid #ccc;
+}
+
 .search {
    border-style: none;
 }

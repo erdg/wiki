@@ -288,8 +288,22 @@
                                  (<nbsp>)
                                  (ht:Prin (: mup sum))
                                  (and (: mup rpl) (recurse)) ) ) ) ) ) ) ) )
+         (clipboardJS)
          (collapsibleJS) ) )
    (off *ID) )
+
+# normal html button
+(de <btn> (Attr . Prg)
+   (tag 'button Attr 2 Prg) )
+
+# click to copy code blocks
+(de clipboardJS ()
+   (<javascript>
+      "var clipboard = new ClipboardJS('.code', {
+         text: function(trigger) {
+            return trigger.lastChild.textContent;
+         }
+      });" ) )
 
 (de collapsibleJS ()
    (<javascript>
