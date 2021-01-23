@@ -628,9 +628,9 @@ fieldset.alert {
    }
 }
 
-.flex-row strong {
-   margin-bottom: 4px;
-}
+/* .flex-row strong { */
+/*    margin-bottom: 4px; */
+/* } */
 
 /* From 'form' GUI */
 .chart {
@@ -824,6 +824,7 @@ input[type=submit].tiny:active {
 
 #repl input[type=text] {
    margin: 8px 0px;
+   width: initial;
 }
 
 #repl input[type=text]:focus {

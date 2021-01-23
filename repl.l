@@ -24,7 +24,7 @@
       (<div> '("tabView" (id . "picolisp") (style . "display: none;"))
          (pilRepl NIL 56 16) )
       (<div> '("tabView" (id . "lilypond"))
-         (lilRepl NIL 56 16) )
+         (lilRepl NIL 56 10) )
       (<div> '("tabView" (id . "misc") (style . "display: none;"))
          (form NIL
             (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
@@ -114,73 +114,76 @@
    (form Attr
       (=: repl (tmp "repl"))
       # (<hr>)
-      (gui '(+JS #{+Able}# +Button) #{'(= (: home view file) (: home repl))}# "Eval"
-         '(let Str (or (val> (: home line)) (val> (: home area)))
-            (out (pack "+" (: home repl))
-               (if (pre? "$ " Str)
-                  (err NIL
-                     (prinl Str)
-                     (flush)
-                     (in (list "sh" "-c" (cddr (chop Str)))
-                        (echo) ) )
-                  (err NIL
-                     (prinl ": " Str)
-                     (flush)
-                     (catch '(NIL)
-                        (in "/dev/null"
-                           (up 99 @@@ "@3")
-                           (up 99 @@ "@2")
-                           (up 99 @ "@1")
-                           (setq
-                              "@3" "@2"
-                              "@2" "@1"
-                              "@1"
-                                 # picolisp lilypond syntax (e.g. "{ a'4. b'8 c'2~ | c1 }" )
-                                 (ifn (val> (: home lilypondSyntax))
-                                    (run (str Str) 99)
-                                    (ifn (val> (: home renderSvg))
-                                       # debug
-                                       (prog
-                                          (out (tmp "lyrepl") (prin Str))
-                                          (eval (lytransform (lyread (tmp "lyrepl")))) )
-                                       # render svg - automatically wrap code with '(ly ...)'
-                                       (prog
-                                          (out (tmp "lyrepl") (prin (pack "(ly " Str " )")))
-                                          (eval (lytransform (lyread (tmp "lyrepl")))) ) ) ) ) )
-                        (off *Msg)
-                        (println '-> "@1") ) )
-                  (and *Msg (prinl @)) ) )
-            (push1 '*ReplH Str)
-            # (clr> (: home area))
-            # (clr> (: home line))
-            ) )
-      # (gui '(+JS +Button)
-      #    '(if (= (: home view file) (: home repl)) ,"Edit" ,"Done")
-      #    '(file> (: home view)
-      #       (if (= (: home view file) (: home repl))
-      #          (if (val> (: home line))
-      #             (setq *ReplF (push1 '*ReplH @))
-      #             (set> (: home line) *ReplF)
-      #             *ReplF )
-      #          (clr> (: home line))
-      #          (: home repl) ) ) )
-      (<div> '("flex-row right" (style . "margin: 0px 16px"))
-         (<span> '(style . "font-size: smaller;") "Lilypond Syntax")
-         (gui 'lilypondSyntax '(+Init +Checkbox) T)
-         (<span> '(style . "font-size: smaller; margin-left: 8px;") "Render Svg")
-         (gui 'renderSvg '(+Init +Checkbox) T) )
-      (--)
-      (<style> '(placeholder . "e.g. { a'2 b'2 c''1 }")
-         (gui 'line '(#{+Able}# +Mono +TextField)
-            #{'(= (: home view file) (: home repl))}#
-            (*/ DX 4 5) ) )
+      (<div> 'flex-row
+         (gui '(+JS #{+Able}# +Button) #{'(= (: home view file) (: home repl))}# "Eval"
+            '(let Str (or (val> (: home line)) (val> (: home area)))
+               (out (pack "+" (: home repl))
+                  (if (pre? "$ " Str)
+                     (err NIL
+                        (prinl Str)
+                        (flush)
+                        (in (list "sh" "-c" (cddr (chop Str)))
+                           (echo) ) )
+                     (err NIL
+                        (prinl ": " Str)
+                        (flush)
+                        (catch '(NIL)
+                           (in "/dev/null"
+                              (up 99 @@@ "@3")
+                              (up 99 @@ "@2")
+                              (up 99 @ "@1")
+                              (setq
+                                 "@3" "@2"
+                                 "@2" "@1"
+                                 "@1"
+                                    # picolisp lilypond syntax (e.g. "{ a'4. b'8 c'2~ | c1 }" )
+                                    (ifn (val> (: home lilypondSyntax))
+                                       (run (str Str) 99)
+                                       (ifn (val> (: home renderSvg))
+                                          # debug
+                                          (prog
+                                             (out (tmp "lyrepl") (prin Str))
+                                             (eval (lytransform (lyread (tmp "lyrepl")))) )
+                                          # render svg - automatically wrap code with '(ly ...)'
+                                          (prog
+                                             (out (tmp "lyrepl")
+                                                (prin
+                                                   (pack
+                                                      "(ly "
+                                                         "(prog "
+                                                            "("
+                                                               (when (val> (: home renderFont))
+                                                                 (pack 'ly @ 'Font))
+                                                            ")"
+                                                            Str ") )" ) ) )
+                                             (eval (lytransform (lyread (tmp "lyrepl")))) ) ) ) ) )
+                           (off *Msg)
+                           (println '-> "@1") ) )
+                     (and *Msg (prinl @)) ) )
+               (push1 '*ReplH Str) ) )
+         (<style> '((style . "flex-grow: 1; margin: 8px 8px;") (placeholder . "e.g. { a'2 b'2 c''1 }"))
+            (gui 'line '(+Mono +TextField)
+               (*/ DX 4 5) ) ) )
+      (<div> '("flex-row" (style . "margin: 0px 16px; font-size: smaller; justify-content: flex-end"))
+         (<div> 'flex-row
+            (<span> NIL "Lilypond Syntax")
+            (gui 'lilypondSyntax '(+Init +Checkbox) T) )
+         (<div> 'flex-row
+            (<span> NIL "Render Svg")
+            (gui 'renderSvg '(+Init +Checkbox) T) )
+         (<div> 'flex-row
+            (gui 'renderFont '(+TextField)
+               '("Jazz" "Improviso" "Beethoven")
+               "Render Font" ) ) )
+      # collapsible input area
       (<p> 'collapseBtnLabel "input ")
       (gui '(+JS +Tiny +Style +Button) "collapsible" "v")
       (<div> 'collapsible-content
          (gui 'area '(#{+Able}# +Mono +TextField)
             #{'(= (: home view file) (: home repl))}#
-            (*/ DX 4 5) 10) )
+            (*/ DX 4 5) 5) )
       (<hr>)
+      # collapsible output area
       (<p> 'collapseBtnLabel "output")
       (gui '(+JS +Tiny +Style +Button) "collapsible" "v")
       (<div> 'collapsible-content
