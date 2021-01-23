@@ -288,6 +288,7 @@
                                  (<nbsp>)
                                  (ht:Prin (: mup sum))
                                  (and (: mup rpl) (recurse)) ) ) ) ) ) ) ) )
+         (tabsJS)
          (clipboardJS)
          (collapsibleJS) ) )
    (off *ID) )

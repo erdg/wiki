@@ -9,16 +9,44 @@
 (de metaRepl ()
    (<div> '(id . "repl")
       (<MetaReplHeader>)
-      (<tab>
-         ("picolisp" (pilRepl NIL 56 16))
-         ("lilypond" (lilRepl NIL 56 16))
-         ("options"
-            (form NIL
-               (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
-                  '(prog
-                     (rot *WikiCss) ) ) ) )
-         ) ) )
+      # (<tab>
+      #    ("picolisp" (pilRepl NIL 56 16))
+      #    ("lilypond" (lilRepl NIL 56 16))
+      #    ("misc"
+      #       (form NIL
+      #          (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
+      #             '(prog
+      #                (rot *WikiCss) ) ) ) ) )
+      (<div> 'tabs
+         (<htmlbutton> '("tabBtn" (id . "picolispBtn") (onclick . "openTab('picolisp')")) "picolisp")
+         (<htmlbutton> '("tabBtn top" (id . "lilypondBtn") (onclick . "openTab('lilypond')")) "lilypond")
+         (<htmlbutton> '("tabBtn" (id . "miscBtn")     (onclick . "openTab('misc')"))     "misc") )
+      (<div> '("tabView" (id . "picolisp") (style . "display: none;"))
+         (pilRepl NIL 56 16) )
+      (<div> '("tabView" (id . "lilypond"))
+         (lilRepl NIL 56 16) )
+      (<div> '("tabView" (id . "misc") (style . "display: none;"))
+         (form NIL
+            (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
+               '(prog
+                  (rot *WikiCss) ) ) ) )
+      ) )
 
+(de tabsJS ()
+   (<javascript>
+      "function openTab(tabName) {
+         var i;
+         var tabs = document.getElementsByClassName('tabView');
+         for (i = 0; i < tabs.length; i++) {
+            tabs[i].style.display = 'none';
+         }
+         var btns = document.getElementsByClassName('tabBtn');
+         for (i = 0; i < btns.length; i++) {
+            btns[i].classList.remove('top');
+         }
+         document.getElementById(tabName).style.display = 'block';
+         document.getElementById(tabName + 'Btn').classList.add('top');
+      }" ) )
 
 (de <MetaReplHeader> ()
    (<div> '(flex-row (style . "justify-content: flex-start;"))

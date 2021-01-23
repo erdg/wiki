@@ -771,43 +771,44 @@ input[type=submit].tiny:active {
 /* metarepl header */
 #repl > .flex-row {
    margin: 16px 16px 0px;
+   align-items: flex-start;
 }
 
 
 /* metarepl tabs */
-#repl > .tab {
-   margin: 0px 16px;
-   margin-bottom: 1ex;
-   border-collapse: unset;
-   display: flex;
-   font-family: monospace;
-}
+/* #repl > .tab { */
+/*    margin: 0px 16px; */
+/*    margin-bottom: 1ex; */
+/*    border-collapse: unset; */
+/*    display: flex; */
+/*    font-family: monospace; */
+/* } */
 
-#repl > .tab td {
-   padding: 3px 1rem;
-   border-bottom: none;
-}
+/* #repl > .tab td { */
+/*    padding: 3px 1rem; */
+/*    border-bottom: none; */
+/* } */
 
-#repl > .tab .top {
-   box-shadow: none;
-   border: none;
-   border:radius: 4px;
-   /* border-bottom: 1px solid #666; */
-   background-color: #ddd;
-   color: #333;
-}
+/* #repl > .tab .top { */
+/*    box-shadow: none; */
+/*    border: none; */
+/*    border:radius: 4px; */
+/*    /1* border-bottom: 1px solid #666; *1/ */
+/*    background-color: #ddd; */
+/*    color: #333; */
+/* } */
 
-#repl > .tab .sub {
-   border-radius: 4px;
-}
+/* #repl > .tab .sub { */
+/*    border-radius: 4px; */
+/* } */
 
-#repl .tab .sub:hover {
-   background: #dfe0ef;
-}
+/* #repl .tab .sub:hover { */
+/*    background: #dfe0ef; */
+/* } */
 
-#repl .tab .sub a:hover {
-   text-decoration: none;
-}
+/* #repl .tab .sub a:hover { */
+/*    text-decoration: none; */
+/* } */
 
 
 #repl input[type=text], textarea {
@@ -959,3 +960,43 @@ input[type=submit].tiny:active {
 /*    font-weight: bold; */
 /*    color: #ccc; */
 /* } */
+
+
+/* metarepl tabsJS */
+#repl .tabs {
+   margin: 0px 16px;
+   margin-bottom: 4px;
+   font-family: monospace;
+}
+
+#repl .tabs button {
+   color: #6067af;
+   padding: 4px 1rem;
+   background: #efeff7;
+   border: none;
+   margin-right: 4px;
+}
+
+#repl .tabs .top {
+   box-shadow: none;
+   border: none;
+   border-radius: 4px;
+   /* border-bottom: 1px solid #666; */
+   background-color: #ddd;
+   color: #333;
+}
+
+#repl .tabs button:hover {
+   background: #dfe0ef;
+   color: #6067af;
+   border-radius: 4px;
+   text-decoration: none;
+}
+
+#repl .tabs .top:hover {
+   background: #ddd;
+   color: #333;
+}
+
+#repl .tabView {
+}
