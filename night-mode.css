@@ -142,13 +142,13 @@ pre.code:hover {
 #repl input[type=text]:focus, #repl textarea:focus {
    color: #ddd;
    border: 1px solid #888;
-   background: #2c2c2c;
+   /* background: #2c2c2c; */
 }
 
 .edit input[type=text]:focus, textarea:focus {
    color: #ddd;
    border: 1px solid #888;
-   background: #2c2c2c;
+   /* background: #2c2c2c; */
 }
 
 .edit hr, #repl hr {
