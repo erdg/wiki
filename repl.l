@@ -164,20 +164,21 @@
          (<style> '((style . "flex-grow: 1; margin: 8px 8px;") (placeholder . "e.g. { a'2 b'2 c''1 }"))
             (gui 'line '(+Mono +TextField)
                (*/ DX 4 5) ) ) )
-      (<div> '("flex-row" (style . "margin: 0px 16px; font-size: smaller; justify-content: flex-end"))
+      (<div> '("flex-row mono" (style . "margin: 0px 16px; font-size: smaller; justify-content: flex-end;"))
          (<div> 'flex-row
             (<span> NIL "Lilypond Syntax")
             (gui 'lilypondSyntax '(+Init +Checkbox) T) )
          (<div> 'flex-row
-            (<span> NIL "Render Svg")
+            (<span> NIL "Svg")
             (gui 'renderSvg '(+Init +Checkbox) T) )
          (<div> 'flex-row
             (gui 'renderFont '(+TextField)
                '("Jazz" "Improviso" "Beethoven" "Haydn")
-               "Render Font" ) ) )
+               "Font" ) ) )
       # collapsible input area
       (<p> 'collapseBtnLabel "input ")
-      (gui '(+JS +Tiny +Style +Button) "collapsible" "v")
+      (<style> '(style . "padding: 1px 3px; border-radius: 3px")
+         (gui '(+JS +Tiny +Style +Button) "collapsible" "v") )
       (<div> 'collapsible-content
          (gui 'area '(#{+Able}# +Mono +TextField)
             #{'(= (: home view file) (: home repl))}#
@@ -185,7 +186,8 @@
       (<hr>)
       # collapsible output area
       (<p> 'collapseBtnLabel "output")
-      (gui '(+JS +Tiny +Style +Button) "collapsible" "v")
+      (<style> '(style . "padding: 1px 3px; border-radius: 3px")
+         (gui '(+JS +Tiny +Style +Button) "collapsible" "v") )
       (<div> 'collapsible-content
          (gui 'view '(+Able +FileField)
             '(<> (: file) (: home repl))

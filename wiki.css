@@ -420,6 +420,7 @@ pre.code:hover {
 .edit input[type=text]:focus, textarea:focus {
    border: 1px solid #9fa3cf;
    color: #222;
+   background: #fff;
 }
 
 /* same as above, don't know the proper css selector */
@@ -722,7 +723,7 @@ input[type=submit].tiny:active {
 
 /* now the metarepl */
 #repl {
-   font-size: smaller;
+   /* font-size: smaller; */
    margin: 16px 0px;
 }
 
@@ -810,6 +811,12 @@ input[type=submit].tiny:active {
 /*    text-decoration: none; */
 /* } */
 
+#repl select {
+   font-size: inherit;
+   color: #222;
+   background: #fff;
+   border: 1px solid #bfc2df;
+}
 
 #repl input[type=text], textarea {
    background: #fff;
@@ -822,9 +829,9 @@ input[type=submit].tiny:active {
    max-width: 96%;
 }
 
-#repl input[type=text] {
+#repl .flex-row input[type=text] {
    margin: 8px 0px;
-   width: initial;
+   width: 80%;
 }
 
 #repl input[type=text]:focus {

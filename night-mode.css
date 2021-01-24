@@ -142,13 +142,13 @@ pre.code:hover {
 #repl input[type=text]:focus, #repl textarea:focus {
    color: #ddd;
    border: 1px solid #888;
-   /* background: #2c2c2c; */
+   background: #2c2c2c;
 }
 
 .edit input[type=text]:focus, textarea:focus {
    color: #ddd;
    border: 1px solid #888;
-   /* background: #2c2c2c; */
+   background: #2c2c2c;
 }
 
 .edit hr, #repl hr {
@@ -368,4 +368,12 @@ input[type=submit].tiny:hover {
 }
 
 #repl .tabView {
+}
+
+
+#repl select {
+   font-size: inherit;
+   color: #ccc;
+   background: #2d2d2d;
+   border: 1px solid #666;
 }
