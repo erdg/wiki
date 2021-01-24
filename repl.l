@@ -173,7 +173,7 @@
             (gui 'renderSvg '(+Init +Checkbox) T) )
          (<div> 'flex-row
             (gui 'renderFont '(+TextField)
-               '("Jazz" "Improviso" "Beethoven")
+               '("Jazz" "Improviso" "Beethoven" "Haydn")
                "Render Font" ) ) )
       # collapsible input area
       (<p> 'collapseBtnLabel "input ")
