@@ -114,6 +114,10 @@
    (form Attr
       (=: repl (tmp "repl"))
       # (<hr>)
+      (gui 'view '(+Able +FileField)
+         '(<> (: file) (: home repl))
+         (: repl)
+         DX DY )
       (<div> 'flex-row
          (gui '(+JS #{+Able}# +Button) #{'(= (: home view file) (: home repl))}# "Eval"
             '(let Str (or (val> (: home line)) (val> (: home area)))
@@ -184,16 +188,16 @@
             #{'(= (: home view file) (: home repl))}#
             (*/ DX 4 5) 5) )
       (<hr>)
-      # collapsible output area
-      (<p> 'collapseBtnLabel "output")
-      (<style> '(style . "padding: 1px 3px; border-radius: 3px")
-         (gui '(+JS +Tiny +Style +Button) "collapsible" "v") )
-      (<div> 'collapsible-content
-         (gui 'view '(+Able +FileField)
-            '(<> (: file) (: home repl))
-            (: repl)
-            DX DY ) )
-      (<hr>)
+      # # collapsible output area
+      # (<p> 'collapseBtnLabel "output")
+      # (<style> '(style . "padding: 1px 3px; border-radius: 3px")
+      #    (gui '(+JS +Tiny +Style +Button) "collapsible" "v") )
+      # (<div> 'collapsible-content
+      #    (gui 'view '(+Able +FileField)
+      #       '(<> (: file) (: home repl))
+      #       (: repl)
+      #       DX DY ) )
+      # (<hr>)
       (<spread>
          (<style> '(placeholder . "<FILENAME>")
             (gui 'nm '(+TextField) 20) )
