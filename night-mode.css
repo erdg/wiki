@@ -112,7 +112,8 @@ pre.code:hover {
    border: none;
 }
 
-#ReplSvg img {
+#ReplSvg img,
+#ReplSvgFullscreen img {
    background: #ded7cf;
    padding: 16px;
    border-radius: 4px;

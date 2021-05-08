@@ -61,7 +61,7 @@
 /* Defaults */
 fieldset {
    padding: 0.3em 0.4em 0.7em 0.8em;  /* ie */
-   display: table-cell;
+   /* display: table-cell; */
 }
 
 input, textarea, select {
@@ -401,7 +401,7 @@ pre.code:hover {
 }
 
 .edit {
-   font-size: smaller;
+   /* font-size: smaller; */
 }
 
 .edit h3 {
@@ -754,7 +754,15 @@ input[type=submit].tiny:active {
    max-height: 300px;
 }
 
-#ReplSvg img {
+#ReplSvgFullscreen {
+   overflow: unset;
+   margin-left: 8px;
+   max-height: unset;
+}
+
+#ReplSvg img,
+#ReplSvgFullscreen img
+{
    display: block;
    background: #faf5f0;
    padding: 16px;
@@ -764,6 +772,18 @@ input[type=submit].tiny:active {
    border: solid 1px #ccc;
    margin-bottom: 4px;
    max-width: 92%
+}
+
+@media screen and (min-width: 600px) and ( max-width: 1300px) {
+   #repl .flex-col {
+      width: 40%
+   }
+}
+
+@media screen and (max-width: 600px) {
+   #ReplSvgFullscreen {
+      margin-left: 0px;
+   }
 }
 
 .themeToggle {
@@ -954,6 +974,11 @@ input[type=submit].tiny:active {
 
 .closeRepl {
    margin-right: 8px;
+}
+
+.closeReplFullscreen {
+   margin-right: 8px;
+   padding: 3px;
 }
 
 .collapsible-content {
