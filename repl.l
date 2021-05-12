@@ -139,7 +139,7 @@
          (: repl)
          DX DY )
       (<div> 'flex-row
-         (gui '(+JS #{+Able}# +Button) #{'(= (: home view file) (: home repl))}# "Eval"
+         (gui '(+JS #{+Able}# +Button) #{'(= (: home view file) (: home repl))}# "Run"
             '(let Str (or (val> (: home line)) (val> (: home area)))
                (out (pack "+" (: home repl))
                   (if (pre? "$ " Str)
@@ -185,7 +185,7 @@
                            (println '-> "@1") ) )
                      (and *Msg (prinl @)) ) )
                (push1 '*ReplH Str) ) )
-         (<style> '((style . "flex-grow: 1; margin: 8px 8px;") (placeholder . "e.g. { a'2 b'2 c''1 }"))
+         (<style> '((style . "flex-grow: 1; margin: 8px 8px;") (placeholder . "code here") )
             (gui 'line '(+Mono +TextField)
                (*/ DX 4 5) ) ) )
       (<div> '("flex-row mono" (style . "margin: 0px 16px; font-size: smaller; justify-content: flex-end;"))
@@ -201,12 +201,13 @@
                "Font" ) ) )
       # collapsible input area
       (<p> 'collapseBtnLabel "input ")
-      (<style> '(style . "padding: 1px 3px; border-radius: 3px")
+      (<style> '((style . "padding: 1px 3px; border-radius: 3px"))
          (gui '(+JS +Tiny +Style +Button) "collapsible" "v") )
       (<div> 'collapsible-content
-         (gui 'area '(#{+Able}# +Mono +TextField)
-            #{'(= (: home view file) (: home repl))}#
-            (*/ DX 4 5) 5) )
+         (<style> '(placeholder . "or here")
+            (gui 'area '(#{+Able}# +Mono +TextField)
+               #{'(= (: home view file) (: home repl))}#
+               (*/ DX 4 5) 5) ) )
 
       (<hr>)
 
@@ -268,8 +269,8 @@
                (: repl)
                DX DY )
             (<div> 'flex-row
-               (gui '(+JS #{+Able}# +Button) #{'(= (: home view file) (: home repl))}# "Eval"
-                  '(let Str (val> (: home area))
+               (gui '(+JS #{+Able}# +Button) #{'(= (: home view file) (: home repl))}# "Run"
+                  '(let Str (or (val> (: home line)) (val> (: home area)))
                      (out (pack "+" (: home repl))
                         (if (pre? "$ " Str)
                            (err NIL
@@ -314,9 +315,9 @@
                                  (println '-> "@1") ) )
                            (and *Msg (prinl @)) ) )
                      (push1 '*ReplH Str) ) )
-               # (<style> '((style . "flex-grow: 1; margin: 8px 8px;") (placeholder . "e.g. { a'2 b'2 c''1 }"))
-               #    (gui 'line '(+Mono +TextField)
-               #       (*/ DX 4 5) ) )
+               (<style> '((style . "flex-grow: 1; margin: 8px 8px;") (placeholder . "code here"))
+                  (gui 'line '(+Mono +TextField)
+                     (*/ DX 4 5) ) )
             (<div> '("flex-row mono" (style . "margin: 0px 16px; font-size: smaller; justify-content: flex-end;"))
                (<div> 'flex-row
                   (<span> NIL "Lilypond Syntax")
@@ -328,8 +329,15 @@
                   (gui 'renderFont '(+TextField)
                      '("Jazz" "Improviso" "Beethoven" "Haydn")
                      "Font" ) ) ) )
-               (gui 'area '(#{+Able}# +Mono +TextField)
-                  (*/ DX 4 5) 14) )
+               (<style> '(placeholder . "or here")
+                  (gui 'area '(#{+Able}# +Mono +TextField)
+                     (*/ DX 4 5) 14) ) )
+         (<div>
+            '(flex-row (style . "width: min-content; align-self: flex-end; position: absolute; top: 16px; right: 2px;"))
+               (gui '(+Style +Button) "closeReplFullscreen right" "x"
+                  '(prog
+                     (off *FullscreenRepl)
+                     (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
 
          (<div> '(flex-col (style . "flex-grow: 1;"))
             (<div> 'flex-row
