@@ -215,7 +215,7 @@ pre.code:hover {
    /* color: #888; */
    /* border: 1px solid #888; */
    color: #888;
-   border: 1px solid #888;
+   border: 1px solid #777;
    background: #1a1a1a;
    padding: 2px 4px 2px;
    box-shadow: unset;
@@ -227,7 +227,7 @@ pre.code:hover {
 .edit .submit:hover,
 .login .submit:hover {
    color: #999;
-   border: 1px solid #999;
+   border: 1px solid #888;
    padding: 2px 4px 2px;
    background: #1a1a1a;
 }
@@ -358,7 +358,7 @@ input[type=submit].tiny:hover {
 
 #repl .tabs button:hover {
    background: #222;
-   color: #a7d9a3;
+   color: #9fa3cf;
    border-radius: 4px;
    text-decoration: none;
 }
