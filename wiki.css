@@ -774,9 +774,15 @@ input[type=submit].tiny:active {
    max-width: 92%
 }
 
-@media screen and (min-width: 600px) and ( max-width: 1300px) {
+@media screen and (min-width: 600px) and ( max-width: 1800px) {
    #repl .flex-col {
       width: 40%
+   }
+   #repl #ReplSvgContainerFullscreen {
+      position: fixed;
+      top: 64px;
+      right: 32px;
+      width: 50%;
    }
 }
 
