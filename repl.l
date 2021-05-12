@@ -265,7 +265,7 @@
 # fullscreen lilypond repl
 (de lilReplFullscreen (Attr DX DY)
    (default DX 80  DY 25)
-   (serverSentEvent "ReplSvg" '*ReplSvg)
+   (serverSentEvent "ReplSvgFullscreen" '*ReplSvgFullscreen)
    (form Attr
       (=: repl (tmp "repl"))
       # (<hr>)
@@ -388,7 +388,8 @@
 
 # send latest SVG to the browser
 (de updReplSvg ()
-   (serverSend *ReplSvg (<ReplSvg>)) )
+   (serverSend *ReplSvg (<ReplSvg>))
+   (serverSend *ReplSvgFullscreen (<ReplSvg>)) )
 
 
 # write lilypond file
