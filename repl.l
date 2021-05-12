@@ -222,8 +222,14 @@
       #       DX DY ) )
       # (<hr>)
 
-      (<style> '(style . "position: absolute; top: 16px; right: 16px")
-         (gui '(+Style +Button) "tiny" "Fullscreen"
+#       (<style> '(style . "position: absolute; top: 16px; right: 16px")
+#          (gui '(+Style +Button) "tiny" "Fullscreen"
+#             '(prog
+#                (on *FullscreenRepl)
+#                (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
+
+      (<style> '(style . "position: absolute; top: 12px; right: 34px; padding: 2px 1px;")
+         (gui '(+Style +Tip +Button) "mono" "Fullscreen" "[+]"
             '(prog
                (on *FullscreenRepl)
                (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
@@ -251,8 +257,9 @@
             # are achieved.
       (<ReplSvgDiv>)
       (--)
-      (gui '(+Style +Button) "closeRepl right" "Close"
-         '(prog (rollback) (off *ID)) ) ) )
+      (<style> '(style . "position: absolute; top: 12px; right: 2px;")
+         (gui '(+Style +Button) "closeRepl right" "x"
+            '(prog (rollback) (off *ID)) ) ) ) )
 
 
 # fullscreen lilypond repl
@@ -339,7 +346,7 @@
                      (off *FullscreenRepl)
                      (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
 
-         (<div> '(flex-col (style . "flex-grow: 1;"))
+         (<div> '(flex-col (id . "ReplSvgContainerFullscreen") (style . "flex-grow: 1;"))
             (<div> 'flex-row
                (<style> '(placeholder . "<FILENAME>")
                   (gui 'nm '(+TextField) 20) )
@@ -361,16 +368,7 @@
                   # creates an SSE). all this is probably because I don't *really* understand
                   # how to use the PL form/gui stuff, I just hack away until the desired results
                   # are achieved.
-            (<ReplSvgDivFullscreen>)
-            (--)
-            (<div> '(flex-row (style . "width: min-content; align-self: flex-end; position: absolute; top: 16px; right: 2px"))
-               # (gui '(+Style +Button) "closeReplFullscreen right" "X"
-               #    '(prog (rollback) (off *ID)) )
-               (gui '(+Style +Button) "closeReplFullscreen right" "X"
-                  '(prog
-                     (off *FullscreenRepl)
-                     (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) )
-               ) ) ) ) )
+            (<ReplSvgDivFullscreen>) ) ) ) )
 
 
 (de <ReplSvgDiv> ()
