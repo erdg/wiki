@@ -7,10 +7,19 @@
 # tabs for different repl syntax "skins" (standard picolisp and lilypond for
 # now, "macro" syntax could be added)
 (de metaRepl ()
-   (<div> (list
-            '(id . "repl")
-            (if *FullscreenRepl
-                '(style . "position: fixed; margin: 0 auto; top: 0px; left: 0px; width: 100%; height: 100%; overflow: auto;") ) )
+   (<div>
+      (list
+         '(id . "repl")
+         (if *FullscreenRepl
+            (cons 'style
+               "position: fixed;
+               margin: 0 auto;
+               top: 0px;
+               left: 0px;
+               width: 100%;
+               height: 100%;
+               overflow: auto;
+               border-radius: 0px;" ) ) )
       (<MetaReplHeader>)
       # (<tab>
       #    ("picolisp" (pilRepl NIL 56 16))
