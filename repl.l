@@ -399,8 +399,9 @@
       (lyVersion)
       (lyLayout)
       (run Music) )
-   (call *Lily "-dcrop" "-dbackend=svg" "--output=wiki/img" (tmp "repl.ly"))
-   (updReplSvg) )
+   (call *Lily "--loglevel=WARN" "-dcrop" "-dbackend=svg" "--output=wiki/img" (tmp "repl.ly"))
+   (updReplSvg)
+   T )
 
 (de lyEcho ()
    (in (tmp "repl.ly") (echo)) )
