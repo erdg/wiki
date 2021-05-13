@@ -774,23 +774,30 @@ input[type=submit].tiny:active {
    max-width: 92%
 }
 
-@media screen and (min-width: 600px) and ( max-width: 1800px) {
+@media screen and (min-width: 700px) and ( max-width: 1800px) {
    #repl .flex-col {
       width: 40%
    }
    #repl #ReplSvgContainerFullscreen {
       position: fixed;
-      top: 64px;
+      top: 90px;
       right: 32px;
       width: 50%;
    }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
    #ReplSvgFullscreen {
       margin-left: 0px;
    }
 }
+
+/* @media screen and (max-width: 1000px) { */
+   .ReplOutputFullscreen {
+      order: 4;
+      margin-top: 16px;
+   }
+/* } */
 
 .themeToggle {
 }
@@ -858,6 +865,12 @@ input[type=submit].tiny:active {
 #repl .flex-row input[type=text] {
    margin: 8px 0px;
    width: 80%;
+}
+
+@media screen and (max-width: 800px) {
+    #repl .flex-row input[type="text"] {
+      width: 70%;
+   }
 }
 
 #repl input[type=text]:focus {

@@ -271,7 +271,8 @@
       # (<hr>)
       (<div> '(flex-row (style . "align-items: flex-start; justify-content: flex-start;"))
          (<div> 'flex-col
-            (gui 'view '(+Able +FileField)
+            (gui 'view '(+Style +Able +FileField)
+               "ReplOutputFullscreen"
                '(<> (: file) (: home repl))
                (: repl)
                DX DY )
@@ -322,7 +323,7 @@
                                  (println '-> "@1") ) )
                            (and *Msg (prinl @)) ) )
                      (push1 '*ReplH Str) ) )
-               (<style> '((style . "flex-grow: 1; margin: 8px 8px;") (placeholder . "code here"))
+               (<style> '("ReplLineFullscreen" (style . "flex-grow: 1; margin: 8px 8px;") (placeholder . "code here"))
                   (gui 'line '(+Mono +TextField)
                      (*/ DX 4 5) ) )
             (<div> '("flex-row mono" (style . "margin: 0px 16px; font-size: smaller; justify-content: flex-end;"))
