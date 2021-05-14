@@ -198,14 +198,14 @@
                '("Jazz" "Improviso" "Beethoven" "Haydn")
                "Font" ) ) )
       # collapsible input area
-      (<p> 'collapseBtnLabel "input ")
+      (<p> 'collapseBtnLabel "input area ")
       (<style> '((style . "padding: 1px 3px; border-radius: 3px"))
          (gui '(+JS +Tiny +Style +Button) "collapsible" "v") )
       (<div> 'collapsible-content
          (<style> '(placeholder . "or here")
             (gui 'area '(#{+Able}# +Mono +TextField)
                #{'(= (: home view file) (: home repl))}#
-               (*/ DX 4 5) 5) ) )
+               (*/ DX 4 5) 10) ) )
 
       (<hr>)
 
