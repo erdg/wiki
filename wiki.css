@@ -799,6 +799,12 @@ input[type=submit].tiny:active {
    }
 /* } */
 
+@media screen and (min-width: 700px) {
+   .PilReplFullscreen {
+      width: 50%;
+   }
+}
+
 .themeToggle {
 }
 
