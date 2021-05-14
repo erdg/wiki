@@ -7,48 +7,56 @@
 # tabs for different repl syntax "skins" (standard picolisp and lilypond for
 # now, "macro" syntax could be added)
 (de metaRepl ()
-   (<div>
-      (list
-         '(id . "repl")
-         (if *FullscreenRepl
-            (cons 'style
-               "position: fixed;
-               margin: 0 auto;
-               top: 0px;
-               left: 0px;
-               width: 100%;
-               height: 100%;
-               overflow: auto;
-               border-radius: 0px;" ) ) )
+   (<div> (metaReplStyles)
       (<MetaReplHeader>)
-      (<div> 'tabs
-         (<htmlbutton> '("tabBtn"     (id . "picolispBtn") (onclick . "openTab('picolisp')")) "picolisp")
-         (<htmlbutton> '("tabBtn top" (id . "lilypondBtn") (onclick . "openTab('lilypond')")) "lilypond")
-         # (<htmlbutton> '("tabBtn"     (id . "documentBtn") (onclick . "openTab('document')")) "document")
-         (<htmlbutton> '("tabBtn"     (id . "optionsBtn")  (onclick . "openTab('options')"))  "options") )
-      (<div> '("tabView" (id . "picolisp") (style . "display: none;"))
-         (pilRepl NIL 56 16) )
-      (<div> '("tabView" (id . "lilypond"))
-         (if *FullscreenRepl
-            (lilReplFullscreen NIL 56 20)
-            (lilRepl NIL 56 10) ) )
-      # (<div> '("tabView" (id . "document") (style . "display: none;"))
-      #    (form 'edit
-      #       (=: obj Obj)
-      #       (<h3> NIL (ht:Prin (: obj nm)))
-      #       (docFields T) ) )
-      (<div> '("tabView" (id . "options") (style . "display: none;"))
-         (form NIL
-            (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
-               '(prog
-                  (rot *WikiCss)
-                  (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) )
-            (gui '(+Button) "Fullscreen Repl"
-               '(prog
-                  (onOff *FullscreenRepl)
-                  (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) )
-            ) )
-      ) )
+      (<MetaReplTabs>) ) )
+
+(de metaReplStyles ()
+   (list
+      '(id . "repl")
+      (if *FullscreenRepl
+         (cons 'style
+            "position: fixed;
+            margin: 0 auto;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            border-radius: 0px;" ) ) ) )
+
+(de <MetaReplHeader> ()
+   (<div> '(flex-row (style . "justify-content: flex-start;"))
+      (<style> '(style . "width: 32px;")
+         (<img> "wiki/img/small-logo.png") )
+      (<p> '(id . "replHeaderText")
+         "metarepl" ) ) )
+
+(de <MetaReplTabs> ()
+   # BUTTONS
+   (<div> 'tabs
+      (<htmlbutton> '("tabBtn"     (id . "picolispBtn") (onclick . "openTab('picolisp')")) "picolisp")
+      (<htmlbutton> '("tabBtn top" (id . "lilypondBtn") (onclick . "openTab('lilypond')")) "lilypond")
+      # (<htmlbutton> '("tabBtn"     (id . "documentBtn") (onclick . "openTab('document')")) "document")
+      (<htmlbutton> '("tabBtn"     (id . "optionsBtn")  (onclick . "openTab('options')"))  "options") )
+   # VIEWS
+   (<div> '("tabView" (id . "picolisp") (style . "display: none;"))
+      (pilRepl (if *FullscreenRepl 'PilReplFullscreen) 56 20) )
+   (<div> '("tabView" (id . "lilypond"))
+      (if *FullscreenRepl
+         (lilReplFullscreen NIL 56 20)
+         (lilRepl NIL 56 10) ) )
+   # (<div> '("tabView" (id . "document") (style . "display: none;"))
+   #    (form 'edit
+   #       (=: obj Obj)
+   #       (<h3> NIL (ht:Prin (: obj nm)))
+   #       (docFields T) ) )
+   (<div> '("tabView" (id . "options") (style . "display: none;"))
+      (form NIL
+         (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
+            '(prog
+               (rot *WikiCss)
+               (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) ) ) )
 
 (de tabsJS ()
    (<javascript>
@@ -65,14 +73,6 @@
          document.getElementById(tabName).style.display = 'block';
          document.getElementById(tabName + 'Btn').classList.add('top');
       }" ) )
-
-(de <MetaReplHeader> ()
-   (<div> '(flex-row (style . "justify-content: flex-start;"))
-      (<style> '(style . "width: 32px;")
-         (<img> "wiki/img/small-logo.png") )
-      (<p> '(id . "replHeaderText")
-         "metarepl" ) ) )
-
 
 # normal picolisp repl
 (de pilRepl (Attr DX DY)
