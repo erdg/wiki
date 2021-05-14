@@ -21,24 +21,22 @@
                overflow: auto;
                border-radius: 0px;" ) ) )
       (<MetaReplHeader>)
-      # (<tab>
-      #    ("picolisp" (pilRepl NIL 56 16))
-      #    ("lilypond" (lilRepl NIL 56 16))
-      #    ("misc"
-      #       (form NIL
-      #          (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
-      #             '(prog
-      #                (rot *WikiCss) ) ) ) ) )
       (<div> 'tabs
-         (<htmlbutton> '("tabBtn" (id . "picolispBtn") (onclick . "openTab('picolisp')")) "picolisp")
+         (<htmlbutton> '("tabBtn"     (id . "picolispBtn") (onclick . "openTab('picolisp')")) "picolisp")
          (<htmlbutton> '("tabBtn top" (id . "lilypondBtn") (onclick . "openTab('lilypond')")) "lilypond")
-         (<htmlbutton> '("tabBtn" (id . "optionsBtn")     (onclick . "openTab('options')"))     "options") )
+         # (<htmlbutton> '("tabBtn"     (id . "documentBtn") (onclick . "openTab('document')")) "document")
+         (<htmlbutton> '("tabBtn"     (id . "optionsBtn")  (onclick . "openTab('options')"))  "options") )
       (<div> '("tabView" (id . "picolisp") (style . "display: none;"))
          (pilRepl NIL 56 16) )
       (<div> '("tabView" (id . "lilypond"))
          (if *FullscreenRepl
             (lilReplFullscreen NIL 56 20)
             (lilRepl NIL 56 10) ) )
+      # (<div> '("tabView" (id . "document") (style . "display: none;"))
+      #    (form 'edit
+      #       (=: obj Obj)
+      #       (<h3> NIL (ht:Prin (: obj nm)))
+      #       (docFields T) ) )
       (<div> '("tabView" (id . "options") (style . "display: none;"))
          (form NIL
             (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
