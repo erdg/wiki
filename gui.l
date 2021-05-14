@@ -303,6 +303,11 @@
          text: function(trigger) {
             return trigger.lastChild.textContent;
          }
+      });
+      var clipInputArea  = new ClipboardJS('.clipInputArea', {
+         target: function(trigger) {
+            return trigger.nextElementSibling;
+         }
       });" ) )
 
 (de collapsibleJS ()

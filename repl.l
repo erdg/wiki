@@ -335,6 +335,11 @@
                   (gui 'renderFont '(+TextField)
                      '("Jazz" "Improviso" "Beethoven" "Haydn")
                      "Font" ) ) ) )
+            (<div> '(style . "position: relative;")
+               (<htmlbutton> '("clipInputArea tiny submit"
+                                 (id . "copyBtn")
+                                 (style . "position: absolute; top: 10px; right: 3%;"))
+                  "copy" )
                (<style> '(placeholder . "or here")
                   (gui 'area '(#{+Able}# +Mono +TextField)
                      (*/ DX 4 5) 14) ) )
