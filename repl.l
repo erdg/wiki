@@ -389,8 +389,9 @@
 
 # send latest SVG to the browser
 (de updReplSvg ()
-   (serverSend *ReplSvg (<ReplSvg>))
-   (serverSend *ReplSvgFullscreen (<ReplSvg>)) )
+   (if *FullscreenRepl
+      (serverSend *ReplSvgFullscreen (<ReplSvg>))
+      (serverSend *ReplSvg (<ReplSvg>)) ) )
 
 
 # write lilypond file
