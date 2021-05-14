@@ -774,7 +774,7 @@ input[type=submit].tiny:active {
    max-width: 92%
 }
 
-@media screen and (min-width: 700px) and ( max-width: 1800px) {
+@media screen and (min-width: 600px) and ( max-width: 1800px) {
    #repl .flex-col {
       width: 40%
    }
