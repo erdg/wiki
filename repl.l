@@ -53,10 +53,16 @@
    #       (docFields T) ) )
    (<div> '("tabView" (id . "options") (style . "display: none;"))
       (form NIL
-         (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
-            '(prog
-               (rot *WikiCss)
-               (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) ) ) )
+         (<div> 'flex-col
+            (<style> '(style . "margin: 4px 8px")
+               (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
+                  '(prog
+                     (rot *WikiCss)
+                     (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) )
+               (gui '(+Button) "Toggle Document Code Sections"
+                  '(prog
+                     (onOff *DisplayDocumentCode)
+                     (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) ) ) ) ) )
 
 (de tabsJS ()
    (<javascript>

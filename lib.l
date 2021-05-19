@@ -166,9 +166,16 @@
                                        (or (glue " " (cdr S)) (pack (car S)))
                                        (pack (car S)) )
                                     (prin "???") ) ) )
+                           # (":"  # Pre-formatted
+                           #    ((if (= "^J" (peek)) <pre> <span>) '(code (title . "click to copy"))
+                           #       (renderBlock ht:Prin)) )
                            (":"  # Pre-formatted
-                              ((if (= "^J" (peek)) <pre> <span>) '(code (title . "click to copy"))
-                                 (renderBlock ht:Prin)) )
+                              (let Peek (= "^J" (peek))
+                                 ((if Peek <pre> <span>)
+                                    (list 'code
+                                       (if Peek '(title . "click to copy"))
+                                       (and Peek (not *DisplayDocumentCode) '(style . "display: none;")) )
+                                    (renderBlock ht:Prin)) ) )
                            ("\\" (prin "{"))  # Escaped brace
                            ("#" (renderBlock prog))  # Comment
                            (T (prin C "{")) ) )

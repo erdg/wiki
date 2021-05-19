@@ -15,7 +15,7 @@
    *Blob "db/wiki/blob/"
    *Jnl (and (info "fifo/wiki") "fifo/wiki")
    *Salt (16 . "$6$@1$")
-   *Css 
+   *Css
       "@lib.css"
    *WikiCss
       (quote
@@ -73,5 +73,8 @@
 # (music) repl
 (load "wiki/repl.l")
 (allow "repl.cropped.svg")
+
+# misc
+(on *DisplayDocumentCode)
 
 # vi:et:ts=3:sw=3
