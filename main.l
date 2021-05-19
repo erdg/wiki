@@ -61,14 +61,16 @@
 # customizations below
 
 # redefine 'ask' for "modal-style" dialog
-(de ask (Str . Prg)
-   (alert (env '(Str Prg))
-      (<div> 'modal
-         (<div> 'modal-inner
-            (<span> 'ask Str)
-            (--)
-            (yesButton (cons 'prog Prg))
-            (noButton) ) ) ) )
+# use setq so '# ask redefined' does not clog the logs
+(setq ask
+   '((Str . Prg)
+      (alert (env '(Str Prg))
+         (<div> 'modal
+            (<div> 'modal-inner
+               (<span> 'ask Str)
+               (--)
+               (yesButton (cons 'prog Prg))
+               (noButton) ) ) ) ) )
 
 # (music) repl
 (load "wiki/repl.l")
