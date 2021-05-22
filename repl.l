@@ -207,13 +207,13 @@
             (gui 'line '(+Mono +TextField)
                (*/ DX 4 5) ) ) )
       (<div> '("flex-row mono" (style . "margin: 0px 16px; font-size: smaller; justify-content: flex-end;"))
-         (<div> 'flex-row
+         (<div> '(flex-row (style . "margin: 0px 8px"))
             (<span> NIL "Lilypond Syntax")
             (gui 'lilypondSyntax '(+Init +Checkbox) T) )
-         (<div> 'flex-row
+         (<div> '(flex-row (style . "margin: 0px 8px"))
             (<span> NIL "Svg")
             (gui 'renderSvg '(+Init +Checkbox) T) )
-         (<div> 'flex-row
+         (<div> '(flex-row (style . "margin: 8px 8px"))
             (gui 'renderFont '(+TextField)
                '("Jazz" "Improviso" "Beethoven" "Haydn")
                "Font" ) ) )
