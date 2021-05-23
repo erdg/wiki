@@ -150,13 +150,12 @@
    (default DX 80  DY 25)
    (serverSentEvent "ReplSvg" '*ReplSvg)
    (form Attr
+
       (=: repl (tmp "repl"))
-      # (<hr>)
-      (gui 'view '(+Able +FileField)
-         '(<> (: file) (: home repl))
-         (: repl)
-         DX DY )
-      (<div> 'flex-row
+
+      # Run line
+      (<hr>)
+      (<div> '(flex-row (style . "position: relative;"))
          (gui '(+JS #{+Able}# +Button) #{'(= (: home view file) (: home repl))}# "Run"
             '(let Str (or (val> (: home line)) (val> (: home area)))
                (out (pack "+" (: home repl))
@@ -205,48 +204,27 @@
                (push1 '*ReplH Str) ) )
          (<style> '((style . "flex-grow: 1; margin: 8px 8px;") (placeholder . "code here") )
             (gui 'line '(+Mono +TextField)
-               (*/ DX 4 5) ) ) )
-      (<div> '("flex-row mono" (style . "margin: 0px 16px; font-size: smaller; justify-content: flex-end;"))
-         (<div> '(flex-row (style . "margin: 0px 8px"))
-            (<span> NIL "Lilypond Syntax")
-            (gui 'lilypondSyntax '(+Init +Checkbox) T) )
-         (<div> '(flex-row (style . "margin: 0px 8px"))
-            (<span> NIL "Svg")
-            (gui 'renderSvg '(+Init +Checkbox) T) )
-         (<div> '(flex-row (style . "margin: 8px 8px"))
-            (gui 'renderFont '(+TextField)
-               '("Jazz" "Improviso" "Beethoven" "Haydn")
-               "Font" ) ) )
-      # collapsible input area
-      (<p> 'collapseBtnLabel "input area ")
-      (<style> '((style . "padding: 1px 3px; border-radius: 3px"))
-         (gui '(+JS +Tiny +Style +Button) "collapsible" "v") )
-      (<div> 'collapsible-content
-         (<style> '(placeholder . "or here")
-            (gui 'area '(#{+Able}# +Mono +TextField)
-               #{'(= (: home view file) (: home repl))}#
-               (*/ DX 4 5) 10) ) )
+               (*/ DX 4 5) ) )
+         (<style> '("clipInputArea tiny submit" (id . "copyBtn") (style . "position: absolute; right: 2%;"))
+            (gui '(+JS +Button)
+               "copy" ) ) )
 
-      (<hr>)
+      (<RunLineOptions>)
+      # # Run line options - render, etc...
+      # (<div> '("flex-row mono" (style . "margin: 0px 16px; font-size: smaller; justify-content: flex-end;"))
+      #    # this is rarely used
+      #    (<div> '(flex-row (style . "margin: 0px 8px; display: none;"))
+      #       (<span> NIL "Lilypond Syntax")
+      #       (gui 'lilypondSyntax '(+Init +Checkbox) T) )
+      #    (<div> '(flex-row (style . "margin: 0px 8px"))
+      #       (<span> NIL "render")
+      #       (gui 'renderSvg '(+Init +Checkbox) T) )
+      #    (<div> '(flex-row (style . "margin: 8px 8px"))
+      #       (gui 'renderFont '(+TextField)
+      #          '("Jazz" "Improviso" "Beethoven" "Haydn")
+      #          "style" ) ) )
 
-      # # collapsible output area
-      # (<p> 'collapseBtnLabel "output")
-      # (<style> '(style . "padding: 1px 3px; border-radius: 3px")
-      #    (gui '(+JS +Tiny +Style +Button) "collapsible" "v") )
-      # (<div> 'collapsible-content
-      #    (gui 'view '(+Able +FileField)
-      #       '(<> (: file) (: home repl))
-      #       (: repl)
-      #       DX DY ) )
-      # (<hr>)
-
-#       (<style> '(style . "position: absolute; top: 16px; right: 16px")
-#          (gui '(+Style +Button) "tiny" "Fullscreen"
-#             '(prog
-#                (on *FullscreenRepl)
-#                (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
-
-      # resize / close buttons (top right)
+      # resize / close buttons (absolute positioned top right)
       (<style> '(style . "position: absolute; top: 12px; right: 34px; padding: 2px 1px;")
          (gui '(+Style +Tip +Button) "mono" "Fullscreen" "[+]"
             '(prog
@@ -256,6 +234,34 @@
          (gui '(+Style +Button) "closeRepl right" "x"
             '(prog (rollback) (off *ID)) ) )
 
+      # collapsible input area
+      (<p> 'collapseBtnLabel "input..")
+      (<style> '((style . "padding: 1px 3px; border-radius: 3px"))
+         (gui '(+JS +Tiny +Style +Button) "collapsible tiny" "v") )
+      (<div> 'collapsible-content
+         (<div> '(style . "position: relative;")
+            (<style> '("clipInputArea tiny submit" (id . "copyBtn") (style . "position: absolute; top: 5%; right: 4%;"))
+               (gui '(+JS +Button)
+                  "copy" ) )
+            (<style> '(placeholder . " ..or here")
+               (gui 'area '(+Mono +TextField)
+                  (*/ DX 4 5) 14 ) ) ) )
+
+      (<hr>)
+
+      # collapsible output area
+      (<p> 'collapseBtnLabel "output.")
+      (<style> '((style . "padding: 1px 3px; border-radius: 3px"))
+         (gui '(+JS +Tiny +Style +Button) "collapsible tiny" "v") )
+      (<div> 'collapsible-content
+         (gui 'view '(+Able +FileField)
+            '(<> (: file) (: home repl))
+            (: repl)
+            DX DY ) )
+
+      (<hr>)
+
+      # music svg section
       (<spread>
          (<style> '(placeholder . "<FILENAME>")
             (gui 'nm '(+TextField) 20) )
@@ -280,21 +286,43 @@
       (<ReplSvgDiv>) ) )
 
 
+(de <RunLineOptions> ()
+   # Run line options - render, etc...
+   (<div> '("flex-row mono" (style . "margin: 0px 16px; font-size: smaller; justify-content: flex-end;"))
+      # this is rarely used
+      (<div> '(flex-row (style . "margin: 0px 8px; display: none;"))
+         (<span> NIL "Lilypond Syntax")
+         (gui 'lilypondSyntax '(+Init +Checkbox) T) )
+      (<div> '(flex-row (style . "margin: 0px 8px"))
+         (<span> NIL "render")
+         (gui 'renderSvg '(+Init +Checkbox) T) )
+      (<div> '(flex-row (style . "margin: 8px 8px"))
+         (gui 'renderFont '(+TextField)
+            '("Jazz" "Improviso" "Beethoven" "Haydn")
+            "style" ) ) ) )
+
+
 # fullscreen lilypond repl
 (de lilReplFullscreen (Attr DX DY)
    (default DX 80  DY 25)
    (serverSentEvent "ReplSvgFullscreen" '*ReplSvgFullscreen)
    (form Attr
+
       (=: repl (tmp "repl"))
-      # (<hr>)
+
       (<div> '(flex-row (style . "align-items: flex-start; justify-content: flex-start;"))
+
          (<div> 'flex-col
+
             (gui 'view '(+Style +Able +FileField)
                "ReplOutputFullscreen"
                '(<> (: file) (: home repl))
                (: repl)
                DX DY )
+
             (<div> 'flex-row
+
+               # Run Button
                (gui '(+JS #{+Able}# +Button) #{'(= (: home view file) (: home repl))}# "Run"
                   '(let Str (or (val> (: home line)) (val> (: home area)))
                      (out (pack "+" (: home repl))
@@ -341,40 +369,26 @@
                                  (println '-> "@1") ) )
                            (and *Msg (prinl @)) ) )
                      (push1 '*ReplH Str) ) )
+
+               # Run line
                (<style> '("ReplLineFullscreen" (style . "flex-grow: 1; margin: 8px 8px;") (placeholder . "code here"))
                   (gui 'line '(+Mono +TextField)
                      (*/ DX 4 5) ) )
-            (<div> '("flex-row mono" (style . "margin: 0px 16px; font-size: smaller; justify-content: flex-end;"))
-               (<div> 'flex-row
-                  (<span> NIL "Lilypond Syntax")
-                  (gui 'lilypondSyntax '(+Init +Checkbox) T) )
-               (<div> 'flex-row
-                  (<span> NIL "Svg")
-                  (gui 'renderSvg '(+Init +Checkbox) T) )
-               (<div> 'flex-row
-                  (gui 'renderFont '(+TextField)
-                     '("Jazz" "Improviso" "Beethoven" "Haydn")
-                     "Font" ) ) ) )
+
+               (<RunLineOptions>) )
+
             (<div> '(style . "position: relative;")
-               (<htmlbutton> '("clipInputArea tiny submit"
+               (<style> '("clipInputArea tiny submit"
                                  (id . "copyBtn")
-                                 (style . "position: absolute; top: 10px; right: 3%;"))
-                  "copy" )
-               (<style> '(placeholder . "or here")
+                                 (style . "position: absolute; top: 5%; right: 4%;"))
+                  (gui '(+JS +Button) "copy") )
+               (<style> '(placeholder . " ..or here")
                   (gui 'area '(+Mono +TextField)
                      (*/ DX 4 5) 14 ) ) ) )
 
-         # (<div> '(flex-row (style . "width: min-content; align-self: flex-end; position: absolute; top: 16px; right: 2px;"))
-         #    (gui '(+Style +Button) "closeReplFullscreen mono right" "[-]"
-         #       '(prog
-         #          (off *FullscreenRepl)
-         #          (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) )
-         #    (gui '(+Style +Button) "closeReplFullscreen right" "x"
-         #       '(prog (rollback) (off *ID)) ) )
-
-         # resize / close buttons (top right)
+         # resize / close buttons (absolute positioned top right)
          (<style> '(style . "position: absolute; top: 12px; right: 34px; padding: 2px 1px;")
-            (gui '(+Style +Tip +Button) "mono" "Fullscreen" "[-]"
+            (gui '(+Style +Tip +Button) "mono" "exit fullscreen" "[-]"
                '(prog
                   (off *FullscreenRepl)
                   (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
