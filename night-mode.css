@@ -10,17 +10,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-   color: #9fa3cf;
+   color: #8f94c7;
+   /* color: #9fa3cf; */
 }
 
 a:hover,
 a:focus {
-   color: #9fa3cf;
+   color: #8f94c7;
    text-decoration: underline;
 }
 
 a:active {
-   color: #afb3d7;
+   color: #9fa3cf;
+   /* color: #afb3d7; */
 }
 
 
@@ -342,7 +344,8 @@ input[type=submit].tiny:hover {
 
 #repl .tabs button {
    /* color: #aaa; */
-   color: #9fa3cf;
+   color: #8f94c7;
+   /* color: #9fa3cf; */
    padding: 4px 1rem;
    background: #1d1d1d;
    border: none;
@@ -357,10 +360,15 @@ input[type=submit].tiny:hover {
 }
 
 #repl .tabs button:hover {
-   background: #222;
-   color: #9fa3cf;
+   /* background: #222; */
+   color: #8f94c7;
+   background: #242424;
    border-radius: 4px;
    text-decoration: none;
+}
+
+#repl .tabs button:active {
+   color: #9fa3cf;
 }
 
 #repl .tabs .top:hover {
