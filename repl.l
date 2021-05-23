@@ -202,12 +202,15 @@
                            (println '-> "@1") ) )
                      (and *Msg (prinl @)) ) )
                (push1 '*ReplH Str) ) )
+
+#          (<style> '("clipInputArea tiny submit"
+#                      # (id . "copyBtn")
+#                      (style . "position: absolute; right: 2%;"))
+#             (gui '(+JS +Button) "copy") )
+
          (<style> '((style . "flex-grow: 1; margin: 8px 8px;") (placeholder . "code here") )
             (gui 'line '(+Mono +TextField)
-               (*/ DX 4 5) ) )
-         (<style> '("clipInputArea tiny submit" (id . "copyBtn") (style . "position: absolute; right: 2%;"))
-            (gui '(+JS +Button)
-               "copy" ) ) )
+               (*/ DX 4 5) ) ) )
 
       (<RunLineOptions>)
       # # Run line options - render, etc...
@@ -240,9 +243,10 @@
          (gui '(+JS +Tiny +Style +Button) "collapsible tiny" "v") )
       (<div> 'collapsible-content
          (<div> '(style . "position: relative;")
-            (<style> '("clipInputArea tiny submit" (id . "copyBtn") (style . "position: absolute; top: 5%; right: 4%;"))
-               (gui '(+JS +Button)
-                  "copy" ) )
+            (<style> '("clipInputArea tiny submit"
+                        # (id . "copyBtn")
+                        (style . "position: absolute; top: 5%; right: 4%;"))
+               (gui '(+JS +Button) "copy") )
             (<style> '(placeholder . " ..or here")
                (gui 'area '(+Mono +TextField)
                   (*/ DX 4 5) 14 ) ) ) )
@@ -320,7 +324,7 @@
                (: repl)
                DX DY )
 
-            (<div> 'flex-row
+            (<div> '(flex-row (style . "position: relative;"))
 
                # Run Button
                (gui '(+JS #{+Able}# +Button) #{'(= (: home view file) (: home repl))}# "Run"
@@ -370,6 +374,11 @@
                            (and *Msg (prinl @)) ) )
                      (push1 '*ReplH Str) ) )
 
+               # (<style> '("clipInputArea tiny submit"
+               #             # (id . "copyBtn")
+               #             (style . "position: absolute; top: 18%; right: 3%;"))
+               #    (gui '(+JS +Button) "copy") )
+
                # Run line
                (<style> '("ReplLineFullscreen" (style . "flex-grow: 1; margin: 8px 8px;") (placeholder . "code here"))
                   (gui 'line '(+Mono +TextField)
@@ -379,7 +388,7 @@
 
             (<div> '(style . "position: relative;")
                (<style> '("clipInputArea tiny submit"
-                                 (id . "copyBtn")
+                                 # (id . "copyBtn")
                                  (style . "position: absolute; top: 5%; right: 4%;"))
                   (gui '(+JS +Button) "copy") )
                (<style> '(placeholder . " ..or here")
