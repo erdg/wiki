@@ -751,6 +751,7 @@ input[type=submit].tiny:active {
 #ReplSvg {
    overflow: auto;
    margin-top: 8px;
+   min-height: 84px;
    max-height: 300px;
 }
 
