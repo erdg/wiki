@@ -299,7 +299,7 @@
       (<div> '(flex-row (style . "margin: 0px 8px"))
          (<span> NIL "render")
          (gui 'renderSvg '(+Init +Checkbox) T) )
-      (<div> '(flex-row (style . "margin: 8px 8px"))
+      (<div> '(flex-row (style . "margin: 0px 8px"))
          (gui 'renderFont '(+TextField)
             '("Jazz" "Improviso" "Beethoven" "Haydn")
             "style" ) ) ) )
