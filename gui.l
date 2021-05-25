@@ -306,10 +306,14 @@
          }
       });
       var clipInputArea  = new ClipboardJS('.clipInputArea', {
-         target: function(trigger) {
-            return trigger.nextElementSibling;
+         text: function(trigger) {
+            return ':{\\n\\n' + trigger.nextElementSibling.value + '\\n\\n}';
          }
       });" ) )
+
+         # target: function(trigger) {
+         #    return trigger.nextElementSibling;
+         # }
 
 (de collapsibleJS ()
    (<javascript>
