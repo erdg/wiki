@@ -156,7 +156,7 @@
       # Run line
       (<hr>)
       (<div> '(flex-row (style . "position: relative;"))
-         (gui '(+JS #{+Able}# +Button) #{'(= (: home view file) (: home repl))}# "Run"
+         (gui '(+JS +Style +Button) "runButton" "Run"
             '(let Str (or (val> (: home line)) (val> (: home area)))
                (out (pack "+" (: home repl))
                   (if (pre? "$ " Str)
@@ -247,7 +247,7 @@
                         # (id . "copyBtn")
                         (style . "position: absolute; top: 5%; right: 4%;"))
                (gui '(+JS +Button) "copy") )
-            (<style> '(placeholder . " ..or here")
+            (<style> '("lilInputArea" (placeholder . " ..or here"))
                (gui 'area '(+Mono +TextField)
                   (*/ DX 4 5) 14 ) ) ) )
 
@@ -327,7 +327,7 @@
             (<div> '(flex-row (style . "position: relative;"))
 
                # Run Button
-               (gui '(+JS #{+Able}# +Button) #{'(= (: home view file) (: home repl))}# "Run"
+               (gui '(+JS +Style +Button) "runButton" "Run"
                   '(let Str (or (val> (: home line)) (val> (: home area)))
                      (out (pack "+" (: home repl))
                         (if (pre? "$ " Str)
@@ -391,7 +391,7 @@
                                  # (id . "copyBtn")
                                  (style . "position: absolute; top: 5%; right: 4%;"))
                   (gui '(+JS +Button) "copy") )
-               (<style> '(placeholder . " ..or here")
+               (<style> '("lilInputArea" (placeholder . " ..or here"))
                   (gui 'area '(+Mono +TextField)
                      (*/ DX 4 5) 14 ) ) ) )
 

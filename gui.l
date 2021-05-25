@@ -289,6 +289,7 @@
                                  (and (: mup rpl) (recurse)) ) ) ) ) ) ) ) )
          (tabsJS)
          (clipboardJS)
+         (ctrlEnterSubmitJS)
          (collapsibleJS) ) )
    (off *ID) )
 
@@ -325,6 +326,16 @@
             }
          });
       }" ) )
+
+(de ctrlEnterSubmitJS ()
+   (<javascript>
+      "for (let Area of document.getElementsByClassName('lilInputArea')) {
+         Area.addEventListener('keydown', function (e) {
+            if (e.keyCode == 13 && e.ctrlKey) {
+               document.getElementsByClassName('runButton')[0].click();
+            }
+         })
+      };" ) )
 
 # temp holding, don't want to delete this
 (de createAccountDialog ()
