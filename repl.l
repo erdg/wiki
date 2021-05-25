@@ -238,13 +238,12 @@
             '(prog (rollback) (off *ID)) ) )
 
       # collapsible input area
-      (<p> 'collapseBtnLabel "input..")
+      (<p> 'collapseBtnLabel "input")
       (<style> '((style . "padding: 1px 3px; border-radius: 3px"))
          (gui '(+JS +Tiny +Style +Button) "collapsible tiny" "v") )
       (<div> 'collapsible-content
          (<div> '(style . "position: relative;")
             (<style> '("clipInputArea tiny submit"
-                        # (id . "copyBtn")
                         (style . "position: absolute; top: 5%; right: 4%;"))
                (gui '(+JS +Button) "copy") )
             (<style> '("lilInputArea" (placeholder . " ..or here"))
@@ -254,7 +253,7 @@
       (<hr>)
 
       # collapsible output area
-      (<p> 'collapseBtnLabel "output.")
+      (<p> 'collapseBtnLabel "output")
       (<style> '((style . "padding: 1px 3px; border-radius: 3px"))
          (gui '(+JS +Tiny +Style +Button) "collapsible tiny" "v") )
       (<div> 'collapsible-content
