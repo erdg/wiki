@@ -309,11 +309,12 @@
          text: function(trigger) {
             return ':{\\n\\n' + trigger.nextElementSibling.value + '\\n\\n}';
          }
+      });
+      var clipInputAreaRaw = new ClipboardJS('.clipInputAreaRaw', {
+         target: function(trigger) {
+            return trigger.nextElementSibling.nextElementSibling;
+         }
       });" ) )
-
-         # target: function(trigger) {
-         #    return trigger.nextElementSibling;
-         # }
 
 (de collapsibleJS ()
    (<javascript>

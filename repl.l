@@ -243,9 +243,10 @@
          (gui '(+JS +Tiny +Style +Button) "collapsible tiny" "v") )
       (<div> 'collapsible-content
          (<div> '(style . "position: relative;")
-            (<style> '("clipInputArea tiny submit"
-                        (style . "position: absolute; top: 5%; right: 4%;"))
+            (<style> '("clipInputAreaRaw tiny submit" (style . "position: absolute; top: 5%; right: 4%;"))
                (gui '(+JS +Button) "copy") )
+            (<style> '("clipInputArea tiny submit" (style . "position: absolute; top: 13%; right: 4%;"))
+               (gui '(+JS +Button) ":{ ... }") )
             (<style> '("lilInputArea" (placeholder . " ..or here"))
                (gui 'area '(+Mono +TextField)
                   (*/ DX 4 5) 14 ) ) ) )
@@ -386,21 +387,21 @@
                (<RunLineOptions>) )
 
             (<div> '(style . "position: relative;")
-               (<style> '("clipInputArea tiny submit"
-                                 # (id . "copyBtn")
-                                 (style . "position: absolute; top: 5%; right: 4%;"))
+               (<style> '("clipInputAreaRaw tiny submit" (style . "position: absolute; top: 5%; right: 4%;"))
                   (gui '(+JS +Button) "copy") )
+               (<style> '("clipInputArea tiny submit" (style . "position: absolute; top: 13%; right: 4%;"))
+                  (gui '(+JS +Button) ":{ ... }") )
                (<style> '("lilInputArea" (placeholder . " ..or here"))
                   (gui 'area '(+Mono +TextField)
                      (*/ DX 4 5) 14 ) ) ) )
 
          # resize / close buttons (absolute positioned top right)
-         (<style> '(style . "position: absolute; top: 12px; right: 34px; padding: 2px 1px;")
+         (<style> '(style . "position: fixed; top: 12px; right: 34px; padding: 2px 1px;")
             (gui '(+Style +Tip +Button) "mono" "exit fullscreen" "[-]"
                '(prog
                   (off *FullscreenRepl)
                   (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
-         (<style> '(style . "position: absolute; top: 12px; right: 2px;")
+         (<style> '(style . "position: fixed; top: 12px; right: 2px;")
             (gui '(+Style +Button) "closeRepl right" "x"
                '(prog (rollback) (off *ID)) ) )
 
