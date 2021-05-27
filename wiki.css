@@ -777,14 +777,18 @@ input[type=submit].tiny:active {
 
 @media screen and (min-width: 600px) and ( max-width: 1800px) {
    #repl .flex-col {
-      width: 40%
+      width: 40%;
    }
    #repl #ReplSvgContainerFullscreen {
       position: fixed;
-      top: 90px;
       right: 32px;
       width: 50%;
    }
+}
+
+#repl #ReplSvgContainerFullscreen .flex-row {
+   align-content: start;
+   width: 80%;
 }
 
 @media screen and (max-width: 700px) {
@@ -793,12 +797,10 @@ input[type=submit].tiny:active {
    }
 }
 
-/* @media screen and (max-width: 1000px) { */
-   .ReplOutputFullscreen {
-      order: 4;
-      margin-top: 16px;
-   }
-/* } */
+.ReplOutputFullscreen {
+   order: 4;
+   margin-top: 16px;
+}
 
 @media screen and (min-width: 700px) {
    .PilReplFullscreen {
