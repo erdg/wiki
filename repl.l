@@ -37,7 +37,6 @@
    (<div> 'tabs
       (<htmlbutton> '("tabBtn"     (id . "picolispBtn") (onclick . "openTab('picolisp')")) "picolisp")
       (<htmlbutton> '("tabBtn top" (id . "lilypondBtn") (onclick . "openTab('lilypond')")) "lilypond")
-      # (<htmlbutton> '("tabBtn"     (id . "documentBtn") (onclick . "openTab('document')")) "document")
       (<htmlbutton> '("tabBtn"     (id . "optionsBtn")  (onclick . "openTab('options')"))  "options") )
    # VIEWS
    (<div> '("tabView" (id . "picolisp") (style . "display: none;"))
@@ -46,11 +45,6 @@
       (if *FullscreenRepl
          (lilReplFullscreen NIL 56 20)
          (lilRepl NIL 56 10) ) )
-   # (<div> '("tabView" (id . "document") (style . "display: none;"))
-   #    (form 'edit
-   #       (=: obj Obj)
-   #       (<h3> NIL (ht:Prin (: obj nm)))
-   #       (docFields T) ) )
    (<div> '("tabView" (id . "options") (style . "display: none;"))
       (form NIL
          (<div> 'flex-col
