@@ -79,4 +79,7 @@
 # misc
 (on *DisplayDocumentCode)
 
+# cache svgs
+# (patch *Mimes '(`(chop "svg") @S) (fill '(`(chop "svg") ^ @S 3600)))
+
 # vi:et:ts=3:sw=3
