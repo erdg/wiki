@@ -248,7 +248,8 @@
       # collapsible input area
       (<p> '(collapseBtnLabel (style . "margin: 4px;")) "or here")
       (<style> '((style . "padding: 1px 3px; border-radius: 3px; margin-bottom: 8px"))
-         (gui '(+JS +Tiny +Style +Button) "collapsible tiny" "v") )
+         (gui '(+JS +Tiny +Style +Button) "collapsible tiny" "v"
+            '(set> (: home line) NIL) ) )
       (<div> 'collapsible-content
          (<div> '(style . "position: relative;")
             (<style> '("clipInputAreaRaw tiny submit" (style . "position: absolute; top: 6%; right: 4%;"))
