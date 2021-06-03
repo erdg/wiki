@@ -651,13 +651,13 @@
                                     (blob! @ 'd "wiki/img/repl.cropped.svg") )
                                  (get *Top 'obj 'mup 'bin) ) )
                            # reload page so new svg appears in media chart
-                           (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
+                           (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) ) )
                         # can't use '(url *Url)' because *Url seems to be inconsistent.
                         # sometimes it is "!ping" other times it is "!ssEvt" (because lilRepl
                         # creates an SSE). all this is probably because I don't *really* understand
                         # how to use the PL form/gui stuff, I just hack away until the desired results
                         # are achieved.
-                  (<ReplSvgDivFullscreen>) ) )
+                  (<ReplSvgDivFullscreen>) )
             (<div>
                '("tabpane"
                   (id . "tabpane2")
