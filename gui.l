@@ -288,6 +288,7 @@
                                  (ht:Prin (: mup sum))
                                  (and (: mup rpl) (recurse)) ) ) ) ) ) ) ) )
          (tabsJS)
+         (stabsJS)
          (clipboardJS)
          (ctrlEnterSubmitJS)
          (collapsibleJS) ) )
@@ -296,6 +297,8 @@
 # normal html button
 (de <htmlbutton> (Attr . Prg)
    (tag 'button Attr 2 Prg) )
+
+(de stabsJS () (javascript "wiki/js/stabs.js"))
 
 # click to copy code blocks
 (de clipboardJS ()
