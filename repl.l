@@ -30,7 +30,7 @@
       (<style> '(style . "width: 32px;")
          (<img> "wiki/img/small-logo.png") )
       (<p> '(id . "replHeaderText")
-         "metarepl" ) ) )
+         "metaRepl" ) ) )
 
 (de <MetaReplTabs> ()
    # BUTTONS
