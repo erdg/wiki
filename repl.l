@@ -146,6 +146,7 @@
    (form Attr
 
       (=: repl (tmp "repl"))
+      (=: lyrepl (tmp "lyrepl"))
 
       # Run line
       (<hr>)
@@ -181,17 +182,26 @@
                                              (eval (lytransform (lyread (tmp "lyrepl")))) )
                                           # render svg - automatically wrap code with '(ly ...)'
                                           (prog
-                                             (out (tmp "lyrepl")
-                                                (prin
-                                                   (pack
-                                                      "(ly "
-                                                         "(prog "
-                                                            "("
-                                                               (when (val> (: home renderFont))
-                                                                 (pack 'ly @ 'Font))
-                                                            ")"
-                                                            Str ") )" ) ) )
-                                             (eval (lytransform (lyread (tmp "lyrepl")))) ) ) ) ) )
+                                             (out (: home lyrepl) (prin Str))
+                                             (ly
+                                                (prog
+                                                   (when (val> (: home renderFont))
+                                                      (list (any (pack 'ly @ 'Font))) )
+                                                   (eval
+                                                      (lytransform
+                                                         (lyread (: home lyrepl)))) ) )
+                                             # (out (tmp "lyrepl")
+                                             #    (prin
+                                             #       (pack
+                                             #          "(ly "
+                                             #             "(prog "
+                                             #                "("
+                                             #                   (when (val> (: home renderFont))
+                                             #                     (pack 'ly @ 'Font))
+                                             #                ")"
+                                             #                Str ") )" ) ) )
+                                             # (eval (lytransform (lyread (tmp "lyrepl"))))
+                                             ) ) ) ) )
                            (off *Msg)
                            (println '-> "@1") ) )
                      (and *Msg (prinl @)) ) )
@@ -307,16 +317,17 @@
    (form Attr
 
       (=: repl (tmp "repl"))
+      (=: lyrepl (tmp "lyrepl"))
 
       (<div> '(flex-row (style . "align-items: flex-start; justify-content: flex-start;"))
 
          (<div> 'flex-col
 
-            (gui 'view '(+Style +Able +FileField)
-               "ReplOutputFullscreen"
-               '(<> (: file) (: home repl))
-               (: repl)
-               DX DY )
+#             (gui 'view '(+Style +Able +FileField)
+#                "ReplOutputFullscreen"
+#                '(<> (: file) (: home repl))
+#                (: repl)
+#                DX DY )
 
             (<div> '(flex-row (style . "position: relative;"))
 
@@ -348,21 +359,27 @@
                                              (ifn (val> (: home renderSvg))
                                                 # debug
                                                 (prog
-                                                   (out (tmp "lyrepl") (prin Str))
+                                                   (out (: home lyrepl) (prin Str))
                                                    (eval (lytransform (lyread (tmp "lyrepl")))) )
                                                 # render svg - automatically wrap code with '(ly ...)'
                                                 (prog
-                                                   (out (tmp "lyrepl")
-                                                      (prin
-                                                         (pack
-                                                            "(ly "
-                                                               "(prog "
-                                                                  "("
-                                                                     (when (val> (: home renderFont))
-                                                                       (pack 'ly @ 'Font))
-                                                                  ")"
-                                                                  Str ") )" ) ) )
-                                                   (eval (lytransform (lyread (tmp "lyrepl")))) ) ) ) ) )
+                                                   # (out (: home lyrepl)
+                                                   #    (prin
+                                                   #       (pack
+                                                   #          "(ly "
+                                                   #             "(prog "
+                                                   #                (when (val> (: home renderFont))
+                                                   #                  (pack "(" 'ly @ 'Font ")") )
+                                                   #                Str ") )" ) ) )
+                                                   # (eval (lytransform (lyread (: home lyrepl))))
+                                                   (out (: home lyrepl) (prin Str))
+                                                   (ly
+                                                      (prog
+                                                         (when (val> (: home renderFont))
+                                                            (list (any (pack 'ly @ 'Font))) )
+                                                         (eval
+                                                            (lytransform
+                                                               (lyread (: home lyrepl)))) ) ) ) ) ) ) )
                                  (off *Msg)
                                  (println '-> "@1") ) )
                            (and *Msg (prinl @)) ) )
