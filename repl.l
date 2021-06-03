@@ -242,61 +242,167 @@
             '(prog (rollback) (off *ID)) ) )
 
       # collapsible input area
-      (<p> 'collapseBtnLabel "input")
-      (<style> '((style . "padding: 1px 3px; border-radius: 3px"))
+      (<p> '(collapseBtnLabel (style . "margin: 4px;")) "or here")
+      (<style> '((style . "padding: 1px 3px; border-radius: 3px; margin-bottom: 8px"))
          (gui '(+JS +Tiny +Style +Button) "collapsible tiny" "v") )
       (<div> 'collapsible-content
          (<div> '(style . "position: relative;")
-            (<style> '("clipInputAreaRaw tiny submit" (style . "position: absolute; top: 5%; right: 4%;"))
+            (<style> '("clipInputAreaRaw tiny submit" (style . "position: absolute; top: 6%; right: 4%;"))
                (gui '(+JS +Button) "copy") )
-            (<style> '("clipInputArea tiny submit" (style . "position: absolute; top: 13%; right: 4%;"))
+            (<style> '("clipInputArea tiny submit" (style . "position: absolute; top: 16%; right: 4%;"))
                (gui '(+JS +Button) ":{ ... }") )
-            (<style> '("lilInputArea" (placeholder . " ..or here"))
-               (gui 'area '(+Mono +TextField)
-                  (*/ DX 4 5) 14 ) ) ) )
+            # (<style> '("lilInputArea" (placeholder . " ..or here"))
+            #    (gui 'area '(+Mono +TextField)
+            #       (*/ DX 4 5) 14 ) )
+            (<style> '("lilInputArea" (placeholder . "more space for code!"))
+               (gui 'area '(+Mono +FileField)
+                  (: lyrepl)
+                  (*/ DX 4 5) 10 ) ) ) )
 
-      (<hr>)
+      # (<hr>)
 
-      # collapsible output area
-      (<p> 'collapseBtnLabel "output")
-      (<style> '((style . "padding: 1px 3px; border-radius: 3px"))
-         (gui '(+JS +Tiny +Style +Button) "collapsible tiny" "v") )
-      (<div> 'collapsible-content
-         (gui 'view '(+Able +FileField)
-            '(<> (: file) (: home repl))
-            (: repl)
-            DX DY ) )
+#       # collapsible output area
+#       (<p> 'collapseBtnLabel "output")
+#       (<style> '((style . "padding: 1px 3px; border-radius: 3px"))
+#          (gui '(+JS +Tiny +Style +Button) "collapsible tiny" "v") )
+#       (<div> 'collapsible-content
+#          (gui 'view '(+Able +FileField)
+#             '(<> (: file) (: home repl))
+#             (: repl)
+#             DX DY ) )
 
-      (<hr>)
+#       (<hr>)
 
-      # music svg section
-      (<spread>
-         (<style> '(placeholder . "<FILENAME>")
-            (gui 'nm '(+TextField) 20) )
-         (gui '(+Button) "Save As"
-            # upload current repl.svg to document
-            # feels like a hack, but it works
-            '(ifn (val> (: home nm))
-               (error "Please specify a name")
-               (put!> (get *Top 'obj 'mup) 'bin
-                  (cons
-                     (prog1
-                        (new! '(+Bin) 'nm (val> (: home nm)))
-                        (blob! @ 'd "wiki/img/repl.cropped.svg") )
-                     (get *Top 'obj 'mup 'bin) ) )
-               # reload page so new svg appears in media chart
-               (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
-            # can't use '(url *Url)' because *Url seems to be inconsistent.
-            # sometimes it is "!ping" other times it is "!ssEvt" (because lilRepl
-            # creates an SSE). all this is probably because I don't *really* understand
-            # how to use the PL form/gui stuff, I just hack away until the desired results
-            # are achieved.
-      (<ReplSvgDiv>) ) )
+#       # music svg section
+#       (<spread>
+#          (<style> '(placeholder . "<FILENAME>")
+#             (gui 'nm '(+TextField) 20) )
+#          (gui '(+Button) "Save As"
+#             # upload current repl.svg to document
+#             # feels like a hack, but it works
+#             '(ifn (val> (: home nm))
+#                (error "Please specify a name")
+#                (put!> (get *Top 'obj 'mup) 'bin
+#                   (cons
+#                      (prog1
+#                         (new! '(+Bin) 'nm (val> (: home nm)))
+#                         (blob! @ 'd "wiki/img/repl.cropped.svg") )
+#                      (get *Top 'obj 'mup 'bin) ) )
+#                # reload page so new svg appears in media chart
+#                (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
+#             # can't use '(url *Url)' because *Url seems to be inconsistent.
+#             # sometimes it is "!ping" other times it is "!ssEvt" (because lilRepl
+#             # creates an SSE). all this is probably because I don't *really* understand
+#             # how to use the PL form/gui stuff, I just hack away until the desired results
+#             # are achieved.
+#       (<ReplSvgDiv>) ) )
 
+   # using 'stabs.js'
+   (<div> '(tabcontainer (style . "margin-top: 24px"))
+      (<div> '(flex-row (style . "margin-bottom: 8px; justify-content: flex-start;"))
+         # buttons
+         (<htmlbutton>
+            '("tab active"
+               (id . "tab1")
+               (tab-index . 0)
+               (role . "tab")
+               (aria-controls . "tabpane1")
+               (aria-selected . "true")
+            )
+            "music" )
+         (<htmlbutton>
+            '("tab"
+               (id . "tab2")
+               (tab-index . 0)
+               (role . "tab")
+               (aria-controls . "tabpane2")
+               (aria-selected . "false")
+            )
+            "debug" )
+         )
+      # (<style> '(style . "margin: 16px 0px")
+      #    (<hr>) )
+      # views
+      (<div> NIL
+         (<div>
+            '("tabpane active"
+               (id . "tabpane1")
+               (role . "tabpanel")
+               (aria-labelledby . "tab1")
+               (aria-hidden . "false")
+            )
+            (<spread>
+               (<style> '(placeholder . "<filename>")
+                  (gui 'nm '(+Style +TextField) "mono" 20) )
+               (gui '(+Button) "Save As"
+                  # upload current repl.svg to document
+                  # feels like a hack, but it works
+                  '(ifn (val> (: home nm))
+                     (error "Please specify a name")
+                     (put!> (get *Top 'obj 'mup) 'bin
+                        (cons
+                           (prog1
+                              (new! '(+Bin) 'nm (val> (: home nm)))
+                              (blob! @ 'd "wiki/img/repl.cropped.svg") )
+                           (get *Top 'obj 'mup 'bin) ) )
+                     # reload page so new svg appears in media chart
+                     (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
+                  # can't use '(url *Url)' because *Url seems to be inconsistent.
+                  # sometimes it is "!ping" other times it is "!ssEvt" (because lilRepl
+                  # creates an SSE). all this is probably because I don't *really* understand
+                  # how to use the PL form/gui stuff, I just hack away until the desired results
+                  # are achieved.
+            (<ReplSvgDiv>) )
+         (<div>
+            '("tabpane"
+               (id . "tabpane2")
+               (role . "tabpanel")
+               (aria-labelledby . "tab2")
+               (aria-hidden . "true")
+               (hidden . "true")
+               )
+            (gui 'view '(+Style +Able +FileField)
+               "debugView"
+               '(<> (: file) (: home repl))
+               (: repl)
+               DX DY ) ) ) ) ) )
+
+
+   # # this is the idea, but PL <tab> makes me mad
+   # (<tab>
+   #    ("music"
+   #       # music svg section
+   #       (<spread>
+   #          (<style> '(placeholder . "<FILENAME>")
+   #             (gui 'nm '(+TextField) 20) )
+   #          (gui '(+Button) "Save As"
+   #             # upload current repl.svg to document
+   #             # feels like a hack, but it works
+   #             '(ifn (val> (: home nm))
+   #                (error "Please specify a name")
+   #                (put!> (get *Top 'obj 'mup) 'bin
+   #                   (cons
+   #                      (prog1
+   #                         (new! '(+Bin) 'nm (val> (: home nm)))
+   #                         (blob! @ 'd "wiki/img/repl.cropped.svg") )
+   #                      (get *Top 'obj 'mup 'bin) ) )
+   #                # reload page so new svg appears in media chart
+   #                (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
+   #             # can't use '(url *Url)' because *Url seems to be inconsistent.
+   #             # sometimes it is "!ping" other times it is "!ssEvt" (because lilRepl
+   #             # creates an SSE). all this is probably because I don't *really* understand
+   #             # how to use the PL form/gui stuff, I just hack away until the desired results
+   #             # are achieved.
+   #       (<ReplSvgDiv>) )
+   #    ("debug"
+   #       (gui 'view '(+Able +FileField)
+   #          '(<> (: file) (: home repl))
+   #          (: repl)
+   #          DX DY ) ) ) ) )
 
 (de <RunLineOptions> ()
    # Run line options - render, etc...
-   (<div> '("flex-row mono" (style . "margin: 0px 16px; font-size: smaller; justify-content: flex-end;"))
+   (<div> '("flex-row mono" (style . "margin: 8px 16px; font-size: smaller; justify-content: flex-end;"))
       # this is rarely used
       (<div> '(flex-row (style . "margin: 0px 8px; display: none;"))
          (<span> NIL "Lilypond Syntax")
@@ -398,13 +504,14 @@
                (<RunLineOptions>) )
 
             (<div> '(style . "position: relative;")
-               (<style> '("clipInputAreaRaw tiny submit" (style . "position: absolute; top: 5%; right: 4%;"))
+               (<style> '("clipInputAreaRaw tiny submit" (style . "position: absolute; top: 3%; right: 4%;"))
                   (gui '(+JS +Button) "copy") )
-               (<style> '("clipInputArea tiny submit" (style . "position: absolute; top: 13%; right: 4%;"))
+               (<style> '("clipInputArea tiny submit" (style . "position: absolute; top: 7%; right: 4%;"))
                   (gui '(+JS +Button) ":{ ... }") )
-               (<style> '("lilInputArea" (placeholder . " ..or here"))
-                  (gui 'area '(+Mono +TextField)
-                     (*/ DX 4 5) 14 ) ) ) )
+               (<style> '("lilInputArea" (placeholder . " or here"))
+                  (gui 'area '(+Mono +FileField)
+                     (: lyrepl)
+                     (*/ DX 4 5) 30 ) ) ) )
 
          # resize / close buttons (absolute positioned top right)
          (<style> '(style . "position: fixed; top: 12px; right: 34px; padding: 2px 1px;")
@@ -416,30 +523,150 @@
             (gui '(+Style +Button) "closeRepl right" "x"
                '(prog (rollback) (off *ID)) ) )
 
-         (<div> '(flex-col (id . "ReplSvgContainerFullscreen") (style . "flex-grow: 1;"))
-            (<div> 'flex-row
-               (<style> '(placeholder . "<FILENAME>")
-                  (gui 'nm '(+TextField) 20) )
-               (gui '(+Button) "Save As"
-                  # upload current repl.svg to document
-                  # feels like a hack, but it works
-                  '(ifn (val> (: home nm))
-                     (error "Please specify a name")
-                     (put!> (get *Top 'obj 'mup) 'bin
-                        (cons
-                           (prog1
-                              (new! '(+Bin) 'nm (val> (: home nm)))
-                              (blob! @ 'd "wiki/img/repl.cropped.svg") )
-                           (get *Top 'obj 'mup 'bin) ) )
-                     # reload page so new svg appears in media chart
-                     (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
-                  # can't use '(url *Url)' because *Url seems to be inconsistent.
-                  # sometimes it is "!ping" other times it is "!ssEvt" (because lilRepl
-                  # creates an SSE). all this is probably because I don't *really* understand
-                  # how to use the PL form/gui stuff, I just hack away until the desired results
-                  # are achieved.
-            (<ReplSvgDivFullscreen>) ) ) ) )
 
+         # (<div> '(flex-col (id . "ReplSvgContainerFullscreen") (style . "flex-grow: 1;"))
+         #    (<tab>
+         #       ("music"
+         #          (<div> 'flex-row
+         #             (<style> '(placeholder . "<FILENAME>")
+         #                (gui 'nm '(+TextField) 20) )
+         #             (gui '(+Button) "Save As"
+         #                # upload current repl.svg to document
+         #                # feels like a hack, but it works
+         #                '(ifn (val> (: home nm))
+         #                   (error "Please specify a name")
+         #                   (put!> (get *Top 'obj 'mup) 'bin
+         #                      (cons
+         #                         (prog1
+         #                            (new! '(+Bin) 'nm (val> (: home nm)))
+         #                            (blob! @ 'd "wiki/img/repl.cropped.svg") )
+         #                         (get *Top 'obj 'mup 'bin) ) )
+         #                   # reload page so new svg appears in media chart
+         #                   (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
+         #                # can't use '(url *Url)' because *Url seems to be inconsistent.
+         #                # sometimes it is "!ping" other times it is "!ssEvt" (because lilRepl
+         #                # creates an SSE). all this is probably because I don't *really* understand
+         #                # how to use the PL form/gui stuff, I just hack away until the desired results
+         #                # are achieved.
+         #          (<ReplSvgDivFullscreen>) )
+         #       ("debug"
+         #          (gui 'view '(+Style +Able +FileField)
+         #             "ReplOutputFullscreen"
+         #             '(<> (: file) (: home repl))
+         #             (: repl)
+         #             DX DY ) ) ) )
+
+         (<MetaReplFullscreenMusicDebugTabs>)
+         ) ) )
+
+
+# (de <MetaReplFullscreenMusicDebugTabs> ()
+#    # BUTTONS
+#    (<div> 'tabs
+#       (<htmlbutton> '("tabBtn top" (id . "musicBtn") (onclick . "openTab('musicTab')")) "music")
+#       (<htmlbutton> '("tabBtn"     (id . "debugBtn")  (onclick . "openTab('debugTab')"))  "debug") )
+#    # VIEWS
+#    (<div> '("tabView top" (id . "musicTab"))
+#       (<div> '(flex-col (id . "ReplSvgContainerFullscreen") (style . "flex-grow: 1;"))
+#          (<div> 'flex-row
+#             (<style> '(placeholder . "<FILENAME>")
+#                (gui 'nm '(+TextField) 20) )
+#             (gui '(+Button) "Save As"
+#                # upload current repl.svg to document
+#                # feels like a hack, but it works
+#                '(ifn (val> (: home nm))
+#                   (error "Please specify a name")
+#                   (put!> (get *Top 'obj 'mup) 'bin
+#                      (cons
+#                         (prog1
+#                            (new! '(+Bin) 'nm (val> (: home nm)))
+#                            (blob! @ 'd "wiki/img/repl.cropped.svg") )
+#                         (get *Top 'obj 'mup 'bin) ) )
+#                   # reload page so new svg appears in media chart
+#                   (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
+#                # can't use '(url *Url)' because *Url seems to be inconsistent.
+#                # sometimes it is "!ping" other times it is "!ssEvt" (because lilRepl
+#                # creates an SSE). all this is probably because I don't *really* understand
+#                # how to use the PL form/gui stuff, I just hack away until the desired results
+#                # are achieved.
+#          (<ReplSvgDivFullscreen>) ) )
+#    (<div> '("tabView" (id . "debugTab") (style . "display: none;"))
+#       (gui 'view '(+Style +Able +FileField)
+#          "ReplOutputFullscreen"
+#          '(<> (: file) (: home repl))
+#          (: repl)
+#          DX DY ) ) )
+
+(de <MetaReplFullscreenMusicDebugTabs> ()
+   (<div> '(flex-col (id . "ReplSvgContainerFullscreen") (style . "margin-top: 8px; flex-grow: 1;"))
+      (<div> 'tabcontainer
+         (<div> '(flex-row (style . "justify-content: flex-start;"))
+            # buttons
+            (<htmlbutton>
+               '("tab active"
+                  (id . "tab1")
+                  (tab-index . 0)
+                  (role . "tab")
+                  (aria-controls . "tabpane1")
+                  (aria-selected . "true")
+               )
+               "music" )
+            (<htmlbutton>
+               '("tab"
+                  (id . "tab2")
+                  (tab-index . 0)
+                  (role . "tab")
+                  (aria-controls . "tabpane2")
+                  (aria-selected . "false")
+               )
+               "debug" )
+            )
+         # views
+         (<div> NIL
+            (<div>
+               '("tabpane active"
+                  (id . "tabpane1")
+                  (role . "tabpanel")
+                  (aria-labelledby . "tab1")
+                  (aria-hidden . "false")
+               )
+               (<div> '(flex-row (style . "margin-top: 8px"))
+                  (<style> '(placeholder . "<filename>")
+                     (gui 'nm '(+TextField) 20) )
+                  (<style> '(style . "margin: 0px 8px")
+                     (gui '(+Button) "Save As"
+                        # upload current repl.svg to document
+                        # feels like a hack, but it works
+                        '(ifn (val> (: home nm))
+                           (error "Please specify a name")
+                           (put!> (get *Top 'obj 'mup) 'bin
+                              (cons
+                                 (prog1
+                                    (new! '(+Bin) 'nm (val> (: home nm)))
+                                    (blob! @ 'd "wiki/img/repl.cropped.svg") )
+                                 (get *Top 'obj 'mup 'bin) ) )
+                           # reload page so new svg appears in media chart
+                           (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
+                        # can't use '(url *Url)' because *Url seems to be inconsistent.
+                        # sometimes it is "!ping" other times it is "!ssEvt" (because lilRepl
+                        # creates an SSE). all this is probably because I don't *really* understand
+                        # how to use the PL form/gui stuff, I just hack away until the desired results
+                        # are achieved.
+                  (<ReplSvgDivFullscreen>) ) )
+            (<div>
+               '("tabpane"
+                  (id . "tabpane2")
+                  (role . "tabpanel")
+                  (aria-labelledby . "tab2")
+                  (aria-hidden . "true")
+                  (hidden . "true")
+                  (style . "margin-top: 9px")
+                  )
+               (gui 'view '(+Style +Able +FileField)
+                  "debugView"
+                  '(<> (: file) (: home repl))
+                  (: repl)
+                  DX DY ) ) ) ) ) )
 
 (de <ReplSvgDiv> ()
    (<div> '(id . ReplSvg)
