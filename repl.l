@@ -29,16 +29,20 @@
    (<div> '(flex-row (style . "justify-content: flex-start;"))
       (<style> '(style . "width: 32px;")
          (<img> "wiki/img/small-logo.png") )
-      (<p> '(id . "replHeaderText")
-         "metaRepl" ) ) )
-
-(de <MetaReplTabs> ()
-   # BUTTONS
+   (<p> '(id . "replHeaderText")
+         "metaRepl" )
+   # tab buttons
    (<div> 'tabs
       (<htmlbutton> '("tabBtn"     (id . "picolispBtn") (onclick . "openTab('picolisp')")) "picolisp")
       (<htmlbutton> '("tabBtn top" (id . "lilypondBtn") (onclick . "openTab('lilypond')")) "lilypond")
-      (<htmlbutton> '("tabBtn"     (id . "optionsBtn")  (onclick . "openTab('options')"))  "options") )
-   # VIEWS
+      (<htmlbutton> '("tabBtn"     (id . "optionsBtn")  (onclick . "openTab('options')"))  "options") ) ) )
+
+(de <MetaReplTabs> ()
+   # (<div> 'tabs
+   #    (<htmlbutton> '("tabBtn"     (id . "picolispBtn") (onclick . "openTab('picolisp')")) "picolisp")
+   #    (<htmlbutton> '("tabBtn top" (id . "lilypondBtn") (onclick . "openTab('lilypond')")) "lilypond")
+   #    (<htmlbutton> '("tabBtn"     (id . "optionsBtn")  (onclick . "openTab('options')"))  "options") )
+   # tab views
    (<div> '("tabView" (id . "picolisp") (style . "display: none;"))
       (pilRepl (if *FullscreenRepl 'PilReplFullscreen) 56 20) )
    (<div> '("tabView" (id . "lilypond"))
@@ -149,7 +153,7 @@
       (=: lyrepl (tmp "lyrepl"))
 
       # Run line
-      (<hr>)
+      # (<hr>)
       (<div> '(flex-row (style . "position: relative;"))
          (gui '(+JS +Style +Button) "runButton" "Run"
             '(let Str (or (val> (: home line)) (val> (: home area)))
