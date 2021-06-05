@@ -216,7 +216,7 @@
                      (ifn (lock Obj)
                         (<div> NIL
                            (metaRepl)  # see 'repl.l'
-                           (form 'edit
+                           (form (list 'edit (if *FullscreenRepl '(style . "display: none")))
                               (=: obj Obj)
                               (<h3> NIL (ht:Prin (: obj nm)))
                               (docFields T) ) )
