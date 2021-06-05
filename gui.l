@@ -315,7 +315,7 @@
       });
       var saveAsButton  = new ClipboardJS('.saveAsButton', {
          text: function(trigger) {
-            return ':{\\n\\n' + document.getElementsByClassName('lilInputArea')[0].value + '\\n\\n}' + '\\n@{' + trigger.parentElement.parentElement.firstChild.firstChild.value + '}';
+            return ':{\\n\\n' + document.getElementsByClassName('lilInputArea')[0].value + '\\n\\n}' + '\\n@{' + document.getElementsByClassName('saveAsLine')[0].value + '}';
          }
       });
       var clipInputAreaRaw = new ClipboardJS('.clipInputAreaRaw', {
