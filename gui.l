@@ -313,6 +313,11 @@
             return ':{\\n\\n' + trigger.nextElementSibling.value + '\\n\\n}';
          }
       });
+      var saveAsButton  = new ClipboardJS('.saveAsButton', {
+         text: function(trigger) {
+            return ':{\\n\\n' + document.getElementsByClassName('lilInputArea')[0].value + '\\n\\n}' + '\\n@{' + trigger.parentElement.parentElement.firstChild.firstChild.value + '}';
+         }
+      });
       var clipInputAreaRaw = new ClipboardJS('.clipInputAreaRaw', {
          target: function(trigger) {
             return trigger.nextElementSibling.nextElementSibling;

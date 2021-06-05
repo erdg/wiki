@@ -348,7 +348,7 @@
             (<spread>
                (<style> '(placeholder . "<filename>")
                   (gui 'nm '(+Style +TextField) "mono" 20) )
-               (gui '(+Button) "Save As"
+               (gui '(+Style +Button) "saveAsButton" "Save As"
                   # upload current repl.svg to document
                   # feels like a hack, but it works
                   '(ifn (val> (: home nm))
