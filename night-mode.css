@@ -395,3 +395,8 @@ input[type=submit].tiny:hover {
    background: #2d2d2d;
    border: 1px solid #666;
 }
+
+.debugView {
+   color: #ccc;
+   /* margin-top: 7px; */
+}

@@ -1029,8 +1029,8 @@ input[type=submit].tiny:active {
    background: unset;
 }
 
-#repl .debugView {
-   color: #ccc;
+.debugView {
+   color: #444;
    margin-top: 7px;
 }
 
