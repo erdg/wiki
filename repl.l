@@ -183,7 +183,9 @@
                                           # debug
                                           (prog
                                              (out (tmp "lyrepl") (prin Str))
-                                             (eval (lytransform (lyread (tmp "lyrepl")))) )
+                                             (eval
+                                                # (lytransform (lyread (tmp "lyrepl")))
+                                                (progLilypond) ) )
                                           # render svg - automatically wrap code with '(ly ...)'
                                           (prog
                                              (out (: home lyrepl) (prin Str))
@@ -192,8 +194,15 @@
                                                    (when (val> (: home renderFont))
                                                       (list (any (pack 'ly @ 'Font))) )
                                                    (eval
-                                                      (lytransform
-                                                         (lyread (: home lyrepl)))) ) )
+                                                      (progLilypond) ) ) )
+                                                      # (lytransform
+                                                      #    # implicit 'prog'
+                                                      #    (append
+                                                      #       (cons
+                                                      #          (char 40)
+                                                      #          'prog
+                                                      #          (lyread (: home lyrepl)) )
+                                                      #       (list (char 41)) ) )
                                              # (out (tmp "lyrepl")
                                              #    (prin
                                              #       (pack
@@ -405,6 +414,16 @@
    #          (: repl)
    #          DX DY ) ) ) ) )
 
+# wrap lilypond input with implicit 'prog'
+(de progLilypond ()
+   (lytransform
+      (append
+         (cons
+            (char 40)
+            'prog
+            (lyread (: home lyrepl)) )
+         (list (char 41)) ) ) )
+
 (de <RunLineOptions> ()
    # Run line options - render, etc...
    (<div> '("flex-row mono" (style . "margin: 8px 16px; font-size: smaller; justify-content: flex-end;"))
@@ -471,7 +490,7 @@
                                                 # debug
                                                 (prog
                                                    (out (: home lyrepl) (prin Str))
-                                                   (eval (lytransform (lyread (tmp "lyrepl")))) )
+                                                   (eval (progLilypond)) )
                                                 # render svg - automatically wrap code with '(ly ...)'
                                                 (prog
                                                    # (out (: home lyrepl)
@@ -489,8 +508,7 @@
                                                          (when (val> (: home renderFont))
                                                             (list (any (pack 'ly @ 'Font))) )
                                                          (eval
-                                                            (lytransform
-                                                               (lyread (: home lyrepl)))) ) ) ) ) ) ) )
+                                                            (progLilypond) ) ) ) ) ) ) ) )
                                  (off *Msg)
                                  (println '-> "@1") ) )
                            (and *Msg (prinl @)) ) )
