@@ -537,12 +537,12 @@
                      (*/ DX 4 5) 30 ) ) ) )
 
          # resize / close buttons (absolute positioned top right)
-         (<style> '(style . "position: fixed; top: 12px; right: 34px; padding: 2px 1px;")
+         (<style> '(style . "position: absolute; top: 12px; right: 34px; padding: 2px 1px;")
             (gui '(+Style +Tip +Button) "mono" "exit fullscreen" "[-]"
                '(prog
                   (off *FullscreenRepl)
                   (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
-         (<style> '(style . "position: fixed; top: 12px; right: 2px;")
+         (<style> '(style . "position: absolute; top: 12px; right: 2px;")
             (gui '(+Style +Button) "closeRepl right" "x"
                '(prog (rollback) (off *ID)) ) )
 
@@ -689,7 +689,7 @@
                   "debugView"
                   '(<> (: file) (: home repl))
                   (: repl)
-                  DX DY ) ) ) ) ) )
+                  DX 32 ) ) ) ) ) )
 
 (de <ReplSvgDiv> ()
    (<div> '(id . ReplSvg)
