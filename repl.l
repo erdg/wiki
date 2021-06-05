@@ -344,7 +344,7 @@
             )
             (<spread>
                (<style> '(placeholder . "<filename>")
-                  (gui 'nm '(+Style +TextField) "mono" 20) )
+                  (gui 'nm '(+Style +Mono +TextField) "saveAsLine" 20) )
                (gui '(+Style +Button) "saveAsButton" "Save As"
                   # upload current repl.svg to document
                   # feels like a hack, but it works
@@ -652,21 +652,23 @@
                )
                (<div> '(flex-row (style . "margin-top: 8px"))
                   (<style> '(placeholder . "<filename>")
-                     (gui 'nm '(+TextField) 20) )
+                     (gui 'nm '(+Style +Mono +TextField) "saveAsLine" 20) )
                   (<style> '(style . "margin: 0px 8px")
-                     (gui '(+Button) "Save As"
+                     (gui '(+Style +Button) "saveAsButton" "Save As"
                         # upload current repl.svg to document
                         # feels like a hack, but it works
                         '(ifn (val> (: home nm))
                            (error "Please specify a name")
-                           (put!> (get *Top 'obj 'mup) 'bin
-                              (cons
-                                 (prog1
-                                    (new! '(+Bin) 'nm (val> (: home nm)))
-                                    (blob! @ 'd "wiki/img/repl.cropped.svg") )
-                                 (get *Top 'obj 'mup 'bin) ) )
-                           # reload page so new svg appears in media chart
-                           (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) ) )
+                           (prog
+                              (put!> (get *Top 'obj 'mup) 'bin
+                                 (cons
+                                    (prog1
+                                       (new! '(+Bin) 'nm (val> (: home nm)))
+                                       (blob! @ 'd "wiki/img/repl.cropped.svg") )
+                                    (get *Top 'obj 'mup 'bin) ) )
+                              (off *FullscreenRepl)
+                              # reload page so new svg appears in media chart
+                              (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) ) ) )
                         # can't use '(url *Url)' because *Url seems to be inconsistent.
                         # sometimes it is "!ping" other times it is "!ssEvt" (because lilRepl
                         # creates an SSE). all this is probably because I don't *really* understand
