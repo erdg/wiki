@@ -51,7 +51,8 @@
 }
 
 @media screen and (min-width: 900px) {
-   .container {
+   .container,
+   #docButtonsDiv.sticky {
       max-width: 768px;
    }
 }
@@ -561,7 +562,8 @@ fieldset.alert {
 .dialog .submit,
 .alert .submit,
 .edit .submit,
-.login .submit {
+.login .submit,
+#docButtonsDiv a {
    font-weight: bold;
    color: #222;
    background-color: #D0D0D0;
@@ -579,7 +581,8 @@ fieldset.alert {
 .dialog .submit:hover,
 .alert .submit:hover,
 .edit .submit:hover,
-.login .submit:hover {
+.login .submit:hover,
+#docButtonsDiv a:hover {
    color: #222;
    background: unset;
    border: 1px solid #666;
@@ -592,7 +595,8 @@ fieldset.alert {
 .dialog .submit:active,
 .alert .submit:active,
 .edit .submit:active,
-.login .submit:active {
+.login .submit:active,
+#docButtonsDiv a:active {
    color: #222;
    background: unset;
    border: 1px solid #666;
@@ -1034,6 +1038,32 @@ input[type=submit].tiny:active {
    margin-top: 7px;
 }
 
+#docButtonsDiv a {
+   font-size: smaller;
+}
+
+#docButtonsDiv a {
+   font-size: smaller;
+}
+
+#docButtonsDiv a:hover,
+#docButtonsDiv a:active {
+   text-decoration: none;
+}
+
+.sticky {
+   position: fixed;
+   top: 16px;
+   width: 92%;
+}
+
+.sticky a {
+   margin: 4px;
+}
+
+.paddingTop24 {
+   padding-top: 24px;
+}
 
 /* /1* inner metarepl tabs (svg / debug views) *1/ */
 /* #repl .tab { */

@@ -244,9 +244,12 @@
                               (url (ext.html Doc)) ) )
                         (gui '(+Button) "Cancel" '(off *ID)) ) ) )
                ((may Wiki)
-                  (<spread>
-                     (<this> '*ID 'edit "Edit")
-                     (and (: mup) (<this> '*ID 'rpl "Reply")) )
+                  (<div> '(flex-row (id . "docButtonsDiv") (style . "margin-left: 0px; justify-content: flex-end"))
+                     (<div> 'flex-col
+                        (<this> '*ID 'edit "Edit")
+                        # currently not using
+                        # (and (: mup) (<this> '*ID 'rpl "Reply"))
+                        ) )
                   (--) ) )
             (cond
                (*MupTxt
@@ -287,6 +290,7 @@
                                  (<nbsp>)
                                  (ht:Prin (: mup sum))
                                  (and (: mup rpl) (recurse)) ) ) ) ) ) ) ) )
+         (stickyDocButtonsJS)
          (tabsJS)
          (stabsJS)
          (clipboardJS)
@@ -299,6 +303,23 @@
    (tag 'button Attr 2 Prg) )
 
 (de stabsJS () (javascript "wiki/js/stabs.js"))
+
+# sticky edit button on scroll
+(de stickyDocButtonsJS ()
+   (<javascript>
+      "window.onscroll = function () { stickyDocButtons() };
+       var content = document.getElementById('main')
+       var docButtonsDiv = document.getElementById('docButtonsDiv');
+       var threshold = content.offsetTop;
+       function stickyDocButtons () {
+          if (window.pageYOffset > threshold) {
+             docButtonsDiv.classList.add('sticky');
+             content.classList.add('paddingTop24');
+          } else {
+             docButtonsDiv.classList.remove('sticky');
+             content.classList.remove('paddingTop24');
+          }
+       };" ) )
 
 # click to copy code blocks
 (de clipboardJS ()

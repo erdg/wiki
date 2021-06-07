@@ -213,7 +213,8 @@ pre.code:hover {
 .dialog .submit,
 .alert .submit,
 .edit .submit,
-.login .submit {
+.login .submit,
+#docButtonsDiv a {
    /* color: #888; */
    /* border: 1px solid #888; */
    color: #888;
@@ -227,7 +228,8 @@ pre.code:hover {
 .dialog .submit:hover,
 .alert .submit:hover,
 .edit .submit:hover,
-.login .submit:hover {
+.login .submit:hover,
+#docButtonsDiv a:hover {
    color: #999;
    border: 1px solid #888;
    padding: 2px 4px 2px;
@@ -238,7 +240,8 @@ pre.code:hover {
 .dialog .submit:active,
 .alert .submit:active,
 .edit .submit:active,
-.login .submit:active {
+.login .submit:active,
+#docButtonsDiv a:active {
    color: #6dc066;
    border: 1px solid #6dc066;
    background: #111;
