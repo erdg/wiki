@@ -384,6 +384,13 @@ pre.code {
 pre.code:hover {
    background: #ebebeb;
    border: 1px solid #ccc;
+   cursor: pointer;
+}
+
+pre.code:active {
+   background: #e8e8e8;
+   border: 1px solid #bbb;
+   /* cursor: pointer; */
 }
 
 .search {

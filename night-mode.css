@@ -63,6 +63,11 @@ pre.code:hover {
    border: none;
 }
 
+pre.code:active {
+   background-color: #383838;
+   border: none;
+}
+
 /* hack to display music svgs */
 #main img {
    display: block;
