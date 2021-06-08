@@ -1067,12 +1067,47 @@ input[type=submit].tiny:active {
 }
 
 .sticky a {
+   /* margin: 2px; */
    margin: 4px;
 }
+
 
 .paddingTop24 {
    padding-top: 24px;
 }
+
+.dot-menu::after {
+   content: '\2807';
+   font-size: 32px;
+}
+
+/* .dot-menu { */
+/*     width: 32px; */
+/*     height: 32px; */
+/*     background-image: radial-gradient(circle, black 3px, transparent 4px); */
+/*     background-size: 100% 33.33%; */
+/* } */
+
+.dot-menu {
+   position: relative;
+   padding: 0px 2px 6px 12px;
+   height: 32px;
+   cursor: pointer;
+}
+
+.dot-menu.collapsible + .collapsible-content {
+   position: absolute;
+   top: 40px;
+}
+
+.dot-menu:hover {
+   background: #eee;
+   border-radius: 50%;
+}
+
+/* .sticky .dot-menu { */
+/*    padding: 0px 0px 6px 14px; */
+/* } */
 
 /* /1* inner metarepl tabs (svg / debug views) *1/ */
 /* #repl .tab { */

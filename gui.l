@@ -245,12 +245,17 @@
                         (gui '(+Button) "Cancel" '(off *ID)) ) ) )
                ((may Wiki)
                   (<div> '(flex-row (id . "docButtonsDiv") (style . "margin-left: 0px; justify-content: flex-end"))
-                     (<div> 'flex-col
-                        (<this> '*ID 'edit "Edit")
-                        # currently not using
-                        # (and (: mup) (<this> '*ID 'rpl "Reply"))
-                        ) )
-                  (--) ) )
+                     (<this> '*ID 'edit "Edit")
+                     # (<div> "dot-menu collapsible" NIL)
+                     # (<div> "collapsible-content"
+                     #    (<div> 'flex-col
+                     #       (<this> '*ID 'edit "Edit Document")
+                     #       # currently not using
+                     #       # (and (: mup) (<this> '*ID 'rpl "Reply"))
+                     #       ) )
+                     )
+                  # (--)
+                  ) )
             (cond
                (*MupTxt
                   (pipe (prinl @) (render *MupImg))
