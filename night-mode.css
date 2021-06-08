@@ -1,11 +1,12 @@
 /* defaults */
 body {
-   color: #ddd;
+   color: #cdcdcd;
    background-color: #222;
 }
 
 h1, h2, h3, h4, h5, h6 {
-   color: #999;
+   /* color: #999; */
+   color: #8f8f8f;
    /* font-weight: bold; */
 }
 
@@ -33,7 +34,8 @@ a:active {
 }
 
 #menu a {
-   color: #ddd;
+   /* color: #ddd; */
+   color: #cdcdcd;
 }
 
 #menu a:hover, a:focus {
@@ -94,7 +96,8 @@ pre.code:active {
 }
 
 .login input[type=text], input[type=password] {
-   color: #ddd;
+   /* color: #ddd; */
+   color: #cdcdcd;
    background: #333;
    border: 1px solid #666;
 }
@@ -136,25 +139,29 @@ pre.code:active {
 }
 
 #repl input[type=text], textarea {
-   color: #ddd;
+   /* color: #ddd; */
+   color: #cdcdcd;
    background: #2a2a2a;
    border: 1px solid #666;
 }
 
 .edit input[type=text], textarea {
-   color: #ddd;
+   /* color: #ddd; */
+   color: #cdcdcd;
    background: #2a2a2a;
    border: 1px solid #666;
 }
 
 #repl input[type=text]:focus, #repl textarea:focus {
-   color: #ddd;
+   /* color: #ddd; */
+   color: #cdcdcd;
    border: 1px solid #888;
    background: #2c2c2c;
 }
 
 .edit input[type=text]:focus, textarea:focus {
-   color: #ddd;
+   /* color: #ddd; */
+   color: #cdcdcd;
    border: 1px solid #888;
    background: #2c2c2c;
 }
@@ -174,20 +181,23 @@ pre.code:active {
 }
 
 #searchGrp input[type=text] {
-   color: #ddd;
+   /* color: #ddd; */
+   color: #cdcdcd;
    background: #2a2a2a;
    border: 1px solid #666;
    padding: 4px;
 }
 
 #searchGrp input[type=text]:focus {
-   color: #ddd;
+   /* color: #ddd; */
+   color: #cdcdcd;
    background: #2c2c2c;
    border: 1px solid #888;
 }
 
 #searchGrp a {
-   color: #ddd;
+   /* color: #ddd; */
+   color: #cdcdcd;
 }
 
 #searchGrp a:hover {
@@ -313,7 +323,8 @@ input[type=submit].tiny:hover {
    background-color: #2a2a2a;
    padding: 0px 4px 2px;
    border-radius: 3px;
-   color: #ddd;
+   /* color: #ddd; */
+   color: #cdcdcd;
 }
 
 .chart td.T {
@@ -405,7 +416,7 @@ input[type=submit].tiny:hover {
 }
 
 .debugView {
-   color: #ccc;
+   color: #bcbcbc;
    /* margin-top: 7px; */
 }
 
