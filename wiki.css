@@ -174,10 +174,11 @@ a:active {
    #main {
       font-size: 20px;
    }
-   .container {
+   .container,
+   #docButtonsDiv.sticky {
       margin: 0 30%;
-      width: unset;
-      max-width: unset;
+      /* width: unset; */
+      max-width: 900px;
    }
    h1 { font-size: 36px; }
    h2 { font-size: 34px; }
@@ -591,7 +592,8 @@ fieldset.alert {
 .login .submit:hover,
 #docButtonsDiv a:hover {
    color: #222;
-   background: unset;
+   /* background: unset; */
+   background-color: #D0D0D0;
    border: 1px solid #666;
    background-image: -moz-linear-gradient(top, #fafafa, #ddd);
    background-image: -webkit-linear-gradient(top, #fafafa, #ddd);
@@ -605,7 +607,8 @@ fieldset.alert {
 .login .submit:active,
 #docButtonsDiv a:active {
    color: #222;
-   background: unset;
+   /* background: unset; */
+   background-color: #D0D0D0;
    border: 1px solid #666;
    box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
    position: relative;
@@ -943,24 +946,24 @@ input[type=submit].tiny:active {
    }
    .container {
       margin: 0 29%;
-      width: unset;
-      max-width: unset;
+      /* width: unset; */
+      /* max-width: unset; */
       float: unset;
    }
    .edit {
    }
 }
 
-@media screen and (min-width: 1800px) {
-   #repl {
-      width: 26%;
-   }
-   .edit {
-      position: fixed;
-      right: 2ex;
-      width: 26%;
-   }
-}
+/* @media screen and (min-width: 1800px) { */
+/*    #repl { */
+/*       width: 26%; */
+/*    } */
+/*    .edit { */
+/*       position: fixed; */
+/*       right: 2ex; */
+/*       width: 26%; */
+/*    } */
+/* } */
 
 #repl input[type=submit].tiny {
    padding: 1px 3px;
@@ -1049,10 +1052,7 @@ input[type=submit].tiny:active {
 
 #docButtonsDiv a {
    font-size: smaller;
-}
-
-#docButtonsDiv a {
-   font-size: smaller;
+   margin: 4px;
 }
 
 #docButtonsDiv a:hover,
@@ -1066,11 +1066,9 @@ input[type=submit].tiny:active {
    width: 92%;
 }
 
-.sticky a {
-   /* margin: 2px; */
-   margin: 4px;
+.sticky .collapsible-content {
+   margin-right: 4px;
 }
-
 
 .paddingTop24 {
    padding-top: 24px;
@@ -1079,6 +1077,7 @@ input[type=submit].tiny:active {
 .dot-menu::after {
    content: '\2807';
    font-size: 32px;
+   color: #333;
 }
 
 /* .dot-menu { */
@@ -1098,6 +1097,7 @@ input[type=submit].tiny:active {
 .dot-menu.collapsible + .collapsible-content {
    position: absolute;
    top: 40px;
+   z-index: 1;
 }
 
 .dot-menu:hover {
@@ -1105,9 +1105,13 @@ input[type=submit].tiny:active {
    border-radius: 50%;
 }
 
-/* .sticky .dot-menu { */
-/*    padding: 0px 0px 6px 14px; */
-/* } */
+.dot-menu:active {
+   background: #eee;
+}
+
+.sticky .dot-menu {
+   margin-right: 4px;
+}
 
 /* /1* inner metarepl tabs (svg / debug views) *1/ */
 /* #repl .tab { */

@@ -3,7 +3,7 @@
 
 (allowed ("wiki/" "db/wiki/blob/")
    *PW "!wiki" "!work" "!stop" "@lib.css" #{"!latex" "!pdf"}# "!psh"
-   *PRG *Search "!showSource" "!getBlob" )
+   *PRG *Search "!showSource" "!getBlob" "!themeToggle" "!codeToggle" )
 
 (scl 2)
 (load

@@ -408,3 +408,16 @@ input[type=submit].tiny:hover {
    color: #ccc;
    /* margin-top: 7px; */
 }
+
+.dot-menu::after {
+   color: #999;
+}
+
+.dot-menu:hover {
+   /* background: #333; */
+   background: #2a2a2a;
+}
+
+.dot-menu:active {
+   background: #2a2a2a;
+}

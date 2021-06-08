@@ -245,14 +245,20 @@
                         (gui '(+Button) "Cancel" '(off *ID)) ) ) )
                ((may Wiki)
                   (<div> '(flex-row (id . "docButtonsDiv") (style . "margin-left: 0px; justify-content: flex-end"))
-                     (<this> '*ID 'edit "Edit")
-                     # (<div> "dot-menu collapsible" NIL)
-                     # (<div> "collapsible-content"
-                     #    (<div> 'flex-col
-                     #       (<this> '*ID 'edit "Edit Document")
-                     #       # currently not using
-                     #       # (and (: mup) (<this> '*ID 'rpl "Reply"))
-                     #       ) )
+                     # (<this> '*ID 'edit "Edit")
+                     (<div> "dot-menu collapsible" NIL)
+                     (<div> "collapsible-content"
+                        (<div> 'flex-col
+                           (<this> '*ID 'edit "Edit Document")
+                           (<href>
+                              (if (= (last *WikiCss) "wiki/wiki.css") "Dark Theme" "Light Theme")
+                              "!themeToggle" )
+                           (<href>
+                              (if *DisplayDocumentCode "Hide Code" "Show Code")
+                              "!codeToggle" )
+                           # currently not using
+                           # (and (: mup) (<this> '*ID 'rpl "Reply"))
+                           ) )
                      )
                   # (--)
                   ) )
@@ -303,6 +309,16 @@
          (collapsibleJS) ) )
    (off *ID) )
 
+(de themeToggle ()
+   (prog
+      (rot *WikiCss)
+      (redirect (baseHRef) *SesId (ext.html (get *Top 'obj)) (urlMT)) ) )
+
+(de codeToggle ()
+   (prog
+      (onOff *DisplayDocumentCode)
+      (redirect (baseHRef) *SesId (ext.html (get *Top 'obj))(urlMT)) ) )
+
 # normal html button
 (de <htmlbutton> (Attr . Prg)
    (tag 'button Attr 2 Prg) )
@@ -312,7 +328,13 @@
 # sticky edit button on scroll
 (de stickyDocButtonsJS ()
    (<javascript>
-      "window.onscroll = function () { stickyDocButtons() };
+      "window.onscroll = function () {
+          if (!document.getElementById('docButtonsDiv')) {
+             return;
+          } else {
+             stickyDocButtons();
+          }
+       }
        var content = document.getElementById('main')
        var docButtonsDiv = document.getElementById('docButtonsDiv');
        var threshold = content.offsetTop;

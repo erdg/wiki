@@ -29,13 +29,16 @@
    (<div> '(flex-row (style . "justify-content: flex-start;"))
       (<style> '(style . "width: 32px;")
          (<img> "wiki/img/small-logo.png") )
-   (<p> '(id . "replHeaderText")
-         "metaRepl" )
-   # tab buttons
-   (<div> 'tabs
-      (<htmlbutton> '("tabBtn"     (id . "picolispBtn") (onclick . "openTab('picolisp')")) "picolisp")
-      (<htmlbutton> '("tabBtn top" (id . "lilypondBtn") (onclick . "openTab('lilypond')")) "lilypond")
-      (<htmlbutton> '("tabBtn"     (id . "optionsBtn")  (onclick . "openTab('options')"))  "options") ) ) )
+      (<p> '(id . "replHeaderText")
+            "metaRepl" )
+      # tab buttons
+      (<div> 'tabs
+         (<htmlbutton> '("tabBtn"     (id . "picolispBtn") (onclick . "openTab('picolisp')")) "picolisp")
+         (<htmlbutton> '("tabBtn top" (id . "lilypondBtn") (onclick . "openTab('lilypond')")) "lilypond")
+         # (<htmlbutton> '("tabBtn"     (id . "optionsBtn")  (onclick . "openTab('options')"))  "options")
+      )
+   )
+)
 
 (de <MetaReplTabs> ()
    # (<div> 'tabs
@@ -49,18 +52,19 @@
       (if *FullscreenRepl
          (lilReplFullscreen NIL 56 20)
          (lilRepl NIL 56 10) ) )
-   (<div> '("tabView" (id . "options") (style . "display: none;"))
-      (form NIL
-         (<div> 'flex-col
-            (<style> '(style . "margin: 4px 8px")
-               (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
-                  '(prog
-                     (rot *WikiCss)
-                     (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) )
-               (gui '(+Button) "Toggle Document Code Sections"
-                  '(prog
-                     (onOff *DisplayDocumentCode)
-                     (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) ) ) ) ) )
+   # (<div> '("tabView" (id . "options") (style . "display: none;"))
+   #    (form NIL
+   #       (<div> 'flex-col
+   #          (<style> '(style . "margin: 4px 8px")
+   #             (gui '(+Style +Button) "themeToggle" "Light/Dark Mode"
+   #                '(prog
+   #                   (rot *WikiCss)
+   #                   (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) )
+   #             (gui '(+Button) "Toggle Document Code Sections"
+   #                '(prog
+   #                   (onOff *DisplayDocumentCode)
+   #                   (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) ) ) ) )
+   )
 
 (de tabsJS ()
    (<javascript>
