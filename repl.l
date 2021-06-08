@@ -26,7 +26,7 @@
             border-radius: 0px;" ) ) ) )
 
 (de <MetaReplHeader> ()
-   (<div> '(flex-row (style . "justify-content: flex-start;"))
+   (<div> '(flex-row (style . "justify-content: flex-start; margin-right: 64px;"))
       (<style> '(style . "width: 32px;")
          (<img> "wiki/img/small-logo.png") )
       (<p> '(id . "replHeaderText")
@@ -249,12 +249,12 @@
       #          "style" ) ) )
 
       # resize / close buttons (absolute positioned top right)
-      (<style> '(style . "position: absolute; top: 12px; right: 34px; padding: 2px 1px;")
+      (<style> '(style . "position: absolute; top: 8px; right: 30px; padding: 2px 1px;")
          (gui '(+Style +Tip +Button) "mono" "Fullscreen" "[+]"
             '(prog
                (on *FullscreenRepl)
                (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
-      (<style> '(style . "position: absolute; top: 12px; right: 2px;")
+      (<style> '(style . "position: absolute; top: 8px; right: 0px;")
          (gui '(+Style +Button) "closeRepl right" "x"
             '(prog (rollback) (off *ID)) ) )
 
