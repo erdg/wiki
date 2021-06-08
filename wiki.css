@@ -1016,9 +1016,10 @@ input[type=submit].tiny:active {
    box-shadow: none;
    border: none;
    border-radius: 4px;
-   /* border-bottom: 1px solid #666; */
-   background-color: #ddd;
-   color: #333;
+   /* background-color: #ddd; */
+   /* color: #333; */
+   background-color: #cfd1e7;
+   color: #393e71;
 }
 
 
@@ -1032,7 +1033,8 @@ input[type=submit].tiny:active {
 
 #repl .tabs .top:hover,
 #repl .tabcontainer button.active:hover {
-   background: #ddd;
+   /* background: #ddd; */
+   background-color: #cfd1e7;
    color: #333;
 }
 
