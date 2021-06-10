@@ -1109,6 +1109,10 @@ input[type=submit].tiny:active {
    background: #eee;
 }
 
+.dot-menu:focus {
+   background: unset;
+}
+
 .sticky .dot-menu {
    margin-right: 4px;
 }
