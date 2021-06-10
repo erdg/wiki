@@ -39,7 +39,7 @@
    Password    "Password"
    Delete      "Delete" )
 
-(mime "d" NIL 120)
+(mime "d" NIL 3600)
 
 # Entry point
 (de main ()
