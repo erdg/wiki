@@ -114,6 +114,7 @@
                                              *SesId (blob This 'd)
                                              "\" alt=\"" )
                                           (ht:Prin Nm)
+                                          (prin "\" loading=\"lazy")
                                           (prin
                                              "\" class=\""
                                              (case C
