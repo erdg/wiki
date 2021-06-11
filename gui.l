@@ -315,12 +315,12 @@
 (de themeToggle ()
    (prog
       (rot *WikiCss)
-      (redirect (baseHRef) *SesId (ext.html (get *Top 'obj)) (urlMT)) ) )
+      (redirect (baseHRef) *SesId (ext.html (get *Top 'obj))) ) )
 
 (de codeToggle ()
    (prog
       (onOff *DisplayDocumentCode)
-      (redirect (baseHRef) *SesId (ext.html (get *Top 'obj))(urlMT)) ) )
+      (redirect (baseHRef) *SesId (ext.html (get *Top 'obj))) ) )
 
 # normal html button
 (de <htmlbutton> (Attr . Prg)
