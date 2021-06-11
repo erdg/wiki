@@ -1202,8 +1202,9 @@ input[type=submit].tiny:active {
    margin-right: 16px;
 }
 
-#repl .error {
+#repl .edit-tab .error {
    order: 2;
+   margin-top: 8px;
 }
 
 #repl .flex-row {
