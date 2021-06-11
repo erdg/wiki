@@ -216,10 +216,13 @@
                      (ifn (lock Obj)
                         (<div> NIL
                            (metaRepl)  # see 'repl.l'
-                           (form (list 'edit (if *FullscreenRepl '(style . "display: none")))
+                           (form
+                              '(edit (style . "display: none;"))
+                              # (list 'edit (if *FullscreenRepl '(style . "display: none")))
                               (=: obj Obj)
                               (<h3> NIL (ht:Prin (: obj nm)))
-                              (docFields T) ) )
+                              (docFields T) )
+                        )
                         (<h2> 'red
                            (prinl
                               "This document is currently edited by user '"
@@ -500,13 +503,38 @@
    (gui '(+Var +TextField) (: mup) 80 25)
    (--)
    # BEGIN CHANGES
+
+   # resize / close buttons (top right)
+   (<style> '(style . "position: absolute; top: 8px; right: 30px; padding: 2px 1px;")
+      (if *FullscreenRepl
+         (gui '(+Style +Tip +Button) "mono" "Exit Fullscreen" "[-]"
+            '(prog
+               (off *FullscreenRepl)
+               (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) )
+         (gui '(+Style +Tip +Button) "mono" "Fullscreen" "[+]"
+            '(prog
+               (on *FullscreenRepl)
+               (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) ) )
+   (<style> '(style . "position: absolute; top: 8px; right: 0px;")
+      (gui '(+Style +Button) "closeRepl right" "x"
+         '(prog (rollback) (off *ID)) ) )
+
+#    (<div> 'flex-row
+#       (<div> 'flex-col
+#          (<div> 'flex-row
+#             (<strong> "Summary") (gui '(+Var +TextField) (: mup -1) 40) ) )
+#       (<div> 'flex-col
+#          (<div> 'flex-row
+#             (gui '(+Var +Checkbox) (: mup -2)) (<span> NIL "This is a minor edit") ) ) )
+
    (<div> 'flex-row
-      (<div> 'flex-col
-         (<div> 'flex-row
-            (<strong> "Summary") (gui '(+Var +TextField) (: mup -1) 40) ) )
-      (<div> 'flex-col
-         (<div> 'flex-row
-            (gui '(+Var +Checkbox) (: mup -2)) (<span> NIL "This is a minor edit") ) ) )
+      (<strong> "Summary")
+      (<style> '(style . "margin-left: 8px")
+         (gui '(+Var +TextField) (: mup -1) 40) ) )
+   (<div> 'flex-row
+      (gui '(+Var +Checkbox) (: mup -2))
+      (<span> NIL "This is a minor edit") )
+
    (<hr>)
    (gui '(+Var +Chart1) (: mup -3) 3)
    (<div> 'media-grid
@@ -528,6 +556,7 @@
                      ((findBin Nm (; @ mup bin)) (error "Name not found in page"))
                      (NIL (push (: home mup -3) @)) ) ) )
             (gui '(+Val +TextField) fold 30) )
+         (<hr>)
          (<div> 'flex-row
             (gui '(+Drop +Button) '(field 1) "Upload Directly"
                '(nond
@@ -570,8 +599,8 @@
                   (commit 'upd) )
                (apply 'newMup> (: home mup) Obj)
                (off *ID)
-               (url (ext.html (or (: home org) Obj))) ) )
-         ) ) )
+               (url (ext.html (or (: home org) Obj))) ) ) ) )
+   )
 
 (de findBin (Nm Lst)
    (setq Nm (fold Nm))

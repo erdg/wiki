@@ -33,9 +33,9 @@
             "metaRepl" )
       # tab buttons
       (<div> 'tabs
+         (<htmlbutton> '("tabBtn top"     (id . "documentBtn")  (onclick . "openTab('document')"))  "document")
          (<htmlbutton> '("tabBtn"     (id . "picolispBtn") (onclick . "openTab('picolisp')")) "picolisp")
-         (<htmlbutton> '("tabBtn top" (id . "lilypondBtn") (onclick . "openTab('lilypond')")) "lilypond")
-         # (<htmlbutton> '("tabBtn"     (id . "optionsBtn")  (onclick . "openTab('options')"))  "options")
+         (<htmlbutton> '("tabBtn" (id . "lilypondBtn") (onclick . "openTab('lilypond')")) "lilypond")
       )
    )
 )
@@ -46,9 +46,14 @@
    #    (<htmlbutton> '("tabBtn top" (id . "lilypondBtn") (onclick . "openTab('lilypond')")) "lilypond")
    #    (<htmlbutton> '("tabBtn"     (id . "optionsBtn")  (onclick . "openTab('options')"))  "options") )
    # tab views
+   (<div> '("tabView" (id . "document"))
+      (form 'edit-tab
+         (=: obj Obj)
+         # (<h3> NIL (ht:Prin (: obj nm)))
+         (docFields T) ) )
    (<div> '("tabView" (id . "picolisp") (style . "display: none;"))
       (pilRepl (if *FullscreenRepl 'PilReplFullscreen) 56 20) )
-   (<div> '("tabView" (id . "lilypond"))
+   (<div> '("tabView" (id . "lilypond") (style . "display: none;"))
       (if *FullscreenRepl
          (lilReplFullscreen NIL 56 20)
          (lilRepl NIL 56 10) ) )
@@ -132,7 +137,7 @@
       # (--)
 
       # resize / close buttons (top right)
-      (<style> '(style . "position: absolute; top: 12px; right: 34px; padding: 2px 1px;")
+      (<style> '(style . "position: absolute; top: 8px; right: 30px; padding: 2px 1px;")
          (if *FullscreenRepl
             (gui '(+Style +Tip +Button) "mono" "Exit Fullscreen" "[-]"
                '(prog
@@ -142,7 +147,7 @@
                '(prog
                   (on *FullscreenRepl)
                   (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) ) )
-      (<style> '(style . "position: absolute; top: 12px; right: 2px;")
+      (<style> '(style . "position: absolute; top: 8px; right: 0px;")
          (gui '(+Style +Button) "closeRepl right" "x"
             '(prog (rollback) (off *ID)) ) ) ) )
 
@@ -259,11 +264,11 @@
             '(prog (rollback) (off *ID)) ) )
 
       # collapsible input area
-      (<p> '(collapseBtnLabel (style . "margin: 4px;")) "or here")
-      (<style> '((style . "padding: 1px 3px; border-radius: 3px; margin-bottom: 8px"))
-         (gui '(+JS +Tiny +Style +Button) "collapsible tiny" "v"
-            '(set> (: home line) NIL) ) )
-      (<div> 'collapsible-content
+      # (<p> '(collapseBtnLabel (style . "margin: 4px;")) "or here")
+      # (<style> '((style . "padding: 1px 3px; border-radius: 3px; margin-bottom: 8px"))
+      #    (gui '(+JS +Tiny +Style +Button) "collapsible tiny" "v"
+      #       '(set> (: home line) NIL) ) )
+      # (<div> 'collapsible-content
          (<div> '(style . "position: relative;")
             (<style> '("clipInputAreaRaw tiny submit" (style . "position: absolute; top: 6%; right: 4%;"))
                (gui '(+JS +Button) "copy") )
@@ -272,7 +277,8 @@
             (<style> '("lilInputArea" (placeholder . "more space for code!"))
                (gui 'area '(+Mono +FileField)
                   (: lyrepl)
-                  (*/ DX 4 5) 10 ) ) ) )
+                  (*/ DX 4 5) 10 ) ) )
+      # )
 
       # (<hr>)
 
