@@ -808,7 +808,8 @@ input[type=submit].tiny:active {
 
 #replHeaderText {
    display: inline;
-   color: #393e71;
+   /* color: #393e71; */
+   color: #303357;
    font-family: monospace;
    font-size: 22px;
    margin: 0px 16px;
@@ -1104,9 +1105,9 @@ input[type=submit].tiny:active {
 
 #repl .tabs .top:hover,
 #repl .tabcontainer button.active:hover {
-   /* background: #ddd; */
    background-color: #cfd1e7;
-   color: #333;
+   /* color: #393e71; */
+   color: #303357;
 }
 
 #repl .tabcontainer .tabpane {

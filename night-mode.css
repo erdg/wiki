@@ -5,9 +5,12 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-   color: #999;
-   /* color: #8f8f8f; */
+   color: #aaa;
    /* font-weight: bold; */
+}
+
+h1 {
+   color: #9fa3cf;
 }
 
 a {
@@ -46,7 +49,13 @@ a:active {
 
 /* code */
 .code {
+   /* greens */
    color: #8acc84;
+   color: #a7d9a3;
+   color: #98d293;
+   /* blues */
+   /* color: #9fa3cf; */
+   /* color: #bfc2df; */
    background-color: #333;
    border-radius: 2px;
 }
@@ -113,6 +122,7 @@ pre.code:active {
    background: #1d1d1d;
    color: #999;
    border: 1px solid #3a3a3a;
+   border: 1px solid #222;
 }
 
 #repl img {
