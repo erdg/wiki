@@ -270,7 +270,7 @@
       #       '(set> (: home line) NIL) ) )
       # (<div> 'collapsible-content
          (<div> '(style . "position: relative;")
-            (<style> '("clipInputAreaRaw tiny submit" (style . "position: absolute; top: 6%; right: 4%;"))
+            (<style> '("clipInputAreaRaw tiny" (style . "position: absolute; top: 6%; right: 4%;"))
                (gui '(+JS +Button) "copy") )
             # (<style> '("clipInputArea tiny submit" (style . "position: absolute; top: 16%; right: 4%;"))
             #    (gui '(+JS +Button) ":{ ... }") )
