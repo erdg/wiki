@@ -344,10 +344,10 @@
        function stickyDocButtons () {
           if (window.pageYOffset > threshold) {
              docButtonsDiv.classList.add('sticky');
-             content.classList.add('paddingTop24');
+             content.classList.add('paddingTop48');
           } else {
              docButtonsDiv.classList.remove('sticky');
-             content.classList.remove('paddingTop24');
+             content.classList.remove('paddingTop48');
           }
        };" ) )
 
