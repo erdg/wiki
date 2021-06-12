@@ -1071,9 +1071,11 @@ input[type=submit].tiny:active {
 #repl .tabs {
    /* margin: 0px 16px; */
    margin-bottom: 4px;
+   margin-top: 4px;
    font-family: monospace;
 }
 
+#repl .tabs a,
 #repl .tabs button,
 #repl .tabcontainer button {
    color: #6067af;
@@ -1081,6 +1083,7 @@ input[type=submit].tiny:active {
    background: #efeff7;
    border: none;
    margin-right: 4px;
+   text-decoration: none;
 }
 
 #repl .tabs .top,
@@ -1091,10 +1094,12 @@ input[type=submit].tiny:active {
    /* background-color: #ddd; */
    /* color: #333; */
    background-color: #cfd1e7;
-   color: #393e71;
+   /* color: #393e71; */
+   color: #303357;
 }
 
 
+#repl .tabs a:hover,
 #repl .tabs button:hover,
 #repl .tabcontainer button:hover {
    background: #dfe0ef;
@@ -1112,6 +1117,10 @@ input[type=submit].tiny:active {
 
 #repl .tabcontainer .tabpane {
    background: unset;
+}
+
+#repl .tabs a:visited {
+   text-decoration: none;
 }
 
 

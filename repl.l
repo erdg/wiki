@@ -33,12 +33,51 @@
             "metaRepl" )
       # tab buttons
       (<div> 'tabs
-         (<htmlbutton> '("tabBtn top"     (id . "documentBtn")  (onclick . "openTab('document')"))  "document")
-         (<htmlbutton> '("tabBtn"     (id . "picolispBtn") (onclick . "openTab('picolisp')")) "picolisp")
-         (<htmlbutton> '("tabBtn" (id . "lilypondBtn") (onclick . "openTab('lilypond')")) "lilypond")
+         (<style>
+            (list
+               (pack "tabBtn" (if (= *CurrentTab "document") " top"))
+               '(id . "documentBtn")
+               '(onclick . "openTab('document')") )
+            (<href> "document" "!setCurrentTab?document") )
+         (<style>
+            (list
+               (pack "tabBtn" (if (= *CurrentTab "picolisp") " top"))
+               '(id . "picolispBtn")
+               '(onclick . "openTab('picolisp')") )
+            (<href> "picolisp" "!setCurrentTab?picolisp") )
+         (<style>
+            (list
+               (pack "tabBtn" (if (= *CurrentTab "lilypond") " top"))
+               '(id . "lilypondBtn")
+               '(onclick . "openTab('lilypond')") )
+            (<href> "lilypond" "!setCurrentTab?lilypond") )
+         # (<htmlbutton>
+         #    (list
+         #       (pack "tabBtn" (if (= *CurrentTab "document") " top"))
+         #       '(href . "!setCurrentTab?document")
+         #       '(id . "documentBtn")
+         #       '(onclick . "openTab('document')") )
+         #    "document" )
+         # (<htmlbutton>
+         #    '("tabBtn"
+         #       (href . "!setCurrentTab?picolisp")
+         #       (id . "picolispBtn")
+         #       (onclick . "openTab('picolisp')") )
+         #    "picolisp" )
+         # (<htmlbutton>
+         #    '("tabBtn"
+         #       (href . "!setCurrentTab?lilypond")
+         #       (id . "lilypondBtn")
+         #       (onclick . "openTab('lilypond')") )
+         #    "lilypond" )
       )
    )
 )
+
+(allow "!setCurrentTab")
+(de setCurrentTab (Tab)
+   (setq *CurrentTab Tab)
+   (noContent) )
 
 (de <MetaReplTabs> ()
    # (<div> 'tabs
@@ -46,14 +85,14 @@
    #    (<htmlbutton> '("tabBtn top" (id . "lilypondBtn") (onclick . "openTab('lilypond')")) "lilypond")
    #    (<htmlbutton> '("tabBtn"     (id . "optionsBtn")  (onclick . "openTab('options')"))  "options") )
    # tab views
-   (<div> '("tabView" (id . "document"))
+   (<div> (list "tabView" '(id . "document") (ifn (= *CurrentTab "document") '(style . "display: none;")))
       (form 'edit-tab
          (=: obj Obj)
          # (<h3> NIL (ht:Prin (: obj nm)))
          (docFields T) ) )
-   (<div> '("tabView" (id . "picolisp") (style . "display: none;"))
+   (<div> (list "tabView" '(id . "picolisp") (ifn (= *CurrentTab "picolisp") '(style . "display: none;")))
       (pilRepl (if *FullscreenRepl 'PilReplFullscreen) 56 20) )
-   (<div> '("tabView" (id . "lilypond") (style . "display: none;"))
+   (<div> (list "tabView" '(id . "lilypond") (ifn (= *CurrentTab "lilypond") '(style . "display: none;")))
       (if *FullscreenRepl
          (lilReplFullscreen NIL 56 20)
          (lilRepl NIL 56 10) ) )

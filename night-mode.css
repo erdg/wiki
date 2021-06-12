@@ -372,6 +372,7 @@ input[type=submit].tiny:hover {
    font-family: monospace;
 }
 
+#repl .tabs a,
 #repl .tabs button,
 #repl .tabcontainer button {
    /* color: #aaa; */
@@ -391,6 +392,7 @@ input[type=submit].tiny:hover {
    border-radius: 4px;
 }
 
+#repl .tabs a:hover,
 #repl .tabs button:hover,
 #repl .tabcontainer button:hover {
    /* background: #222; */
@@ -416,6 +418,10 @@ input[type=submit].tiny:hover {
 }
 
 #repl .tabView {
+}
+
+#repl .tabs a:visited {
+   text-decoration: none;
 }
 
 
