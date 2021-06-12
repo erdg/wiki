@@ -517,24 +517,24 @@
             NIL  # sum
             NIL  # min
             (: obj mup bin) ) ) )  # bin
-   (gui '(+Var +TextField) (: mup) 80 25)
-   (--)
-   # BEGIN CHANGES
+   (<div> (if *FullscreenRepl 'docFieldsFullscreen)
+      (gui '(+Var +TextField) (: mup) 80 25)
+      (--)
 
-   # resize / close buttons (top right)
-   (<style> '(style . "position: absolute; top: 8px; right: 30px; padding: 2px 1px;")
-      (if *FullscreenRepl
-         (gui '(+Style +Tip +Button) "mono" "Exit Fullscreen" "[-]"
-            '(prog
-               (off *FullscreenRepl)
-               (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) )
-         (gui '(+Style +Tip +Button) "mono" "Fullscreen" "[+]"
-            '(prog
-               (on *FullscreenRepl)
-               (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) ) )
-   (<style> '(style . "position: absolute; top: 8px; right: 0px;")
-      (gui '(+Style +Button) "closeRepl right" "x"
-         '(prog (rollback) (off *ID)) ) )
+      # resize / close buttons (top right)
+      (<style> '(style . "position: absolute; top: 8px; right: 30px; padding: 2px 1px;")
+         (if *FullscreenRepl
+            (gui '(+Style +Tip +Button) "mono" "Exit Fullscreen" "[-]"
+               '(prog
+                  (off *FullscreenRepl)
+                  (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) )
+            (gui '(+Style +Tip +Button) "mono" "Fullscreen" "[+]"
+               '(prog
+                  (on *FullscreenRepl)
+                  (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) ) )
+      (<style> '(style . "position: absolute; top: 8px; right: 0px;")
+         (gui '(+Style +Button) "closeRepl right" "x"
+            '(prog (rollback) (off *ID)) ) )
 
 #    (<div> 'flex-row
 #       (<div> 'flex-col
@@ -544,15 +544,15 @@
 #          (<div> 'flex-row
 #             (gui '(+Var +Checkbox) (: mup -2)) (<span> NIL "This is a minor edit") ) ) )
 
-   (<div> 'flex-row
-      (<strong> "Summary")
-      (<style> '(style . "margin-left: 8px")
-         (gui '(+Var +TextField) (: mup -1) 40) ) )
-   (<div> 'flex-row
-      (gui '(+Var +Checkbox) (: mup -2))
-      (<span> NIL "This is a minor edit") )
+      (<div> 'flex-row
+         (<strong> "Summary")
+         (<style> '(style . "margin-left: 8px")
+            (gui '(+Var +TextField) (: mup -1) 40) ) )
+      (<div> 'flex-row
+         (gui '(+Var +Checkbox) (: mup -2))
+         (<span> NIL "This is a minor edit") )
+      (<hr>)
 
-   (<hr>)
    (gui '(+Var +Chart1) (: mup -3) 3)
    (<div> 'media-grid
       (<table> 'chart NIL '((NIL "Media"))
@@ -622,7 +622,7 @@
                (apply 'newMup> (: home mup) Obj)
                (off *ID)
                (url (ext.html (or (: home org) Obj))) ) ) ) )
-   )
+   ) )
 
 (de findBin (Nm Lst)
    (setq Nm (fold Nm))

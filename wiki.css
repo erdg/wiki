@@ -904,12 +904,6 @@ input[type=submit].tiny:active {
    color: #ccc;
 }
 
-@media screen and (min-width: 700px) {
-   .PilReplFullscreen {
-      width: 50%;
-   }
-}
-
 .themeToggle {
 }
 
@@ -1267,4 +1261,42 @@ input[type=submit].tiny:active {
    font-size: 20px;
    font-family: monospace;
    display: none;
+}
+
+
+/* media queries for fullscreen repl tabs */
+@media screen and (min-width: 800px) {
+   .docFieldsFullscreen {
+      width: 92%
+   }
+   .PilReplFullscreen {
+      width: 82%
+   }
+}
+
+@media screen and (min-width: 1000px) {
+   .docFieldsFullscreen {
+      width: 80%
+   }
+   .PilReplFullscreen {
+      width: 70%
+   }
+}
+
+@media screen and (min-width: 1200px) {
+   .docFieldsFullscreen {
+      width: 60%
+   }
+   .PilReplFullscreen {
+      width: 50%
+   }
+}
+
+@media screen and (min-width: 1400px) {
+   .docFieldsFullscreen {
+      width: 50%
+   }
+   .PilReplFullscreen {
+      width: 40%
+   }
 }
