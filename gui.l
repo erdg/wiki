@@ -371,7 +371,7 @@
       });
       var clipInputAreaRaw = new ClipboardJS('.clipInputAreaRaw', {
          target: function(trigger) {
-            return trigger.nextElementSibling.nextElementSibling;
+            return trigger.nextElementSibling;
          }
       });" ) )
 
