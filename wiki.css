@@ -997,8 +997,10 @@ input[type=submit].tiny:active {
    cursor: not-allowed;
 }
 
-#repl .submit[disabled='disabled']:active {
-   top: 0px;
+#repl .submit[disabled='disabled']:hover {
+   background-image: -moz-linear-gradient(top, #eee, #ccc);
+   background-image: -webkit-linear-gradient(top, #eee, #ccc);
+   background-image: linear-gradient(top, #eee, #ccc);
 }
 
 

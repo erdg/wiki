@@ -304,6 +304,7 @@
                                  (<nbsp>)
                                  (ht:Prin (: mup sum))
                                  (and (: mup rpl) (recurse)) ) ) ) ) ) ) ) )
+         (if *DocumentPreview (scrollToContentStart))
          (stickyDocButtonsJS)
          (tabsJS)
          (stabsJS)
@@ -327,6 +328,22 @@
    (tag 'button Attr 2 Prg) )
 
 (de stabsJS () (javascript "wiki/js/stabs.js"))
+
+(de scrollToContentStart ()
+   (prog1
+      (<javascript>
+         "window.onload = function () {
+            if (window.screen.availWidth < 1376) {
+               var extraScroll = document.getElementById('menu').offsetHeight;
+            } else {
+               var extraScroll = 0;
+            }
+            window.scroll({
+               top: document.getElementById('repl').scrollHeight + 60 + extraScroll,
+               behavior: 'smooth'
+            })
+         }" )
+      (off *DocumentPreview) ) )
 
 # sticky edit button on scroll
 (de stickyDocButtonsJS ()
@@ -571,8 +588,13 @@
    # END CHANGES
    (<hr>)
    (<spread>
-      (gui '(+Rid +Button) "Preview"
-         '(setq *MupTxt (: home mup 1)  *MupImg (: home mup 4)) )
+      (gui '(+Able +Rid +Button)
+         (not *FullscreenRepl)
+         "Preview"
+         '(prog
+            # (off *FullscreenRepl)
+            (on *DocumentPreview)
+            (setq *MupTxt (: home mup 1)  *MupImg (: home mup 4)) ) )
       (when Flg
          (gui '(+Button) "Cancel"
             '(prog (rollback) (off *ID)) )
