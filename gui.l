@@ -215,6 +215,14 @@
                   (let Obj This
                      (ifn (lock Obj)
                         (<div> NIL
+                           # "jump to repl" button during preview
+                           (if *DocumentPreview
+                              (<div> 'sticky
+                                 (<htmlbutton>
+                                    '("submit mono"
+                                       (id . "scrollMetaReplBtn")
+                                       (onClick .  "window.scrollTo({top: 0, behavior: 'smooth'});") )
+                                    "[\^]" ) ) )
                            (metaRepl)  # see 'repl.l'
                            (form
                               '(edit (style . "display: none;"))
@@ -304,7 +312,7 @@
                                  (<nbsp>)
                                  (ht:Prin (: mup sum))
                                  (and (: mup rpl) (recurse)) ) ) ) ) ) ) ) )
-         (if *DocumentPreview (scrollToContentStart))
+         (if *DocumentPreview (scrollContentStart))
          (stickyDocButtonsJS)
          (tabsJS)
          (stabsJS)
@@ -329,7 +337,8 @@
 
 (de stabsJS () (javascript "wiki/js/stabs.js"))
 
-(de scrollToContentStart ()
+# 'preview' button -- scroll to main content
+(de scrollContentStart ()
    (prog1
       (<javascript>
          "window.onload = function () {
@@ -340,7 +349,7 @@
             }
             window.scroll({
                top: document.getElementById('repl').scrollHeight + 60 + extraScroll,
-               behavior: 'smooth'
+               behavior: 'auto'
             })
          }" )
       (off *DocumentPreview) ) )

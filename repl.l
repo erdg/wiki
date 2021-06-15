@@ -23,7 +23,8 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            border-radius: 0px;" ) ) ) )
+            border-radius: 0px;
+            z-index: 99" ) ) ) )
 
 (de <MetaReplHeader> ()
    (<div> '(flex-row (style . "justify-content: flex-start; margin-right: 64px;"))

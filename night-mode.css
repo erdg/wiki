@@ -234,7 +234,7 @@ pre.code:active {
    background: #1a1a1a;
    top: 1px;
 }
-
+button.submit,
 #repl .submit,
 .dialog .submit,
 .alert .submit,
@@ -249,7 +249,7 @@ pre.code:active {
    padding: 2px 4px 2px;
    box-shadow: unset;
 }
-
+button.submit:hover,
 #repl .submit:hover,
 .dialog .submit:hover,
 .alert .submit:hover,
@@ -262,6 +262,7 @@ pre.code:active {
    background: #1a1a1a;
 }
 
+button.submit:active,
 #repl .submit:active,
 .dialog .submit:active,
 .alert .submit:active,

@@ -204,6 +204,8 @@ a:active {
 
            justify-content: space-around;
    -webkit-justify-content: space-around;
+   position: relative;
+   z-index: 5;
 }
 
 
@@ -623,6 +625,7 @@ fieldset.alert {
 
 
 /* buttons for login/edit/alert forms */
+button.submit,
 #repl .submit,
 .dialog .submit,
 .alert .submit,
@@ -642,6 +645,7 @@ fieldset.alert {
    cursor: pointer;
 }
 
+button.submit:hover,
 #repl .submit:hover,
 .dialog .submit:hover,
 .alert .submit:hover,
@@ -657,6 +661,7 @@ fieldset.alert {
    background-image: linear-gradient(top, #fafafa, #ddd);
 }
 
+button.submit:active,
 #repl .submit:active,
 .dialog .submit:active,
 .alert .submit:active,
@@ -804,6 +809,7 @@ input[type=submit].tiny:active {
    /* font-size: smaller; */
    /* margin: 16px 0px; */
    margin: 28px 0px 16px 0px;
+   position: relative;
 }
 
 #replHeaderText {
@@ -1308,5 +1314,58 @@ input[type=submit].tiny:active {
    }
    .PilReplFullscreen {
       width: 40%
+   }
+}
+
+
+/* preview button - scroll to metaRelp (top of page) */
+#scrollMetaReplBtn {
+   position: fixed;
+   top: 44px;
+   right: 5%;
+   z-index: 0;
+   padding: 2px 1px;
+}
+
+@media screen and (min-width: 900px) {
+   #scrollMetaReplBtn {
+      right: 12%;
+   }
+}
+
+@media screen and (min-width: 1000px) {
+   #scrollMetaReplBtn {
+      right: 16%;
+   }
+}
+
+@media screen and (min-width: 1100px) {
+   #scrollMetaReplBtn {
+      right: 20%;
+   }
+}
+
+@media screen and (min-width: 1250px) {
+   #scrollMetaReplBtn {
+      right: 24%;
+   }
+}
+
+@media screen and (min-width: 1400px) {
+   #scrollMetaReplBtn {
+      right: 26%;
+   }
+}
+
+
+@media screen and (min-width: 1600px) {
+   #scrollMetaReplBtn {
+      right: 28%;
+   }
+}
+
+@media screen and (min-width: 1800px) {
+   #scrollMetaReplBtn {
+      right: 30%;
    }
 }
