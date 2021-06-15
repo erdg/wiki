@@ -80,6 +80,8 @@
    (setq *CurrentTab Tab)
    (noContent) )
 
+(once (setq *CurrentTab "document"))
+
 (de <MetaReplTabs> ()
    # (<div> 'tabs
    #    (<htmlbutton> '("tabBtn"     (id . "picolispBtn") (onclick . "openTab('picolisp')")) "picolisp")
