@@ -582,8 +582,7 @@
                      ((findBin Nm (; @ mup bin)) (error "Name not found in page"))
                      (NIL (push (: home mup -3) @)) ) ) )
             (gui '(+Val +TextField) fold 30) )
-         (<hr>)
-         (<div> 'flex-row
+         (<div> '(flex-row (style . "margin: 12px 0px"))
             (gui '(+Drop +Button) '(field 1) "Upload Directly"
                '(nond
                   ((: drop) (error "Please select or drag&drop a file"))
