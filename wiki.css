@@ -554,7 +554,7 @@ fieldset.login  {
 /* modal-style blurred background */
 .modal {
    position: fixed; /* Stay in place */
-   z-index: 1; /* Sit on top */
+   z-index: 10; /* Sit on top */
    left: 0;
    top: 0;
    width: 100%; /* Full width */
@@ -587,7 +587,7 @@ fieldset.alert {
 
 /* create account dialog */
 .modal .dialog {
-   z-index: 2;
+   z-index: 11;
    width: 300px;
    padding: 12px;
    position: absolute;
