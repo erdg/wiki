@@ -632,8 +632,7 @@ button.submit,
 .dialog .submit,
 .alert .submit,
 .edit .submit,
-.login .submit,
-#docButtonsDiv a {
+.login .submit {
    font-weight: bold;
    color: #222;
    background-color: #D0D0D0;
@@ -652,8 +651,7 @@ button.submit:hover,
 .dialog .submit:hover,
 .alert .submit:hover,
 .edit .submit:hover,
-.login .submit:hover,
-#docButtonsDiv a:hover {
+.login .submit:hover {
    color: #222;
    /* background: unset; */
    background-color: #D0D0D0;
@@ -668,8 +666,7 @@ button.submit:active,
 .dialog .submit:active,
 .alert .submit:active,
 .edit .submit:active,
-.login .submit:active,
-#docButtonsDiv a:active {
+.login .submit:active {
    color: #222;
    /* background: unset; */
    background-color: #D0D0D0;
@@ -1140,20 +1137,6 @@ input[type=submit].tiny:active {
 
 
 /* "sticky" functionality for the document dot menu */
-#docButtonsDiv {
-   margin-top: 16px;
-}
-
-#docButtonsDiv a {
-   font-size: smaller;
-   margin: 4px;
-}
-
-#docButtonsDiv a:hover,
-#docButtonsDiv a:active {
-   text-decoration: none;
-}
-
 .sticky {
    position: fixed;
    top: 16px;
@@ -1195,28 +1178,55 @@ input[type=submit].tiny:active {
    cursor: pointer;
 }
 
+/* collapsible dot-menu */
 .dot-menu.collapsible + .collapsible-content {
+   background: #efeff7;
    position: absolute;
    top: 40px;
    z-index: 1;
+   border-radius: 4px;
+   /* border: 1px solid #666; */
+   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
 }
 
-.dot-menu:hover {
-   background: #eee;
-   border-radius: 50%;
+#docButtonsDiv {
+   margin-top: 16px;
 }
 
-.dot-menu:active {
-   background: #eee;
+#docButtonsDiv a {
+   font-size: smaller;
 }
 
-.dot-menu:focus {
-   background: unset;
+
+/* dot-menu actions */
+#docButtonsDiv a {
+   color: #303357;
+   background: #efeff7;
+   border: none;
+   box-shadow: none;
+   text-decoration: none;
+}
+
+#docButtonsDiv a:hover {
+   color: #303357;
+   background: #dfe0ef;
+   border: none;
+   box-shadow: none;
+   text-decoration: none;
+}
+
+#docButtonsDiv a:active {
+   color: #303357;
+   background: #cfd1e7;
+   border: none;
+   box-shadow: none;
+   text-decoration: none;
 }
 
 .sticky .dot-menu {
    margin-right: 4px;
 }
+
 
 
 /* edit form within metaRepl */

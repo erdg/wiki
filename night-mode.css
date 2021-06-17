@@ -239,8 +239,7 @@ button.submit,
 .dialog .submit,
 .alert .submit,
 .edit .submit,
-.login .submit,
-#docButtonsDiv a {
+.login .submit {
    /* color: #888; */
    /* border: 1px solid #888; */
    color: #888;
@@ -249,13 +248,13 @@ button.submit,
    padding: 2px 4px 2px;
    box-shadow: unset;
 }
+
 button.submit:hover,
 #repl .submit:hover,
 .dialog .submit:hover,
 .alert .submit:hover,
 .edit .submit:hover,
-.login .submit:hover,
-#docButtonsDiv a:hover {
+.login .submit:hover {
    color: #999;
    border: 1px solid #888;
    padding: 2px 4px 2px;
@@ -267,8 +266,7 @@ button.submit:active,
 .dialog .submit:active,
 .alert .submit:active,
 .edit .submit:active,
-.login .submit:active,
-#docButtonsDiv a:active {
+.login .submit:active {
    color: #6dc066;
    border: 1px solid #6dc066;
    background: #111;
@@ -442,11 +440,44 @@ input[type=submit].tiny:hover {
    color: #999;
 }
 
-.dot-menu:hover {
-   /* background: #333; */
-   background: #2a2a2a;
+/* collapsible dot-menu */
+.dot-menu.collapsible + .collapsible-content {
+   background: #131423;
+   position: absolute;
+   top: 40px;
+   z-index: 1;
+   border-radius: 4px;
+   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+}
+/* dot-menu actions */
+#docButtonsDiv a {
+   color: #999;
+   background: #131423;
+   padding: 4px 8px;
+   border: none;
+   box-shadow: none;
 }
 
-.dot-menu:active {
-   background: #2a2a2a;
+#docButtonsDiv a:hover {
+   color: #999;
+   background: #262946;
+   border: none;
+   box-shadow: none;
 }
+
+#docButtonsDiv a:active {
+   color: #6dc066;
+   background: #262946;
+   border: none;
+   box-shadow: none;
+}
+
+
+/* input[type="file"] { */
+/*    background: #222; */
+/* } */
+
+/* input[type="file"]::file-selector-button { */
+/*    background: #888; */
+/*    color: #222; */
+/* } */
