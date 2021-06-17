@@ -1,11 +1,32 @@
+/* palette
+
+ * greens
+color: #6dc066;
+color: #7bc675;
+color: #8acc84;
+color: #98d293;
+color: #a7d9a3;
+ * blues
+color: #131423;
+color: #1c1e34;
+color: #262946;
+color: #303357;
+color: #393d69;
+
+color: #6067af;
+color: #9fa3cf;
+color: #bfc2df;
+
+
 /* defaults */
 body {
-   color: #cdcdcd;
-   background-color: #222;
+   color: #ccc;
+   background-color: #1c1e34;
 }
 
 h1, h2, h3, h4, h5, h6 {
-   color: #aaa;
+   /* color: #aaa; */
+   color: #9fa3cf;
    /* font-weight: bold; */
 }
 
@@ -32,14 +53,12 @@ a:active {
 
 /* menu */
 #menu {
-   background-color: #1a1a1a;
-   border-bottom: 1px solid #222;
+   background-color: #131423;
    box-shadow: 0 2px 8px 2px rgba(0,0,0,0.1);
 }
 
 #menu a {
-   /* color: #ddd; */
-   color: #cdcdcd;
+   color: #ccc;
 }
 
 #menu a:hover, a:focus {
@@ -50,33 +69,25 @@ a:active {
 /* code */
 .code {
    /* greens */
-   color: #8acc84;
-   color: #a7d9a3;
-   color: #98d293;
-   /* blues */
-   /* color: #9fa3cf; */
-   /* color: #bfc2df; */
-   background-color: #333;
+   color: #6dc066;
+   background-color: #262946;
    border-radius: 2px;
 }
 
 pre.code {
-   /* box-shadow: 1px 1px 1px #1a1a1a inset; */
-   /* border: 1px solid #333; */
    box-shadow: none;
    border: none;
    border-radius: 4px;
    padding: 0 1em;
-   /* width: max-content; */
 }
 
 pre.code:hover {
-   background-color: #363636;
+   background-color: #303357;
    border: none;
 }
 
 pre.code:active {
-   background-color: #383838;
+   background-color: #303357;
    border: none;
 }
 
@@ -88,41 +99,15 @@ pre.code:active {
    border-radius: 4px;
    box-shadow: none;
    border: none;
-   /* box-shadow: 0 0 8px 1px #aaa inset; */
-   /* border: 1px solid #aaa; */
    margin-bottom: 1em;
-}
-
-/* login form */
-.login {
-   background: #232323;
-   color: #999;
-   border: 1px solid #333;
-}
-
-.login::before {
-   color: #999;
-   font-weight: normal;
-}
-
-.login input[type=text], input[type=password] {
-   /* color: #ddd; */
-   color: #cdcdcd;
-   background: #333;
-   border: 1px solid #666;
-}
-
-.login input[type=text]:focus, .login input[type=password]:focus {
-   border: 1px solid #888;
 }
 
 
 /* repl / edit form */
 #repl, .edit {
-   background: #1d1d1d;
-   color: #999;
-   border: 1px solid #3a3a3a;
-   border: 1px solid #222;
+   background: #131423; /* blue */
+   color: #888;
+   border: 1px solid #131423;
 }
 
 #repl img {
@@ -150,35 +135,31 @@ pre.code:active {
 }
 
 #repl input[type=text], textarea {
-   /* color: #ddd; */
-   color: #cdcdcd;
-   background: #2a2a2a;
-   border: 1px solid #666;
+   color: #bbb;
+   background: #222;
+   border: 1px solid #303357;
 }
 
 .edit input[type=text], textarea {
-   /* color: #ddd; */
-   color: #cdcdcd;
-   background: #2a2a2a;
-   border: 1px solid #666;
+   color: #bbb;
+   background: #222;
+   border: 1px solid #303357;
 }
 
 #repl input[type=text]:focus, #repl textarea:focus {
-   /* color: #ddd; */
-   color: #cdcdcd;
-   border: 1px solid #888;
-   background: #2c2c2c;
+   color: #bbb;
+   background: #222;
+   border: 1px solid #393d69;
 }
 
 .edit input[type=text]:focus, textarea:focus {
-   /* color: #ddd; */
-   color: #cdcdcd;
-   border: 1px solid #888;
-   background: #2c2c2c;
+   color: #bbb;
+   background: #222;
+   border: 1px solid #393d69;
 }
 
 .edit hr, #repl hr {
-   color: #333;
+   color: #262946;
    margin-right: 8px;
 }
 
@@ -192,23 +173,20 @@ pre.code:active {
 }
 
 #searchGrp input[type=text] {
-   /* color: #ddd; */
-   color: #cdcdcd;
-   background: #2a2a2a;
-   border: 1px solid #666;
-   padding: 4px;
+   color: #bbb;
+   background: #222;
+   border: 1px solid #303357;
+   padding: 2px 4px;
 }
 
 #searchGrp input[type=text]:focus {
-   /* color: #ddd; */
-   color: #cdcdcd;
-   background: #2c2c2c;
-   border: 1px solid #888;
+   color: #bbb;
+   background: #222;
+   border: 1px solid #393d69;
 }
 
 #searchGrp a {
-   /* color: #ddd; */
-   color: #cdcdcd;
+   color: #ccc;
 }
 
 #searchGrp a:hover {
@@ -218,33 +196,49 @@ pre.code:active {
 /* submit buttons */
 #searchGrp .submit {
    color: #888;
-   border: 1px solid #888;
-   background: #1a1a1a;
+   border: 1px solid #777;
+   background: #131423;
+   padding: 2px 4px 2px;
 }
 
 #searchGrp .submit:hover {
    color: #999;
    border: 1px solid #999;
-   background: #1a1a1a;
+   background: #131423;
 }
 
 #searchGrp .submit:active {
    color: #6dc066;
    border: 1px solid #6dc066;
-   background: #1a1a1a;
+   background: #090a11;
    top: 1px;
 }
+
+#repl .submit[disabled="disabled"] {
+   opacity: 0.66;
+   box-shadow: none;
+   filter: blur(0.4px);
+   cursor: default;
+}
+
+#repl .submit[disabled="disabled"]:hover {
+   opacity: 0.66;
+   color: #888;
+   border: 1px solid #777;
+   background: #131423;
+   box-shadow: unset;
+}
+
+
 button.submit,
 #repl .submit,
 .dialog .submit,
 .alert .submit,
 .edit .submit,
 .login .submit {
-   /* color: #888; */
-   /* border: 1px solid #888; */
    color: #888;
+   background: #131423;
    border: 1px solid #777;
-   background: #1a1a1a;
    padding: 2px 4px 2px;
    box-shadow: unset;
 }
@@ -256,9 +250,9 @@ button.submit:hover,
 .edit .submit:hover,
 .login .submit:hover {
    color: #999;
+   background: #131423;
    border: 1px solid #888;
    padding: 2px 4px 2px;
-   background: #1a1a1a;
 }
 
 button.submit:active,
@@ -268,61 +262,14 @@ button.submit:active,
 .edit .submit:active,
 .login .submit:active {
    color: #6dc066;
+   background: #090a11;
    border: 1px solid #6dc066;
-   background: #111;
    padding: 2px 4px 2px;
    top: 1px;
 }
 
-input[type=submit].tiny:hover {
-   padding: 1px 3px;
-   font-weight: bold;
-   border-radius: 3px;
-}
 
-
-/* /1* metarepl tabs *1/ */
-/* #repl > .tab { */
-/*    margin: 0px 16px; */
-/*    margin-bottom: 1ex; */
-/*    border-collapse: unset; */
-/*    display: flex; */
-/*    font-family: monospace; */
-/* } */
-
-/* #repl > .tab td { */
-/*    padding: 3px 1rem; */
-/*    border-bottom: none; */
-/* } */
-
-/* #repl > .tab .top { */
-/*    /1* box-shadow: 1px 1px 1px #111 inset; *1/ */
-/*    /1* border-bottom: 1px solid #366033; *1/ */
-/*    border-bottom: none; */
-/*    background-color: #2a2a2a; */
-/*    /1* color: #aaa; *1/ */
-/*    color: #6dc066; */
-/*    border-radius: 4px; */
-/*    /1* border-top-left-radius: 4px; *1/ */
-/*    /1* border-top-right-radius: 4px; *1/ */
-/*    /1* border-bottom-left-radius: unset; *1/ */
-/*    /1* border-bottom-right-radius: unset; *1/ */
-/* } */
-
-/* #repl > .tab .sub { */
-/*    border-radius: 4px; */
-/* } */
-
-/* #repl .tab .sub:hover { */
-/*    background: #222; */
-/* } */
-
-/* #repl .tab .sub a:hover { */
-/*    text-decoration: none; */
-/* } */
-
-
-/* From 'form' GUI */
+/* from 'form' GUI */
 .chart {
    /* width: 100%; */
    margin: 4px 0px;
@@ -330,15 +277,14 @@ input[type=submit].tiny:hover {
 }
 
 .chart td {
-   background-color: #2a2a2a;
+   color: #aaa;
+   background-color: #262946;
    padding: 0px 4px 2px;
    border-radius: 3px;
-   /* color: #ddd; */
-   color: #cdcdcd;
 }
 
 .chart td.T {
-   background-color: #333;
+   background-color: #262946;
 }
 
 .chart td.nil {
@@ -374,11 +320,9 @@ input[type=submit].tiny:hover {
 #repl .tabs a,
 #repl .tabs button,
 #repl .tabcontainer button {
-   /* color: #aaa; */
    color: #8f94c7;
-   /* color: #9fa3cf; */
    padding: 4px 1rem;
-   background: #1d1d1d;
+   background: #131423;
    border: none;
    margin-right: 4px;
 }
@@ -386,7 +330,7 @@ input[type=submit].tiny:hover {
 #repl .tabs .top,
 #repl .tabcontainer .active {
    border-bottom: none;
-   background-color: #2a2a2a;
+   background-color: #262946;
    color: #6dc066;
    border-radius: 4px;
 }
@@ -394,9 +338,8 @@ input[type=submit].tiny:hover {
 #repl .tabs a:hover,
 #repl .tabs button:hover,
 #repl .tabcontainer button:hover {
-   /* background: #222; */
    color: #8f94c7;
-   background: #242424;
+   background: #1c1e34;
    border-radius: 4px;
    text-decoration: none;
 }
@@ -409,7 +352,7 @@ input[type=submit].tiny:hover {
 #repl .tabs .top:hover,
 #repl .tabcontainer button.active:hover {
    color: #6dc066;
-   background: #2a2a2a;
+   background: #262946;
 }
 
 #repl .tabcontainer .tabpane {
@@ -432,13 +375,13 @@ input[type=submit].tiny:hover {
 }
 
 .debugView {
-   color: #bcbcbc;
-   /* margin-top: 7px; */
+   color: #bbb;
 }
 
 .dot-menu::after {
    color: #999;
 }
+
 
 /* collapsible dot-menu */
 .dot-menu.collapsible + .collapsible-content {
@@ -449,9 +392,10 @@ input[type=submit].tiny:hover {
    border-radius: 4px;
    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
 }
+
 /* dot-menu actions */
 #docButtonsDiv a {
-   color: #999;
+   color: #888;
    background: #131423;
    padding: 4px 8px;
    border: none;
