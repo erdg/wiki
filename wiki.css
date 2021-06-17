@@ -1382,3 +1382,15 @@ input[type=submit].tiny:active {
       right: 30%;
    }
 }
+
+
+input[type="file"] {
+   background: #fff;
+   border: 1px solid #bfc2df;
+}
+
+input[type="file"]::file-selector-button {
+   background: #ddd;
+   color: #222;
+   border-radius: 4px;
+}

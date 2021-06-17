@@ -460,24 +460,25 @@ input[type=submit].tiny:hover {
 
 #docButtonsDiv a:hover {
    color: #999;
-   background: #262946;
+   background: #131423;
    border: none;
    box-shadow: none;
 }
 
 #docButtonsDiv a:active {
    color: #6dc066;
-   background: #262946;
+   background: #131423;
    border: none;
    box-shadow: none;
 }
 
 
-/* input[type="file"] { */
-/*    background: #222; */
-/* } */
+input[type="file"] {
+   background: #222;
+   border: 1px solid #303357;
+}
 
-/* input[type="file"]::file-selector-button { */
-/*    background: #888; */
-/*    color: #222; */
-/* } */
+input[type="file"]::file-selector-button {
+   background: #888;
+   color: #222;
+}
