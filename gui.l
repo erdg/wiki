@@ -221,7 +221,8 @@
                                  (<htmlbutton>
                                     '("submit mono"
                                        (id . "scrollMetaReplBtn")
-                                       (onClick .  "window.scrollTo({top: 0, behavior: 'smooth'});") )
+                                       (onClick .  "window.scrollTo({top: 0, behavior: 'smooth'});
+                                                    document.getElementById('scrollMetaReplBtn').classList.add('hide');") )
                                     "[\^]" ) ) )
                            (metaRepl)  # see 'repl.l'
                            (form
