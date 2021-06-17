@@ -21,6 +21,7 @@
 .blue   {color: blue}
 .bold   {font-weight: bold}
 .mono   {font-family: monospace}
+.hide   {display: none;}
 
 .flex-col {
    display: flex;
