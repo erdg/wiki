@@ -25,18 +25,11 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-   /* color: #aaa; */
-   color: #9fa3cf;
-   /* font-weight: bold; */
-}
-
-h1 {
-   color: #9fa3cf;
+   color: #999;
 }
 
 a {
    color: #8f94c7;
-   /* color: #9fa3cf; */
 }
 
 a:hover,
@@ -47,7 +40,6 @@ a:focus {
 
 a:active {
    color: #9fa3cf;
-   /* color: #afb3d7; */
 }
 
 
@@ -130,8 +122,7 @@ pre.code:active {
 
 #replHeaderText {
    display: inline;
-   /* color: #7f85bf; */
-   color: #888;
+   color: #999;
 }
 
 #repl input[type=text], textarea {
