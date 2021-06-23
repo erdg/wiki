@@ -42,16 +42,16 @@
             (<href> "document" "!setCurrentTab?document") )
          (<style>
             (list
+               (pack "tabBtn" (if (= *CurrentTab "music") " top"))
+               '(id . "musicBtn")
+               '(onclick . "openTab('music')") )
+            (<href> "music" "!setCurrentTab?music") )
+         (<style>
+            (list
                (pack "tabBtn" (if (= *CurrentTab "picolisp") " top"))
                '(id . "picolispBtn")
                '(onclick . "openTab('picolisp')") )
             (<href> "picolisp" "!setCurrentTab?picolisp") )
-         (<style>
-            (list
-               (pack "tabBtn" (if (= *CurrentTab "lilypond") " top"))
-               '(id . "lilypondBtn")
-               '(onclick . "openTab('lilypond')") )
-            (<href> "lilypond" "!setCurrentTab?lilypond") )
       )
    )
 )
@@ -72,7 +72,7 @@
          (docFields T) ) )
    (<div> (list "tabView" '(id . "picolisp") (ifn (= *CurrentTab "picolisp") '(style . "display: none;")))
       (pilRepl (if *FullscreenRepl 'PilReplFullscreen) 56 20) )
-   (<div> (list "tabView" '(id . "lilypond") (ifn (= *CurrentTab "lilypond") '(style . "display: none;")))
+   (<div> (list "tabView" '(id . "music") (ifn (= *CurrentTab "music") '(style . "display: none;")))
       (if *FullscreenRepl
          (lilReplFullscreen NIL 56 20)
          (lilRepl NIL 56 10) ) )
@@ -266,7 +266,7 @@
                   (aria-controls . "tabpane1")
                   (aria-selected . "true")
                )
-               "music" )
+               "image" )
             (<htmlbutton>
                '("tab"
                   (id . "tab2")
@@ -455,7 +455,7 @@
                   (aria-controls . "tabpane1")
                   (aria-selected . "true")
                )
-               "music" )
+               "image" )
             (<htmlbutton>
                '("tab"
                   (id . "tab2")
