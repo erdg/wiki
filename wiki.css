@@ -811,6 +811,20 @@ input[type=submit].tiny:active {
    position: relative;
 }
 
+#metaReplHeader {
+   border-bottom: 2px solid #ddd;
+   margin: 16px 16px 8px;
+   align-items: flex-start;
+   width: 96%;
+}
+
+@media screen and (max-width: 600px) {
+   #metaReplHeader {
+      padding-bottom: 16px;
+      width: 92%;
+   }
+}
+
 #replHeaderText {
    display: inline;
    /* color: #393e71; */

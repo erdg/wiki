@@ -120,6 +120,12 @@ pre.code:active {
    margin-bottom: 4px;
 }
 
+#metaReplHeader {
+   border-bottom: 2px solid #131e34;
+   /* margin: 16px 16px 8px; */
+   /* align-items: flex-start; */
+}
+
 #replHeaderText {
    display: inline;
    color: #999;
@@ -150,7 +156,8 @@ pre.code:active {
 }
 
 .edit hr, #repl hr {
-   color: #262946;
+   /* color: #262946; */
+   color: #1c1e34;
    margin-right: 8px;
 }
 

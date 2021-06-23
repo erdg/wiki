@@ -27,7 +27,7 @@
             z-index: 99" ) ) ) )
 
 (de <MetaReplHeader> ()
-   (<div> '(flex-row (style . "justify-content: flex-start; margin-right: 64px;"))
+   (<div> '(flex-row (id . "metaReplHeader") (style . "justify-content: flex-start; margin-right: 64px;"))
       (<style> '(style . "width: 32px;")
          (<img> "wiki/img/small-logo.png") )
       (<p> '(id . "replHeaderText")
