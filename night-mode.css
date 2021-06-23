@@ -356,6 +356,7 @@ button.submit:active,
 
 #repl .tabcontainer .tabpane {
    background: unset;
+   color: #999;
 }
 
 #repl .tabView {

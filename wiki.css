@@ -1171,6 +1171,7 @@ input[type=submit].tiny:active {
 
 #repl .tabcontainer .tabpane {
    background: unset;
+   color: #222;
 }
 
 #repl .tabs a:visited {
