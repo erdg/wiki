@@ -343,7 +343,7 @@
    (prog1
       (<javascript>
          "window.onload = function () {
-            if (window.screen.availWidth < 1376) {
+            if (window.innerWidth < 1376) {
                var extraScroll = document.getElementById('menu').offsetHeight;
             } else {
                var extraScroll = 0;
