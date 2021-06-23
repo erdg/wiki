@@ -168,9 +168,9 @@ a:active {
 }
 
 /* even larger fonts for even larger screens */
-@media screen and (min-width: 2200px) {
-   #main {
-      font-size: 20px;
+@media screen and (min-width: 1800px) {
+   #main, .tab {
+      font-size: 18px;
    }
    .container,
    #docButtonsDiv.sticky {
@@ -178,12 +178,34 @@ a:active {
       /* width: unset; */
       max-width: 900px;
    }
-   h1 { font-size: 36px; }
-   h2 { font-size: 34px; }
-   h3 { font-size: 30px; }
-   h4 { font-size: 28px; }
-   h5 { font-size: 26px; }
+   h1 { font-size: 39px; }
+   h2 { font-size: 36px; }
+   h3 { font-size: 33px; }
+   h4 { font-size: 30px; }
+   h5 { font-size: 27px; }
    h6 { font-size: 24px; }
+}
+
+@media screen and (min-width: 2400px) {
+   .container,
+   #docButtonsDiv.sticky {
+      max-width: 1000px;
+   }
+   #main.container .code {
+      font-size: 16px;
+   }
+   h1 { font-size: 42px; }
+   h2 { font-size: 39px; }
+   h3 { font-size: 36px; }
+   h4 { font-size: 33px; }
+   h5 { font-size: 30px; }
+   h6 { font-size: 27px; }
+   #menu {
+      font-size: 14px;
+   }
+   #repl #replHeaderText {
+      font-size: 26px;
+   }
 }
 
 /* menu */
@@ -240,9 +262,27 @@ a:active {
    }
 }
 
-@media screen and (min-width: 2200px) {
+@media screen and (min-width: 2000px) {
    #menu {
       width: 16%;
+   }
+}
+
+@media screen and (min-width: 2200px) {
+   #menu {
+      width: 14%;
+   }
+}
+
+@media screen and (min-width: 2400px) {
+   #menu {
+      width: 12%;
+   }
+}
+
+@media screen and (min-width: 2600px) {
+   #menu {
+      width: 11%;
    }
 }
 
@@ -927,12 +967,6 @@ input[type=submit].tiny:active {
 .themeToggle {
 }
 
-/* metarepl header */
-#repl > .flex-row {
-   margin: 16px 16px 0px;
-   align-items: flex-start;
-}
-
 #repl select {
    font-size: inherit;
    color: #222;
@@ -1394,6 +1428,30 @@ input[type=submit].tiny:active {
 @media screen and (min-width: 1800px) {
    #scrollMetaReplBtn {
       right: 30%;
+   }
+}
+
+@media screen and (min-width: 2000px) {
+   #scrollMetaReplBtn {
+      right: 32%;
+   }
+}
+
+@media screen and (min-width: 2200px) {
+   #scrollMetaReplBtn {
+      right: 33%;
+   }
+}
+
+@media screen and (min-width: 2400px) {
+   #scrollMetaReplBtn {
+      right: 35%;
+   }
+}
+
+@media screen and (min-width: 3000px) {
+   #scrollMetaReplBtn {
+      right: 38%;
    }
 }
 
