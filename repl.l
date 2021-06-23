@@ -182,58 +182,114 @@
       (=: repl (tmp "repl"))
       (=: lyrepl (tmp "lyrepl"))
 
-      # Run line
-      (<div> '(flex-row (style . "position: relative;"))
-         (gui '(+JS +Style +Button) "runButton" "Run"
-            '(let Str (or (val> (: home line)) (val> (: home area)))
-               (out (pack "+" (: home repl))
-                  (if (pre? "$ " Str)
-                     (err NIL
-                        (prinl Str)
-                        (flush)
-                        (in (list "sh" "-c" (cddr (chop Str)))
-                           (echo) ) )
-                     (err NIL
-                        (prinl ": " Str)
-                        (flush)
-                        (catch '(NIL)
-                           (in "/dev/null"
-                              (up 99 @@@ "@3")
-                              (up 99 @@ "@2")
-                              (up 99 @ "@1")
-                              (setq
-                                 "@3" "@2"
-                                 "@2" "@1"
-                                 "@1"
-                                    # picolisp lilypond syntax (e.g. "{ a'4. b'8 c'2~ | c1 }" )
-                                    (ifn (val> (: home lilypondSyntax))
-                                       (run (str Str) 99)
-                                       (ifn (val> (: home renderSvg))
-                                          # debug
-                                          (prog
-                                             (out (tmp "lyrepl") (prin Str))
-                                             (eval
-                                                # (lytransform (lyread (tmp "lyrepl")))
-                                                (progLilypond) ) )
-                                          # render svg - automatically wrap code with '(ly ...)'
-                                          (prog
-                                             (out (: home lyrepl) (prin Str))
-                                             (ly
-                                                (prog
-                                                   (when (val> (: home renderFont))
-                                                      (list (any (pack 'ly @ 'Font))) )
-                                                   (eval
-                                                      (progLilypond) ) ) ) ) ) ) ) )
-                           (off *Msg)
-                           (println '-> "@1") ) )
-                     (and *Msg (prinl @)) ) )
-               (push1 '*ReplH Str) ) )
+      # code / touch input tabs (using 'stabs.js')
+      (<div> '(tabcontainer (style . ""))
+         (<p> '(mono (style . "display: inline; font-size: 14px;")) "input")
+         (<div> '(flex-row (style . "display: inline-flex; margin-bottom: 8px; justify-content: flex-start;"))
+            # buttons
+            (<htmlbutton>
+               '("tab active"
+                  (id . "codeTabBtn")
+                  (tab-index . 0)
+                  (role . "tab")
+                  (aria-controls . "codeTabView")
+                  (aria-selected . "true") )
+               "code" )
+            (<htmlbutton>
+               '("tab"
+                  (id . "touchTabBtn")
+                  (tab-index . 0)
+                  (role . "tab")
+                  (aria-controls . "touchTabView")
+                  (aria-selected . "false") )
+               "touch" ) )
+         # views
+         (<div> NIL
+            (<div>
+               '("tabpane active"
+                  (id . "codeTabView")
+                  (role . "tabpanel")
+                  (aria-labelledby . "codeTabBtn")
+                  (aria-hidden . "false") )
 
-         (<style> '((style . "flex-grow: 1; margin: 8px 8px;") (placeholder . "code here") )
-            (gui 'line '(+Mono +TextField)
-               (*/ DX 4 5) ) ) )
+               # Run line
+               (<div> '(flex-row (style . "position: relative;"))
+                  (gui '(+JS +Style +Button) "runButton" "Run"
+                     '(let Str (or (val> (: home line)) (val> (: home area)))
+                        (out (pack "+" (: home repl))
+                           (if (pre? "$ " Str)
+                              (err NIL
+                                 (prinl Str)
+                                 (flush)
+                                 (in (list "sh" "-c" (cddr (chop Str)))
+                                    (echo) ) )
+                              (err NIL
+                                 (prinl ": " Str)
+                                 (flush)
+                                 (catch '(NIL)
+                                    (in "/dev/null"
+                                       (up 99 @@@ "@3")
+                                       (up 99 @@ "@2")
+                                       (up 99 @ "@1")
+                                       (setq
+                                          "@3" "@2"
+                                          "@2" "@1"
+                                          "@1"
+                                             # picolisp lilypond syntax (e.g. "{ a'4. b'8 c'2~ | c1 }" )
+                                             (ifn (val> (: home lilypondSyntax))
+                                                (run (str Str) 99)
+                                                (ifn (val> (: home renderSvg))
+                                                   # debug
+                                                   (prog
+                                                      (out (tmp "lyrepl") (prin Str))
+                                                      (eval
+                                                         # (lytransform (lyread (tmp "lyrepl")))
+                                                         (progLilypond) ) )
+                                                   # render svg - automatically wrap code with '(ly ...)'
+                                                   (prog
+                                                      (out (: home lyrepl) (prin Str))
+                                                      (ly
+                                                         (prog
+                                                            (when (val> (: home renderFont))
+                                                               (list (any (pack 'ly @ 'Font))) )
+                                                            (eval
+                                                               (progLilypond) ) ) ) ) ) ) ) )
+                                    (off *Msg)
+                                    (println '-> "@1") ) )
+                              (and *Msg (prinl @)) ) )
+                        (push1 '*ReplH Str) ) )
 
-      (<RunLineOptions>)
+                  (<style> '((style . "flex-grow: 1; margin: 8px 8px;") (placeholder . "code here") )
+                     (gui 'line '(+Mono +TextField)
+                        (*/ DX 4 5) ) ) )
+
+               (<RunLineOptions>)
+
+               # input area
+               (<div> '(style . "position: relative;")
+                  (<style> '("clipInputAreaRaw tiny" (style . "position: absolute; top: 6%; right: 4%;"))
+                     (gui '(+JS +Button) "copy") )
+                  # (<style> '("clipInputArea tiny submit" (style . "position: absolute; top: 16%; right: 4%;"))
+                  #    (gui '(+JS +Button) ":{ ... }") )
+                  (<style> '("lilInputArea" (placeholder . "or code here"))
+                     (gui 'area '(+Mono +FileField)
+                        (: lyrepl)
+                        (*/ DX 4 5) 20 ) ) ) )
+            (<div>
+               '("tabpane"
+                  (id . "touchTabView")
+                  (role . "tabpanel")
+                  (aria-labelledby . "touchTabBtn")
+                  (aria-hidden . "true")
+                  (hidden . "true") )
+               (<div> '(id . "TouchSvg")
+                  # (serverSentEvent "TouchSvg" '*TouchSvg)
+                  # (<javascript>
+                  #    "window.updateTouchSvg = function () {
+                  #        fetch(window.location.href.split('~')[0] + '~!updTouchSvg?f1');
+                  #     };" )
+                  # (<object> (pack "http://localhost:" *WikiPort "/wiki/img/svg/e1.svg"))
+                  "Touch View" ) ) ) )
 
       # resize / close buttons (absolute positioned top right)
       (<style> '(style . "position: absolute; top: 8px; right: 30px; padding: 2px 1px;")
@@ -245,20 +301,10 @@
          (gui '(+Style +Button) "closeRepl right" "x"
             '(prog (rollback) (off *ID)) ) )
 
-      # input area
-      (<div> '(style . "position: relative;")
-         (<style> '("clipInputAreaRaw tiny" (style . "position: absolute; top: 6%; right: 4%;"))
-            (gui '(+JS +Button) "copy") )
-         # (<style> '("clipInputArea tiny submit" (style . "position: absolute; top: 16%; right: 4%;"))
-         #    (gui '(+JS +Button) ":{ ... }") )
-         (<style> '("lilInputArea" (placeholder . "or code here"))
-            (gui 'area '(+Mono +FileField)
-               (: lyrepl)
-               (*/ DX 4 5) 12 ) ) )
-
       # music / debug output (using 'stabs.js')
       (<div> '(tabcontainer (style . "margin-top: 24px"))
-         (<div> '(flex-row (style . "margin-bottom: 8px; justify-content: flex-start;"))
+         (<p> '(mono (style . "display: inline; font-size: 14px;")) "output")
+         (<div> '(flex-row (style . "display: inline-flex; margin-bottom: 8px; justify-content: flex-start;"))
             # buttons
             (<htmlbutton>
                '("tab active"
@@ -440,14 +486,15 @@
             (gui '(+Style +Button) "closeRepl right" "x"
                '(prog (rollback) (off *ID)) ) )
 
-         (<MetaReplFullscreenMusicDebugTabs>)
+         (<MetaReplFullscreenOutputTabs>)
          ) ) )
 
 # using 'stabs.js'
-(de <MetaReplFullscreenMusicDebugTabs> ()
+(de <MetaReplFullscreenOutputTabs> ()
    (<div> '(flex-col (id . "ReplSvgContainerFullscreen") (style . "margin-top: 8px; flex-grow: 1;"))
       (<div> 'tabcontainer
-         (<div> '(flex-row (style . "justify-content: flex-start;"))
+         (<p> '(mono (style . "display: inline;")) "output")
+         (<div> '(flex-row (style . "display: inline-flex; justify-content: flex-start;"))
             # buttons
             (<htmlbutton>
                '("tab active"
@@ -539,6 +586,13 @@
       (serverSend *ReplSvgFullscreen (<ReplSvg>))
       (serverSend *ReplSvg (<ReplSvg>)) ) )
 
+(allow "!updTouchSvg")
+(de updTouchSvg (Note)
+   # (prinl "!updTouchSvg")
+   (noContent)
+   (serverSend *TouchSvg
+      (<object> (pack "http://localhost:" *WikiPort "/wiki/img/svg/" Note ".svg")) ) )
+
 
 # write lilypond file
 (de ly Music
@@ -552,3 +606,12 @@
 
 (de lyEcho ()
    (in (tmp "repl.ly") (echo)) )
+
+# html <object>
+(de <object> (Url DX DY)
+   (prin "<object data=\"" Url "\"")
+   (and DX (prin " width=\"" DX "\""))
+   (and DY (prin " height=\"" DY "\""))
+   (and *Style (htStyle @))
+   (prin ">")
+   (prin "</object>") )
