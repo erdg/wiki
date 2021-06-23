@@ -285,6 +285,7 @@ button.submit:active,
 .error {
    color: #602223;
    background: #f37779;
+   font-weight: bold;
 }
 
 .modal-inner {
