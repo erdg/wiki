@@ -853,7 +853,8 @@ input[type=submit].tiny:active {
 }
 
 #metaReplHeader {
-   border-bottom: 2px solid #ddd;
+   /* border-bottom: 2px solid #ddd; */
+   border-bottom: 2px solid #dfe0ef;
    margin: 16px 16px 8px;
    align-items: flex-start;
    width: 96%;
@@ -1004,7 +1005,8 @@ input[type=submit].tiny:active {
 
 #repl hr,
 .edit hr {
-   color: #ddd;
+   /* color: #ddd; */
+   color: #dfe0ef;
    border-style: solid;
 }
 
