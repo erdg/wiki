@@ -79,6 +79,14 @@
 # misc
 (on *DisplayDocumentCode)
 
+# for touch input
+(setq
+   *TouchNote "g"
+   *TouchOctave 1
+   *TouchDuration 1
+   *TouchAccidental ""
+   *TouchDots "" )
+
 # cache svgs
 # (patch *Mimes '(`(chop "svg") @S) (fill '(`(chop "svg") ^ @S 3600)))
 

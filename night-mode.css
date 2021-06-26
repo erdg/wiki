@@ -426,3 +426,135 @@ input[type="file"]::file-selector-button {
    background: #888;
    color: #222;
 }
+
+
+/* touch input styles */
+#touchTabView.tabpane.active p.mono {
+   font-size: 13px;
+   margin: 0px;
+}
+
+#touchSvgButtons {
+   color: #222;
+   position: absolute;
+   top: 16px;
+   left: 16px;
+   /* background: #ddd; */
+   /* border: 1px solid #ccc; */
+   /* border-radius: 4px; */
+   /* padding: 0px 0px 8px 8px; */
+   z-index: 20;
+}
+
+#touchSvgButtons .submit {
+   color: #000;
+   font-weight: normal;
+   font-size: 22px;
+   background: none;
+   border: none;
+   box-shadow: none;
+   min-width: 21px;
+}
+
+#touchSvgButtons .submit:hover {
+   color: #000;
+   font-weight: normal;
+   font-size: 22px;
+   background: #ddd;
+   border: none;
+   box-shadow: none;
+}
+
+#touchSvgButtons .submit:active {
+   color: #000;
+   font-weight: normal;
+   font-size: 22px;
+   /* background: none; */
+   border: none;
+   box-shadow: none;
+}
+
+#touchSvgFab .submit {
+   display: block;
+   border-radius: 50%;
+   /* padding: 0px 12px 4px 12px; */
+   /* background: #ddd; */
+   font-size: 48px;
+   font-family: monospace;
+   height: 48px;
+   width: 48px;
+   line-height: 48px;
+   border-radius: 50%;
+   background: #ddd;
+   text-align: center;
+
+   background:
+      linear-gradient(#222,#222),
+      linear-gradient(#222,#222),
+      #ddd;
+   background-position:center;
+   background-size: 40% 3px, 3px 40%;
+   background-repeat:no-repeat;
+   /* border: 2px solid #ccc; */
+   /* box-shadow: 0 2px 4px -1px #222; */
+}
+
+#touchSvgFab .submit:hover {
+   background:
+      linear-gradient(#222,#222),
+      linear-gradient(#222,#222),
+      #e6e6e6;
+   background-position:center;
+   background-size: 40% 3px, 3px 40%;
+   background-repeat:no-repeat;
+   /* border: 2px solid #ccc; */
+   /* box-shadow: 0 2px 4px -1px #222; */
+}
+
+#touchSvgFab .submit:active {
+   background:
+      linear-gradient(#222,#222),
+      linear-gradient(#222,#222),
+      #e6e6e6;
+   background-position:center;
+   background-size: 40% 3px, 3px 40%;
+   background-repeat:no-repeat;
+   border: 1px solid #666;
+   box-shadow: 0 0 2px 1px #66,;
+}
+
+/* touch input dropdown menu */
+#touchTabView .dot-menu {
+   margin-left: 16px;
+}
+
+#touchTabView .dot-menu:after {
+   color: #222;
+}
+
+#touchTabView .dot-menu.collapsible.active {
+   background: unset;
+}
+
+#touchTabView .dot-menu.collapsible + .collapsible-content {
+   background: #f6f6f6;
+   position: relative;
+   top: 4px;
+   left: 194px;
+   z-index: 1;
+   border-radius: 4px;
+   /* border: 1px solid #666; */
+   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+}
+
+@media screen and (min-width: 502px) {
+   #touchTabView .dot-menu.collapsible + .collapsible-content {
+      top: 40px;
+      right: 116px;
+      left: unset;
+   }
+}
+
+#touchTabView .dot-menu.collapsible + .collapsible-content .submit {
+   font-size: 16px;
+}

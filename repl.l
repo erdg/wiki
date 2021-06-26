@@ -275,21 +275,109 @@
                      (gui 'area '(+Mono +FileField)
                         (: lyrepl)
                         (*/ DX 4 5) 20 ) ) ) )
+
+            ### touch input - clickable svgs in an html <object>
             (<div>
                '("tabpane"
                   (id . "touchTabView")
                   (role . "tabpanel")
                   (aria-labelledby . "touchTabBtn")
                   (aria-hidden . "true")
+                  (style . "position: relative;")
                   (hidden . "true") )
-               (<div> '(id . "TouchSvg")
-                  # (serverSentEvent "TouchSvg" '*TouchSvg)
-                  # (<javascript>
-                  #    "window.updateTouchSvg = function () {
-                  #        fetch(window.location.href.split('~')[0] + '~!updTouchSvg?f1');
-                  #     };" )
-                  # (<object> (pack "http://localhost:" *WikiPort "/wiki/img/svg/e1.svg"))
-                  "Touch View" ) ) ) )
+               # ----
+               # js to communicate between <object> and parent window (because cors).
+               # <object> uses 'window.parent.postMessage()' to trigger js 'fetch', which
+               # calls the lisp fn 'updTouchSvg'.
+               (<javascript>
+                  "window.addEventListener('message', function (e) {
+                     if (e.origin !== 'http://localhost:5000') return;
+                     console.log(e.data + ' ' + e.origin);
+                     fetch(window.location.href.split('~')[0] + '~!setTouchNote?' + e.data);
+                  }, false);" )
+               # see also lisp fn 'lilypondNoteIconSVG', which generates the svgs (with
+               # the actual js 'postMessage' call)
+               # ----
+               # treble clef background (prevents flicker as svg is updated)
+               (<object> (pack "http://localhost:" *WikiPort "/wiki/img/svg/treble-clef.svg"))
+               # _the_ svg (updated via 'serverSend)
+               (serverSentEvent "TouchSvg" '*TouchSvg)
+               (<div> '((id . "TouchSvg") (style . "position: absolute; top: 0px; left: 0px;"))
+                  (<object>
+                     (pack
+                        "http://localhost:" *WikiPort "/wiki/img/svg/"
+                        *TouchNote *TouchAccidental (number-to-octave-tick *TouchOctave) *TouchDuration ".svg")) )
+               # ----
+               # buttons
+               (<div> '(flex-row
+                        (id . "touchSvgButtons")
+                        # (style . "position: absolute; z-index: 20; top: 12px; left: 16px;")
+                        )
+                  (<div> '(style . "margin: 0px 0px")
+                     (<p> "mono" "accidental")
+                     (gui '(+Mono +JS +Button) "♯" '(setTouchAccidental "is"))
+                     (gui '(+Mono +JS +Button) "♮" '(setTouchAccidental ""))
+                     (gui '(+Mono +JS +Button) "♭" '(setTouchAccidental "es")) )
+                  (<div> '(style . "margin: 0px 16px")
+                     (<p> "mono" "octave")
+                     (gui '(+Mono +JS +Button) "+"
+                        '(setTouchOctave (+ *TouchOctave 1)) )
+                     (gui '(+Mono +JS +Button) "-"
+                        '(setTouchOctave (- *TouchOctave 1)) ) )
+                  (<div> '(style . "margin: 0px 0px")
+                     (<p> "mono" "duration")
+                     (gui '(+Mono +JS +Button) "𝅝" '(setTouchDuration 1))
+                     (gui '(+Mono +JS +Button) "𝅗𝅥" '(setTouchDuration 2))
+                     (gui '(+Mono +JS +Button) "𝅘𝅥" '(setTouchDuration 4))
+                     (gui '(+Mono +JS +Button) "𝅘𝅥𝅮" '(setTouchDuration 8)) )
+                  (<div> "dot-menu collapsible" NIL)
+                  (<div> "collapsible-content"
+                     (gui '(+JS +Button) "undo"
+                        '(prog
+                           (rot *TouchMelody)
+                           (++ *TouchMelody)
+                           (out (: home lyrepl) (prin "{ " (glue " " *TouchMelody) " }"))
+                           (ly
+                              (prog
+                                 (when (val> (: home renderFont))
+                                    (list (any (pack 'ly @ 'Font))) )
+                                 (eval
+                                    (progLilypond) ) ) ) ) )
+                     (gui '(+JS +Button) "clear melody"
+                        '(prog
+                           (off *TouchMelody)
+                           (queue '*TouchMelody "(clef \"treble\")")
+                           (out (: home lyrepl) (prin "{ " (glue " " *TouchMelody) " }"))
+                           (ly
+                              (prog
+                                 (when (val> (: home renderFont))
+                                    (list (any (pack 'ly @ 'Font))) )
+                                 (eval
+                                    (progLilypond) ) ) ) ) ) )
+                  # (<div> '(style . "margin: 0px 16px")
+                  #    (<p> "mono" "dots")
+                  #    (gui '(+Mono +JS +Button) "x")
+                  #    (gui '(+Mono +JS +Button) ".") )
+               )
+               # add to melody
+               (<div> '(id . "touchSvgFab")
+                  (gui '(+JS +Button) " "
+                     '(prog
+                        (queue '*TouchMelody (currentTouchNote))
+                        # (out (: home lyrepl) (prin Str))
+                        (out (: home lyrepl) (prin "{ " (glue " " *TouchMelody) " }"))
+                        (ly
+                           (prog
+                              (when (val> (: home renderFont))
+                                 (list (any (pack 'ly @ 'Font))) )
+                              (eval
+                                 (progLilypond) ) ) )
+                        (setq
+                           *TouchNote "g"
+                           *TouchAccidental NIL )
+                        (updTouchSvg) ) ) )
+               )))
+            ###
 
       # resize / close buttons (absolute positioned top right)
       (<style> '(style . "position: absolute; top: 8px; right: 30px; padding: 2px 1px;")
@@ -301,8 +389,10 @@
          (gui '(+Style +Button) "closeRepl right" "x"
             '(prog (rollback) (off *ID)) ) )
 
+      (<hr>)
+
       # music / debug output (using 'stabs.js')
-      (<div> '(tabcontainer (style . "margin-top: 24px"))
+      (<div> '(tabcontainer (style . "margin-top: 0px"))
          (<p> '(mono (style . "display: inline; font-size: 14px;")) "output")
          (<div> '(flex-row (style . "display: inline-flex; margin-bottom: 8px; justify-content: flex-start;"))
             # buttons
@@ -577,7 +667,8 @@
 (de <ReplSvg> ()
    # see https://stackoverflow.com/questions/1077041/refresh-image-with-a-new-one-at-the-same-url/9943419#9943419
    # '(date)' and '(time)' to fool browser cache and update image
-   (<img> (pack "http://localhost:" *WikiPort "/wiki/img/repl.cropped.svg#" (date) (time))) )
+   (<img>
+      (pack "http://localhost:" *WikiPort "/wiki/img/repl.cropped.svg#" (date) (time)) ) )
 
 
 # send latest SVG to the browser
@@ -587,12 +678,72 @@
       (serverSend *ReplSvg (<ReplSvg>)) ) )
 
 (allow "!updTouchSvg")
-(de updTouchSvg (Note)
-   # (prinl "!updTouchSvg")
-   (noContent)
+(de updTouchSvg ()
    (serverSend *TouchSvg
-      (<object> (pack "http://localhost:" *WikiPort "/wiki/img/svg/" Note ".svg")) ) )
+      (<object>
+         (pack
+            "http://localhost:"
+            *WikiPort
+            "/wiki/img/svg/"
+            *TouchNote
+            *TouchAccidental
+            (number-to-octave-tick *TouchOctave)
+            *TouchDuration
+            ".svg" ) ) ) )
 
+(allow "!setTouchNote")
+(de setTouchNote (Note)
+   (noContent)
+   (setq *TouchNote Note)
+   (updTouchSvg) )
+
+(allow "!setTouchAccidental")
+(de setTouchAccidental (Str)
+   (setq *TouchAccidental Str)
+   (updTouchSvg) )
+
+(allow "!setTouchOctave")
+(de setTouchOctave (N)
+   (setq *TouchOctave N)
+   (updTouchSvg) )
+
+(allow "!setTouchDuration")
+(de setTouchDuration (N)
+   (setq *TouchDuration N)
+   (updTouchSvg) )
+
+# (allow "!incTouchDots")
+# (de incTouchDots ()
+#    (push '*TouchDots "%") )
+
+# (allow "!zeroTouchDots")
+# (de zeroTouchDots ()
+#    (setq *TouchDots "") )
+
+# (allow "!pushTouchMelody")
+# (de pushTouchMelody ()
+#    (push '*TouchMelody *TouchNote)
+#    (prog
+#       # (out (: home lyrepl) (prin Str))
+#       (out (tmp "lyrepl") (prin "{ " (glue " " *TouchMelody) " }")) )
+#       (ly
+#          (prog
+#             # (when (val> (: home renderFont))
+#             #    (list (any (pack 'ly @ 'Font))) )
+#             (eval
+#                (progLilypond) ) ) ) )
+
+(allow "!offTouchMelody")
+(de offTouchMelody ()
+   (noContent)
+   (off *TouchMelody) )
+
+(de currentTouchNote ()
+   (pack
+      *TouchNote
+      *TouchAccidental
+      (number-to-octave-tick *TouchOctave)
+      *TouchDuration ) )
 
 # write lilypond file
 (de ly Music
