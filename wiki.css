@@ -485,7 +485,7 @@ pre.code {
 }
 
 pre.code:hover {
-   background: #ebebeb;
+   background: #eee;
    border: 1px solid #ccc;
    cursor: pointer;
 }
