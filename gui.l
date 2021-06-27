@@ -276,10 +276,13 @@
                   ) )
             (cond
                (*MupTxt
-                  (pipe (prinl @) (render *MupImg))
+                  # (pipe (prinl @) (render *MupImg))
+                  (pipe (prinl @) (<div> 'mup-container (render *MupImg)))
                   (off *MupTxt *MupImg) )
                ((: mup)
-                  (in (blob @ 'txt) (render (: mup bin)))
+                  # (in (blob @ 'txt) (render (: mup bin)))
+                  (<div> 'mup-container
+                     (in (blob @ 'txt) (render (: mup bin))) )
                   (<p> NIL
                      (with (: mup)
                         (<tip> "Public URL of this page"

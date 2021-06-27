@@ -28,10 +28,12 @@
 
 (de <MetaReplHeader> ()
    (<div> '(flex-row (id . "metaReplHeader") (style . "justify-content: flex-start; margin-right: 64px;"))
-      (<style> '(style . "width: 32px;")
-         (<img> "wiki/img/small-logo.png") )
+      # (<style> '(style . "width: 32px;")
+      #    (<img> "wiki/img/small-logo.png") )
+      # (<p> '(id . "replHeaderText")
+      #       "metaRepl" )
       (<p> '(id . "replHeaderText")
-            "metaRepl" )
+            "edit" )
       # tab buttons
       (<div> 'tabs
          (<style>
@@ -46,12 +48,12 @@
                '(id . "musicBtn")
                '(onclick . "openTab('music')") )
             (<href> "music" "!setCurrentTab?music") )
-         (<style>
-            (list
-               (pack "tabBtn" (if (= *CurrentTab "picolisp") " top"))
-               '(id . "picolispBtn")
-               '(onclick . "openTab('picolisp')") )
-            (<href> "picolisp" "!setCurrentTab?picolisp") )
+         # (<style>
+         #    (list
+         #       (pack "tabBtn" (if (= *CurrentTab "picolisp") " top"))
+         #       '(id . "picolispBtn")
+         #       '(onclick . "openTab('picolisp')") )
+         #    (<href> "picolisp" "!setCurrentTab?picolisp") )
       )
    )
 )
