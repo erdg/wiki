@@ -322,7 +322,8 @@
          (stabsJS)
          (clipboardJS)
          (ctrlEnterSubmitJS)
-         (collapsibleJS) ) )
+         (collapsibleJS)
+         (touchModalBtnsJS) ) )
    (off *ID) )
 
 (de themeToggle ()
@@ -425,6 +426,23 @@
             }
          });
       }" ) )
+
+(de touchModalBtnsJS ()
+   (<javascript>
+     "var coll = document.getElementsByClassName('touchModalBtn');
+      var i;
+      for (i = 0; i < coll.length; i++) {
+         coll[i].addEventListener('click', function() {
+            this.classList.toggle('active');
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight){
+               content.style.maxHeight = null;
+            } else {
+               content.style.maxHeight = '100%';
+            }
+         });
+      }" ) )
+
 
 (de ctrlEnterSubmitJS ()
    (<javascript>

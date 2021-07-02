@@ -456,7 +456,7 @@ input[type="file"]::file-selector-button {
 #touchSvgButtons .submit {
    color: #000;
    font-weight: normal;
-   font-size: 22px;
+   font-size: 30px;
    background: none;
    border: none;
    box-shadow: none;
@@ -466,7 +466,7 @@ input[type="file"]::file-selector-button {
 #touchSvgButtons .submit:hover {
    color: #000;
    font-weight: normal;
-   font-size: 22px;
+   font-size: 30px;
    background: #ddd;
    border: none;
    box-shadow: none;
@@ -475,7 +475,7 @@ input[type="file"]::file-selector-button {
 #touchSvgButtons .submit:active {
    color: #000;
    font-weight: normal;
-   font-size: 22px;
+   font-size: 30px;
    /* background: none; */
    border: none;
    box-shadow: none;
@@ -541,27 +541,4 @@ input[type="file"]::file-selector-button {
 
 #touchTabView .dot-menu.collapsible.active {
    background: unset;
-}
-
-#touchTabView .dot-menu.collapsible + .collapsible-content {
-   background: #f6f6f6;
-   position: relative;
-   top: 4px;
-   left: 194px;
-   z-index: 1;
-   border-radius: 4px;
-   /* border: 1px solid #666; */
-   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
-}
-
-@media screen and (min-width: 502px) {
-   #touchTabView .dot-menu.collapsible + .collapsible-content {
-      top: 40px;
-      right: 116px;
-      left: unset;
-   }
-}
-
-#touchTabView .dot-menu.collapsible + .collapsible-content .submit {
-   font-size: 16px;
 }

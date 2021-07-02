@@ -672,7 +672,7 @@ fieldset.alert {
 }
 
 
-/* buttons for login/edit/alert forms */
+/* form buttons */
 button.submit,
 #repl .submit,
 .dialog .submit,
@@ -860,7 +860,7 @@ input[type=submit].tiny:active {
 
 @media screen and (min-width: 900px) {
    #repl {
-      margin: 28px 0px 16px 0px;
+      margin: 16px 0px 16px 0px;
       border-radius: 8px;
    }
 }
@@ -943,7 +943,7 @@ object {
    border-radius: 4px;
    box-shadow: none;
    /* box-shadow: 0 0 4px 1px #ddd inset; */
-   border: solid 1px #ccc;
+   /* border: solid 1px #ccc; */
    margin: 8px;
    max-width: 92%
 }
@@ -952,7 +952,10 @@ object {
 /* @media screen and (min-width: 600px) and ( max-width: 1800px) { */
 /* @media screen and (min-width: 600px) { */
 @media screen and (min-width: 800px) and (min-height: 700px) {
-   #repl .flex-col {
+   /* #repl .flex-col { */
+   /*    width: 40%; */
+   /* } */
+   #codeInputFullscreen {
       width: 40%;
    }
    #repl #ReplSvgContainerFullscreen .flex-row {
@@ -1161,6 +1164,10 @@ object {
    margin-top: 4px;
    font-family: monospace;
 }
+
+/* #repl .tabcontainer { */
+/*    margin-bottom: 16px; */
+/* } */
 
 #repl .tabs a,
 #repl .tabs button,
@@ -1504,6 +1511,14 @@ input[type="file"]::file-selector-button {
 
 
 /* touch input styles */
+#touchTabView {
+   width: 340px;
+   height: 460px;
+   background: #faf5f0;
+   border: 1px solid #ddd;
+   border-radius: 4px;
+}
+
 #touchTabView.tabpane.active p.mono {
    font-size: 13px;
    margin: 0px;
@@ -1511,7 +1526,7 @@ input[type="file"]::file-selector-button {
 
 #touchSvgButtons {
    position: absolute;
-   color: #222;
+   color: #000;
    top: 16px;
    left: 16px;
    /* background: #ddd; */
@@ -1525,7 +1540,7 @@ input[type="file"]::file-selector-button {
    color: #000;
    text-align: left;
    font-weight: normal;
-   font-size: 22px;
+   font-size: 30px;
    background: none;
    border: none;
    box-shadow: none;
@@ -1535,7 +1550,7 @@ input[type="file"]::file-selector-button {
 #touchSvgButtons .submit:hover {
    color: #000;
    font-weight: normal;
-   font-size: 22px;
+   font-size: 30px;
    background: #ddd;
    border: none;
    box-shadow: none;
@@ -1544,17 +1559,23 @@ input[type="file"]::file-selector-button {
 #touchSvgButtons .submit:active {
    color: #000;
    font-weight: normal;
-   font-size: 22px;
+   font-size: 30px;
    /* background: none; */
    border: none;
    box-shadow: none;
 }
 
+/* @media screen and (min-width: 800px) { */
+/*    #touchSvgButtons .flex-col { */
+/*       width: 56%; */
+/*    } */
+/* } */
+
 #touchSvgFab {
    position: absolute;
    display: block;
-   bottom: 48px;
-   left: 48px;
+   bottom: 6%;
+   right: 8%;
 }
 
 #touchSvgFab .submit {
@@ -1628,14 +1649,17 @@ input[type="file"]::file-selector-button {
    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
 }
 
-@media screen and (min-width: 502px) {
+/* @media screen and (min-width: 502px) { */
    #touchTabView .dot-menu.collapsible + .collapsible-content {
       top: 40px;
-      right: 116px;
-      left: unset;
+      left: 56px;
    }
-}
+/* } */
 
 #touchTabView .dot-menu.collapsible + .collapsible-content .submit {
+   font-size: 16px;
+}
+
+#repl .modal-inner .submit {
    font-size: 16px;
 }

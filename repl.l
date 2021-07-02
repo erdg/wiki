@@ -180,39 +180,205 @@
    (default DX 80  DY 25)
    (serverSentEvent "ReplSvg" '*ReplSvg)
    (form Attr
-
       (=: repl (tmp "repl"))
       (=: lyrepl (tmp "lyrepl"))
 
       # code / touch input tabs (using 'stabs.js')
-      (<div> '(tabcontainer (style . ""))
+      (<div> '(tabcontainer (style . "margin-bottom: 16px;"))
+
+         # input [ touch ] [ code ]
          (<p> '(mono (style . "display: inline; font-size: 14px;")) "input")
-         (<div> '(flex-row (style . "display: inline-flex; margin-bottom: 8px; justify-content: flex-start;"))
+         (<div> '(flex-row (style . "display: inline-flex; margin-bottom: 16px; justify-content: flex-start;"))
             # buttons
             (<htmlbutton>
                '("tab active"
-                  (id . "codeTabBtn")
-                  (tab-index . 0)
-                  (role . "tab")
-                  (aria-controls . "codeTabView")
-                  (aria-selected . "true") )
-               "code" )
-            (<htmlbutton>
-               '("tab"
                   (id . "touchTabBtn")
                   (tab-index . 0)
                   (role . "tab")
                   (aria-controls . "touchTabView")
+                  (aria-selected . "true") )
+               "touch" )
+            (<htmlbutton>
+               '("tab"
+                  (id . "codeTabBtn")
+                  (tab-index . 0)
+                  (role . "tab")
+                  (aria-controls . "codeTabView")
                   (aria-selected . "false") )
-               "touch" ) )
+               "code" ) )
+
          # views
          (<div> NIL
+
+            # touch input view
             (<div>
                '("tabpane active"
+                  (id . "touchTabView")
+                  (role . "tabpanel")
+                  (aria-labelledby . "touchTabBtn")
+                  (aria-hidden . "false")
+                  (style .
+                     "position: relative;
+                     width: 340px;
+                     height: 460px;
+                     background: #faf5f0;
+                     border: 1px solid #ddd;
+                     border-radius: 4px;" ) )
+
+               # js to communicate between <object> and parent window (because cors).
+               # <object> uses 'window.parent.postMessage()' to trigger js 'fetch', which
+               # calls the lisp fn 'updTouchSvg'.
+               (<javascript>
+                  "window.addEventListener('message', function (e) {
+                     if (e.origin !== 'http://localhost:5000') return;
+                     console.log(e.data + ' ' + e.origin);
+                     fetch(window.location.href.split('~')[0] + '~!setTouchNote?' + e.data);
+                  }, false);" )
+               # see also lisp fn 'lilypondNoteIconSVG', which generates the svgs (with
+               # the actual js 'postMessage' call)
+
+               # treble clef background (kinda prevents flicker as svg is updated)
+               (<div> '(style . "position: absolute; top: 100px; left: 0px;")
+                  (<object> (pack "http://localhost:" *WikiPort "/wiki/img/svg2/treble-clef.svg")) )
+
+               # _the_ svg (updated via 'serverSend)
+               (serverSentEvent "TouchSvg" '*TouchSvg)
+               (<div> '((id . "TouchSvg") (style . "position: absolute; top: 100px; left: 0px;"))
+                  (<object>
+                     (pack
+                        "http://localhost:" *WikiPort "/wiki/img/svg2/" (currentTouchFile) ".svg") ) )
+
+               # buttons
+               (<div> '(flex-col
+                        (id . "touchSvgButtons")
+                        # (style . "position: absolute; z-index: 20; top: 12px; left: 16px;")
+                        )
+                  (<div> '(flex-row (style . "position: relative; width: 300px;"))
+                     (<style> '(style . "font-size: 14px;")
+                        (gui '(+Mono +JS +Button) "add as rest"
+                           '(touchMelodyAddRest (pack "r" *TouchDuration *TouchDots)) ) )
+                     # (<div> 'flex-row
+                     #    # rests
+                     #    (gui '(+JS +Button) "𝄻" '(touchMelodyAddRest "r1"))
+                     #    (gui '(+JS +Button) "𝄼" '(touchMelodyAddRest "r2"))
+                     #    (gui '(+JS +Button) "𝄽" '(touchMelodyAddRest "r4"))
+                     #    (gui '(+JS +Button) "𝄾" '(touchMelodyAddRest "r8"))
+                     #    (gui '(+JS +Button) "𝄿" '(touchMelodyAddRest "r16"))
+                     #    (gui '(+JS +Button) "𝅀" '(touchMelodyAddRest "r32")) )
+                     # dot-menu -- undo, clear melody
+                     (<div> '("dot-menu collapsible" (style . "position: absolute; right: 0px;"))
+                        NIL )
+                     (<div> "collapsible-content"
+                        (gui '(+JS +Button) "undo"
+                           '(prog
+                              (rot *TouchMelody)
+                              (++ *TouchMelody)
+                              (out (: home lyrepl) (prin "{ " (glue " " *TouchMelody) " }"))
+                              (ly
+                                 (prog
+                                    (when (val> (: home renderFont))
+                                       (list (any (pack 'ly @ 'Font))) )
+                                    (eval
+                                       (progLilypond) ) ) ) ) )
+                        (gui '(+JS +Button) "clear melody"
+                           '(prog
+                              (off *TouchMelody)
+                              (out (: home lyrepl) (prin "(lleadsheet-ap " (glue " " *TouchMelody) " )"))
+                              (ly
+                                 (prog
+                                    (when (val> (: home renderFont))
+                                       (list (any (pack 'ly @ 'Font))) )
+                                    (eval
+                                       (progLilypond) ) ) ) ) ) ) )
+                  (<div> 'flex-row
+                     # durations
+                     (gui '(+JS +Button) "𝅝" '(setTouchDuration 1))
+                     (gui '(+JS +Button) "𝅗𝅥" '(setTouchDuration 2))
+                     (gui '(+JS +Button) "𝅘𝅥" '(setTouchDuration 4))
+                     (gui '(+JS +Button) "𝅘𝅥𝅮" '(setTouchDuration 8))
+                     (gui '(+JS +Button) "𝅘𝅥𝅯" '(setTouchDuration 16))
+                     (gui '(+JS +Button) "𝅘𝅥𝅰" '(setTouchDuration 32))
+                     (<style> '(style . "margin-left: 16px;")
+                        (gui '(+JS +Button) "." '(incTouchDots)) )
+                     (<style> '(style . "font-size: 12px; padding: 20px 0px 4px 6px;")
+                        (gui '(+JS +Button) "x" '(offTouchDots)) ) )
+
+                  # "add chord" button
+                  (<div> '(flex-row (style . "position: absolute; top: 140px;"))
+                     (<style> '((style . "font-size: 16px; color: #000; background: unset;"))
+                        (gui '(+Style +Mono +JS +Button) "touchModalBtn" "add chord") )
+                     # a modal textfield appears
+                     (<div> "collapsible-content modal"
+                        (<div> 'modal-inner
+                           (<p> '((style . "font-size: 20px; margin: 0px;")) "Add chord")
+                           (<style> '(placeholder . "e.g. e:min7")
+                              (gui 'chord '(+Style +TextField) "touchChord" 16) )
+                           (--)
+                           (gui '(+OnClick +Button)
+                              "document.getElementsByClassName('modal')[0].style.maxHeight = null;"
+                              "Cancel" )
+                           (gui '(+OnClick +Button)
+                              "document.getElementsByClassName('modal')[0].style.maxHeight = null;"
+                              "Ok"
+                              '(prog
+                                 (queue '*TouchMelody (val> (: home chord)))
+                                 (out (: home lyrepl) (prin "(lleadsheet-ap " (glue " " *TouchMelody) " )"))
+                                 (ly
+                                    (prog
+                                       (eval
+                                          (progLilypond) ) ) )
+                                 (updReplSvg) ) )
+                           ) ) )
+
+                  # dynamics button
+                  (<div> '(flex-row (style . "position: absolute; top: 350px;"))
+                     (<style> '(style . "font-size: 14px;")
+                        (gui '(+Mono +JS +Button) "dynamics") ) )
+
+                  # accents / articulations
+                  (<div> '(flex-row (style . "position: absolute; top: 380px;"))
+                     (<style> '(style . "font-size: 14px;")
+                        (gui '(+Mono +JS +Button) "accents") ) )
+
+                  (<div> '(flex-col (style . "position: absolute; top: 196px; left: 234px;"))
+                     # octave up
+                     (gui '(+JS +Button) "𝄶"
+                        '(setTouchOctave (+ *TouchOctave 1)) )
+                     # accidentals
+                     (<div> 'flex-row
+                        (gui '(+JS +Button) "♯" '(setTouchAccidental "is"))
+                        (gui '(+JS +Button) "♮" '(setTouchAccidental ""))
+                        (gui '(+JS +Button) "♭" '(setTouchAccidental "es")) )
+                     # octave down
+                     (gui '(+Mono +JS +Button) "𝄷"
+                        '(setTouchOctave (- *TouchOctave 1)) ) )
+
+               )
+
+               # add to melody
+               (<div> '(id . "touchSvgFab")
+                  (gui '(+JS +Button) " "
+                     '(prog
+                        (queue '*TouchMelody (currentTouchNote))
+                        # (out (: home lyrepl) (prin Str))
+                        (out (: home lyrepl) (prin "(lleadsheet-ap " (glue " " *TouchMelody) " )"))
+                        (ly
+                           (prog
+                              (when (val> (: home renderFont))
+                                 (list (any (pack 'ly @ 'Font))) )
+                              (eval
+                                 (progLilypond) ) ) )
+                        (setq *TouchDots NIL )
+                        (updTouchSvg) ) ) )
+               )
+
+            (<div>
+               '("tabpane"
                   (id . "codeTabView")
                   (role . "tabpanel")
                   (aria-labelledby . "codeTabBtn")
-                  (aria-hidden . "false") )
+                  (aria-hidden . "true")
+                  (hidden . "true") )
 
                # Run line
                (<div> '(flex-row (style . "position: relative;"))
@@ -276,109 +442,7 @@
                   (<style> '("lilInputArea" (placeholder . "or code here"))
                      (gui 'area '(+Mono +FileField)
                         (: lyrepl)
-                        (*/ DX 4 5) 20 ) ) ) )
-
-            ### touch input - clickable svgs in an html <object>
-            (<div>
-               '("tabpane"
-                  (id . "touchTabView")
-                  (role . "tabpanel")
-                  (aria-labelledby . "touchTabBtn")
-                  (aria-hidden . "true")
-                  (style . "position: relative;")
-                  (hidden . "true") )
-               # ----
-               # js to communicate between <object> and parent window (because cors).
-               # <object> uses 'window.parent.postMessage()' to trigger js 'fetch', which
-               # calls the lisp fn 'updTouchSvg'.
-               (<javascript>
-                  "window.addEventListener('message', function (e) {
-                     if (e.origin !== 'http://localhost:5000') return;
-                     console.log(e.data + ' ' + e.origin);
-                     fetch(window.location.href.split('~')[0] + '~!setTouchNote?' + e.data);
-                  }, false);" )
-               # see also lisp fn 'lilypondNoteIconSVG', which generates the svgs (with
-               # the actual js 'postMessage' call)
-               # ----
-               # treble clef background (prevents flicker as svg is updated)
-               (<object> (pack "http://localhost:" *WikiPort "/wiki/img/svg/treble-clef.svg"))
-               # _the_ svg (updated via 'serverSend)
-               (serverSentEvent "TouchSvg" '*TouchSvg)
-               (<div> '((id . "TouchSvg") (style . "position: absolute; top: 0px; left: 0px;"))
-                  (<object>
-                     (pack
-                        "http://localhost:" *WikiPort "/wiki/img/svg/"
-                        *TouchNote *TouchAccidental (number-to-octave-tick *TouchOctave) *TouchDuration ".svg")) )
-               # ----
-               # buttons
-               (<div> '(flex-row
-                        (id . "touchSvgButtons")
-                        # (style . "position: absolute; z-index: 20; top: 12px; left: 16px;")
-                        )
-                  (<div> '(style . "margin: 0px 0px")
-                     (<p> "mono" "accidental")
-                     (gui '(+Mono +JS +Button) "♯" '(setTouchAccidental "is"))
-                     (gui '(+Mono +JS +Button) "♮" '(setTouchAccidental ""))
-                     (gui '(+Mono +JS +Button) "♭" '(setTouchAccidental "es")) )
-                  (<div> '(style . "margin: 0px 16px")
-                     (<p> "mono" "octave")
-                     (gui '(+Mono +JS +Button) "+"
-                        '(setTouchOctave (+ *TouchOctave 1)) )
-                     (gui '(+Mono +JS +Button) "-"
-                        '(setTouchOctave (- *TouchOctave 1)) ) )
-                  (<div> '(style . "margin: 0px 0px")
-                     (<p> "mono" "duration")
-                     (gui '(+Mono +JS +Button) "𝅝" '(setTouchDuration 1))
-                     (gui '(+Mono +JS +Button) "𝅗𝅥" '(setTouchDuration 2))
-                     (gui '(+Mono +JS +Button) "𝅘𝅥" '(setTouchDuration 4))
-                     (gui '(+Mono +JS +Button) "𝅘𝅥𝅮" '(setTouchDuration 8)) )
-                  (<div> "dot-menu collapsible" NIL)
-                  (<div> "collapsible-content"
-                     (gui '(+JS +Button) "undo"
-                        '(prog
-                           (rot *TouchMelody)
-                           (++ *TouchMelody)
-                           (out (: home lyrepl) (prin "{ " (glue " " *TouchMelody) " }"))
-                           (ly
-                              (prog
-                                 (when (val> (: home renderFont))
-                                    (list (any (pack 'ly @ 'Font))) )
-                                 (eval
-                                    (progLilypond) ) ) ) ) )
-                     (gui '(+JS +Button) "clear melody"
-                        '(prog
-                           (off *TouchMelody)
-                           (queue '*TouchMelody "(clef \"treble\")")
-                           (out (: home lyrepl) (prin "{ " (glue " " *TouchMelody) " }"))
-                           (ly
-                              (prog
-                                 (when (val> (: home renderFont))
-                                    (list (any (pack 'ly @ 'Font))) )
-                                 (eval
-                                    (progLilypond) ) ) ) ) ) )
-                  # (<div> '(style . "margin: 0px 16px")
-                  #    (<p> "mono" "dots")
-                  #    (gui '(+Mono +JS +Button) "x")
-                  #    (gui '(+Mono +JS +Button) ".") )
-               )
-               # add to melody
-               (<div> '(id . "touchSvgFab")
-                  (gui '(+JS +Button) " "
-                     '(prog
-                        (queue '*TouchMelody (currentTouchNote))
-                        # (out (: home lyrepl) (prin Str))
-                        (out (: home lyrepl) (prin "{ " (glue " " *TouchMelody) " }"))
-                        (ly
-                           (prog
-                              (when (val> (: home renderFont))
-                                 (list (any (pack 'ly @ 'Font))) )
-                              (eval
-                                 (progLilypond) ) ) )
-                        (setq
-                           *TouchNote "g"
-                           *TouchAccidental NIL )
-                        (updTouchSvg) ) ) )
-               )))
+                        (*/ DX 4 5) 20 ) ) ) ) ) )
             ###
 
       # resize / close buttons (absolute positioned top right)
@@ -472,7 +536,7 @@
          (cons
             (char 40)
             'prog
-            (lyread (: home lyrepl)) )
+            (lyread (or (: home lyrepl) (tmp "lyrepl"))) )
          (list (char 41)) ) ) )
 
 
@@ -503,7 +567,8 @@
 
       (<div> '(flex-row (style . "align-items: flex-start; justify-content: flex-start;"))
 
-         (<div> 'flex-col
+         # (<div> 'flex-col
+         (<div> '(id . codeInputFullscreen)
 
             (<div> '(flex-row (style . "position: relative;"))
 
@@ -686,12 +751,10 @@
          (pack
             "http://localhost:"
             *WikiPort
-            "/wiki/img/svg/"
-            *TouchNote
-            *TouchAccidental
-            (number-to-octave-tick *TouchOctave)
-            *TouchDuration
-            ".svg" ) ) ) )
+            # "/wiki/img/svg/"
+            "/wiki/img/svg2/"
+            (currentTouchFile)
+            "-treble.svg" ) ) ) )
 
 (allow "!setTouchNote")
 (de setTouchNote (Note)
@@ -699,32 +762,29 @@
    (setq *TouchNote Note)
    (updTouchSvg) )
 
-(allow "!setTouchAccidental")
 (de setTouchAccidental (Str)
    (setq *TouchAccidental Str)
    (updTouchSvg) )
 
-(allow "!setTouchOctave")
 (de setTouchOctave (N)
    (setq *TouchOctave N)
    (updTouchSvg) )
 
-(allow "!setTouchDuration")
 (de setTouchDuration (N)
    (setq *TouchDuration N)
    (updTouchSvg) )
 
-# (allow "!incTouchDots")
-# (de incTouchDots ()
-#    (push '*TouchDots "%") )
+(de incTouchDots ()
+   (when (< (length *TouchDots) 2)
+      (push '*TouchDots ".") )
+   (updTouchSvg) )
 
-# (allow "!zeroTouchDots")
-# (de zeroTouchDots ()
-#    (setq *TouchDots "") )
+(de offTouchDots ()
+   (setq *TouchDots "")
+   (updTouchSvg) )
 
-# (allow "!pushTouchMelody")
 # (de pushTouchMelody ()
-#    (push '*TouchMelody *TouchNote)
+#    (push '*TouchMelody (currentTouchNote))
 #    (prog
 #       # (out (: home lyrepl) (prin Str))
 #       (out (tmp "lyrepl") (prin "{ " (glue " " *TouchMelody) " }")) )
@@ -734,6 +794,19 @@
 #             #    (list (any (pack 'ly @ 'Font))) )
 #             (eval
 #                (progLilypond) ) ) ) )
+
+(de touchMelodyAddRest (Str)
+   (prog
+      (queue '*TouchMelody (pack Str *TouchDots))
+      (offTouchDots)
+      (out (: home lyrepl) (prin "{ " (glue " " *TouchMelody) " }"))
+      (ly
+         (prog
+            (when (val> (: home renderFont))
+               (list (any (pack 'ly @ 'Font))) )
+            (eval
+               (progLilypond) ) ) )
+      (updTouchSvg) ) )
 
 (allow "!offTouchMelody")
 (de offTouchMelody ()
@@ -745,7 +818,16 @@
       *TouchNote
       *TouchAccidental
       (number-to-octave-tick *TouchOctave)
-      *TouchDuration ) )
+      *TouchDuration
+      *TouchDots ) )
+
+(de currentTouchFile ()
+   (pack
+      *TouchNote
+      *TouchAccidental
+      (number-to-octave-tick *TouchOctave)
+      *TouchDuration
+      (need (length *TouchDots) "d") ) )
 
 # write lilypond file
 (de ly Music
