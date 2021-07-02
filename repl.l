@@ -330,15 +330,15 @@
                                  (updReplSvg) ) )
                            ) ) )
 
-                  # dynamics button
-                  (<div> '(flex-row (style . "position: absolute; top: 350px;"))
-                     (<style> '(style . "font-size: 14px;")
-                        (gui '(+Mono +JS +Button) "dynamics") ) )
+#                   # dynamics button
+#                   (<div> '(flex-row (style . "position: absolute; top: 350px;"))
+#                      (<style> '(style . "font-size: 14px;")
+#                         (gui '(+Mono +JS +Button) "dynamics") ) )
 
-                  # accents / articulations
-                  (<div> '(flex-row (style . "position: absolute; top: 380px;"))
-                     (<style> '(style . "font-size: 14px;")
-                        (gui '(+Mono +JS +Button) "accents") ) )
+#                   # accents / articulations
+#                   (<div> '(flex-row (style . "position: absolute; top: 380px;"))
+#                      (<style> '(style . "font-size: 14px;")
+#                         (gui '(+Mono +JS +Button) "accents") ) )
 
                   (<div> '(flex-col (style . "position: absolute; top: 196px; left: 234px;"))
                      # octave up
