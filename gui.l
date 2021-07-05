@@ -223,7 +223,7 @@
                                        (id . "scrollMetaReplBtn")
                                        (onClick .  "window.scrollTo({top: 0, behavior: 'smooth'});
                                                     document.getElementById('scrollMetaReplBtn').classList.add('hide');") )
-                                    "[\^]" ) ) )
+                                    "\^" ) ) )
                            (metaRepl)  # see 'repl.l'
                            (form
                               '(edit (style . "display: none;"))
@@ -558,13 +558,13 @@
       (--)
 
       # resize / close buttons (top right)
-      (<style> '(style . "position: absolute; top: 8px; right: 30px; padding: 2px 1px;")
+      (<style> '(style . "position: absolute; top: 8px; right: 30px;")
          (if *FullscreenRepl
-            (gui '(+Style +Tip +Button) "mono" "Exit Fullscreen" "[-]"
+            (gui '(+Style +Tip +Button) "mono" "Exit Fullscreen" "-"
                '(prog
                   (off *FullscreenRepl)
                   (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) )
-            (gui '(+Style +Tip +Button) "mono" "Fullscreen" "[+]"
+            (gui '(+Style +Tip +Button) "mono" "Fullscreen" "+"
                '(prog
                   (on *FullscreenRepl)
                   (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) ) )

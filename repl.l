@@ -160,13 +160,13 @@
       # (--)
 
       # resize / close buttons (top right)
-      (<style> '(style . "position: absolute; top: 8px; right: 30px; padding: 2px 1px;")
+      (<style> '(style . "position: absolute; top: 8px; right: 30px;")
          (if *FullscreenRepl
-            (gui '(+Style +Tip +Button) "mono" "Exit Fullscreen" "[-]"
+            (gui '(+Style +Tip +Button) "mono" "Exit Fullscreen" "-"
                '(prog
                   (off *FullscreenRepl)
                   (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) )
-            (gui '(+Style +Tip +Button) "mono" "Fullscreen" "[+]"
+            (gui '(+Style +Tip +Button) "mono" "Fullscreen" "+"
                '(prog
                   (on *FullscreenRepl)
                   (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) ) )
@@ -446,8 +446,8 @@
             ###
 
       # resize / close buttons (absolute positioned top right)
-      (<style> '(style . "position: absolute; top: 8px; right: 30px; padding: 2px 1px;")
-         (gui '(+Style +Tip +Button) "mono" "Fullscreen" "[+]"
+      (<style> '(style . "position: absolute; top: 8px; right: 30px;")
+         (gui '(+Tip +Button) "Fullscreen" "+"
             '(prog
                (on *FullscreenRepl)
                (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
@@ -634,12 +634,12 @@
                      (*/ DX 4 5) 30 ) ) ) )
 
          # resize / close buttons (absolute positioned top right)
-         (<style> '(style . "position: absolute; top: 12px; right: 34px; padding: 2px 1px;")
-            (gui '(+Style +Tip +Button) "mono" "exit fullscreen" "[-]"
+         (<style> '(style . "position: absolute; top: 8px; right: 30px;")
+            (gui '(+Style +Tip +Button) "mono" "exit fullscreen" "-"
                '(prog
                   (off *FullscreenRepl)
                   (url (pack (ext.html (get *Top 'obj)) "?*Menu=+0&*Tab=+2&*ID=$edit")) ) ) )
-         (<style> '(style . "position: absolute; top: 12px; right: 2px;")
+         (<style> '(style . "position: absolute; top: 8px; right: 0px;")
             (gui '(+Style +Button) "closeRepl right" "x"
                '(prog (rollback) (off *ID)) ) )
 
