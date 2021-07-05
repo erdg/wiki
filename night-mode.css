@@ -234,7 +234,7 @@ pre.code:active {
    box-shadow: unset;
 }
 
-
+#repl .modal-inner .submit,
 button.submit,
 #repl .submit,
 .dialog .submit,
@@ -248,6 +248,7 @@ button.submit,
    box-shadow: unset;
 }
 
+#repl .modal-inner .submit:hover,
 button.submit:hover,
 #repl .submit:hover,
 .dialog .submit:hover,
@@ -260,6 +261,7 @@ button.submit:hover,
    padding: 2px 4px 2px;
 }
 
+#repl .modal-inner .submit:active,
 button.submit:active,
 #repl .submit:active,
 .dialog .submit:active,
@@ -541,4 +543,10 @@ input[type="file"]::file-selector-button {
 
 #touchTabView .dot-menu.collapsible.active {
    background: unset;
+}
+
+#repl .modal-inner {
+   background: #131423;
+   color: #999;
+   border: 1px solid #1c1e34;
 }

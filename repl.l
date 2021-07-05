@@ -254,7 +254,7 @@
                         # (style . "position: absolute; z-index: 20; top: 12px; left: 16px;")
                         )
                   (<div> '(flex-row (style . "position: relative; width: 300px;"))
-                     (<style> '(style . "font-size: 14px;")
+                     (<style> '(style . "font-size: 14px; font-style: italic;")
                         (gui '(+Mono +JS +Button) "add as rest"
                            '(touchMelodyAddRest (pack "r" *TouchDuration *TouchDots)) ) )
                      # (<div> 'flex-row
@@ -305,9 +305,9 @@
 
                   # "add chord" button
                   (<div> '(flex-row (style . "position: absolute; top: 140px;"))
-                     (<style> '((style . "font-size: 16px; color: #000; background: unset;"))
+                     (<style> '((style . "font-size: 16px; font-style: italic; color: #000; background: unset;"))
                         (gui '(+Style +Mono +JS +Button) "touchModalBtn" "add chord") )
-                     # a modal textfield appears
+                     # a modal appears
                      (<div> "collapsible-content modal"
                         (<div> 'modal-inner
                            (<p> '((style . "font-size: 20px; margin: 0px;")) "Add chord")
@@ -316,18 +316,19 @@
                            (--)
                            (gui '(+OnClick +Button)
                               "document.getElementsByClassName('modal')[0].style.maxHeight = null;"
-                              "Cancel" )
-                           (gui '(+OnClick +Button)
-                              "document.getElementsByClassName('modal')[0].style.maxHeight = null;"
                               "Ok"
                               '(prog
                                  (queue '*TouchMelody (val> (: home chord)))
+                                 (set> (: home chord) "")
                                  (out (: home lyrepl) (prin "(lleadsheet-ap " (glue " " *TouchMelody) " )"))
                                  (ly
                                     (prog
                                        (eval
                                           (progLilypond) ) ) )
                                  (updReplSvg) ) )
+                           (gui '(+OnClick +Button)
+                              "document.getElementsByClassName('modal')[0].style.maxHeight = null;"
+                              "Cancel" )
                            ) ) )
 
 #                   # dynamics button

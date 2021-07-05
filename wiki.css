@@ -673,6 +673,7 @@ fieldset.alert {
 
 
 /* form buttons */
+#repl .modal-inner .submit,
 button.submit,
 #repl .submit,
 .dialog .submit,
@@ -692,6 +693,7 @@ button.submit,
    cursor: pointer;
 }
 
+#repl .modal-inner .submit:hover,
 button.submit:hover,
 #repl .submit:hover,
 .dialog .submit:hover,
@@ -707,6 +709,7 @@ button.submit:hover,
    background-image: linear-gradient(top, #fafafa, #ddd);
 }
 
+#repl .modal-inner .submit:active,
 button.submit:active,
 #repl .submit:active,
 .dialog .submit:active,
@@ -856,6 +859,7 @@ input[type=submit].tiny:active {
    /* margin: 16px 0px; */
    position: relative;
    border-radius: 0px;
+   z-index: 1;
 }
 
 @media screen and (min-width: 900px) {
@@ -1339,6 +1343,7 @@ object {
 #repl .media-grid .flex-col {
    flex-grow: 1;
    margin-left: 32px;
+   max-width: 60%;
 }
 
 @media screen and (max-width: 600px) {
@@ -1649,17 +1654,33 @@ input[type="file"]::file-selector-button {
    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
 }
 
-/* @media screen and (min-width: 502px) { */
-   #touchTabView .dot-menu.collapsible + .collapsible-content {
-      top: 40px;
-      left: 56px;
-   }
-/* } */
+#touchTabView .dot-menu.collapsible + .collapsible-content {
+   position: absolute;
+   top: 40px;
+   /* left: 56px; */
+}
 
 #touchTabView .dot-menu.collapsible + .collapsible-content .submit {
    font-size: 16px;
 }
 
+#repl .modal-inner {
+   background: #efeff7;
+   color: #222;
+   border: none;
+}
+
 #repl .modal-inner .submit {
-   font-size: 16px;
+   font-size: 14px;
+   font-weight: bold;
+}
+
+#repl .modal-inner .submit:hover {
+   font-size: 14px;
+   font-weight: bold;
+}
+
+#repl .modal-inner .submit:active {
+   font-size: 14px;
+   font-weight: bold;
 }
