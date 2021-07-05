@@ -231,6 +231,7 @@
                (<javascript>
                   (pack
                      "window.addEventListener('message', function (e) {
+                        if (typeof(e.data) !== 'string') return;
                         console.log(e.data + ' ' + e.origin);
                         if (e.origin !== '" *WikiBaseUrl "') return;
                         fetch(window.location.href.split('~')[0] + '~!setTouchNote?' + e.data);
