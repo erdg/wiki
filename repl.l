@@ -231,8 +231,8 @@
                (<javascript>
                   (pack
                      "window.addEventListener('message', function (e) {
-                        if (e.origin !== '" *WikiBaseUrl "') return;
                         console.log(e.data + ' ' + e.origin);
+                        if (e.origin !== '" *WikiBaseUrl "') return;
                         fetch(window.location.href.split('~')[0] + '~!setTouchNote?' + e.data);
                      }, false);" ) )
                # see also lisp fn 'lilypondNoteIconSVG', which generates the svgs (with
