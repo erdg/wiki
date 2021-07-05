@@ -246,7 +246,7 @@
                (<div> '((id . "TouchSvg") (style . "position: absolute; top: 100px; left: 0px;"))
                   (<object>
                      (pack
-                        "http://localhost:" *WikiPort "/wiki/img/svg2/" (currentTouchFile) ".svg") ) )
+                        "http://localhost:" *WikiPort "/wiki/img/svg2/" (currentTouchFile) "-treble.svg") ) )
 
                # buttons
                (<div> '(flex-col
