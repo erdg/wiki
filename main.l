@@ -83,7 +83,7 @@
 (setq
    *TouchNote "g"
    *TouchOctave 1
-   *TouchDuration 1
+   *TouchDuration 4
    *TouchAccidental ""
    *TouchDots "" )
 
