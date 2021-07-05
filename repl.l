@@ -229,11 +229,12 @@
                # <object> uses 'window.parent.postMessage()' to trigger js 'fetch', which
                # calls the lisp fn 'updTouchSvg'.
                (<javascript>
-                  "window.addEventListener('message', function (e) {
-                     if (e.origin !== '" *WikiBaseUrl "') return;
-                     console.log(e.data + ' ' + e.origin);
-                     fetch(window.location.href.split('~')[0] + '~!setTouchNote?' + e.data);
-                  }, false);" )
+                  (pack
+                     "window.addEventListener('message', function (e) {
+                        if (e.origin !== '" *WikiBaseUrl "') return;
+                        console.log(e.data + ' ' + e.origin);
+                        fetch(window.location.href.split('~')[0] + '~!setTouchNote?' + e.data);
+                     }, false);" ) )
                # see also lisp fn 'lilypondNoteIconSVG', which generates the svgs (with
                # the actual js 'postMessage' call)
 
