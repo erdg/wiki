@@ -240,13 +240,13 @@
 
                # treble clef background (kinda prevents flicker as svg is updated)
                (<div> '(style . "position: absolute; top: 100px; left: 0px;")
-                  (<object> (pack *WikiBaseUrl "/wiki/img/svg2/treble-clef.svg")) )
+                  (<object> (pack *WikiFullUrl "/wiki/img/svg2/treble-clef.svg")) )
 
                # _the_ svg (updated via 'serverSend)
                (serverSentEvent "TouchSvg" '*TouchSvg)
                (<div> '((id . "TouchSvg") (style . "position: absolute; top: 100px; left: 0px;"))
                   (<object>
-                     (pack *WikiBaseUrl "/wiki/img/svg2/" (currentTouchFile) "-treble.svg") ) )
+                     (pack *WikiFullUrl "/wiki/img/svg2/" (currentTouchFile) "-treble.svg") ) )
 
                # buttons
                (<div> '(flex-col
@@ -736,7 +736,7 @@
    # see https://stackoverflow.com/questions/1077041/refresh-image-with-a-new-one-at-the-same-url/9943419#9943419
    # '(date)' and '(time)' to fool browser cache and update image
    (<img>
-      (pack *WikiBaseUrl "/wiki/img/repl.cropped.svg#" (date) (time)) ) )
+      (pack *WikiFullUrl "/wiki/img/repl.cropped.svg#" (date) (time)) ) )
 
 
 # send latest SVG to the browser
