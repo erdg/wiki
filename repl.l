@@ -755,8 +755,7 @@
    (serverSend *TouchSvg
       (<object>
          (pack
-            "http://localhost:"
-            *WikiPort
+            *WikiFullUrl
             # "/wiki/img/svg/"
             "/wiki/img/svg2/"
             (currentTouchFile)
