@@ -17,6 +17,7 @@
       (if *FullscreenRepl
          (cons 'style
             "position: fixed;
+            background: #131423;
             margin: 0 auto;
             top: 0px;
             left: 0px;
