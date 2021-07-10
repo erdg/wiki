@@ -21,7 +21,6 @@
       (quote
          "wiki/night-mode.css"
          "wiki/wiki.css" )
-   *WikiBaseUrl "http://localhost:5000"
    *WikiFullUrl "http://localhost:5000"
    *WikiPort 5000 )
 
