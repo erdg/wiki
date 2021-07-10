@@ -220,7 +220,7 @@
                   (aria-hidden . "false")
                   (style .
                      "position: relative;
-                     width: 340px;
+                     width: 380px;
                      height: 460px;
                      background: #faf5f0;
                      border: 1px solid #ddd;
@@ -258,7 +258,7 @@
                         (id . "touchSvgButtons")
                         # (style . "position: absolute; z-index: 20; top: 12px; left: 16px;")
                         )
-                  (<div> '(flex-row (style . "position: relative; width: 300px;"))
+                  (<div> '(flex-row (style . "position: relative; width: 350px;"))
                      (<style> '(style . "font-size: 14px; font-style: italic;")
                         (gui '(+Mono +JS +Button) "add as rest"
                            '(touchMelodyAddRest (pack "r" *TouchDuration *TouchDots)) ) )
@@ -346,7 +346,7 @@
 #                      (<style> '(style . "font-size: 14px;")
 #                         (gui '(+Mono +JS +Button) "accents") ) )
 
-                  (<div> '(flex-col (style . "position: absolute; top: 196px; left: 234px;"))
+                  (<div> '(flex-col (style . "position: absolute; top: 196px; left: 264px;"))
                      # octave up
                      (gui '(+JS +Button) "𝄶"
                         '(setTouchOctave (+ *TouchOctave 1)) )
