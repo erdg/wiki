@@ -804,7 +804,7 @@
    (prog
       (queue '*TouchMelody (pack Str *TouchDots))
       (offTouchDots)
-      (out (: home lyrepl) (prin "{ " (glue " " *TouchMelody) " }"))
+      (out (: home lyrepl) (prin "(lleadsheet-ap " (glue " " *TouchMelody) " )"))
       (ly
          (prog
             (when (val> (: home renderFont))
