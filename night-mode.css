@@ -1,12 +1,16 @@
 /* palette
 
  * greens
+color: #579951;
+color: #62ac5b;
 color: #6dc066;
 color: #7bc675;
 color: #8acc84;
 color: #98d293;
 color: #a7d9a3;
+
  * blues
+color: #090a11;
 color: #131423;
 color: #1c1e34;
 color: #262946;
@@ -20,12 +24,12 @@ color: #bfc2df;
 
 /* defaults */
 body {
-   color: #ccc;
-   background-color: #1c1e34;
+   color: #c6c6c6;
+   background-color: #090a11;
 }
 
 h1, h2, h3, h4, h5, h6 {
-   color: #999;
+   color: #888;
 }
 
 a {
@@ -45,8 +49,9 @@ a:active {
 
 /* menu */
 #menu {
-   background-color: #131423;
+   background: linear-gradient(to bottom right, #131423, 40%, #090a11);
    box-shadow: 0 2px 8px 2px rgba(0,0,0,0.1);
+   border-right: 1px solid #262946;
 }
 
 @media screen and (max-width: 900px) {
@@ -67,8 +72,8 @@ a:active {
 /* code */
 .code {
    /* greens */
-   color: #6dc066;
-   background-color: #262946;
+   color: #579951;
+   background-color: #131423;
    border-radius: 2px;
 }
 
@@ -81,19 +86,19 @@ pre.code {
 }
 
 pre.code:hover {
-   background-color: #262946;
+   background-color: #131423;
    border: 1px solid #303357;
 }
 
 pre.code:active {
-   background-color: #303357;
-   border: none;
+   border: 1px solid #303357;
 }
 
 /* hack to display music svgs */
 #main img {
    display: block;
    background: #ded7cf;
+   background: #bab3ab;
    padding: 16px;
    border-radius: 4px;
    box-shadow: none;
@@ -105,8 +110,10 @@ pre.code:active {
 /* repl / edit form */
 #repl, .edit {
    background: #131423; /* blue */
+   background: linear-gradient(to bottom right, #131423, 40%, #090a11);
    color: #888;
-   border: 1px solid #131423;
+   border: 1px solid #303357;
+   border-right: 1px solid #262946;
 }
 
 #repl img {
@@ -129,8 +136,6 @@ pre.code:active {
 
 #metaReplHeader {
    border-bottom: 2px solid #131e34;
-   /* margin: 16px 16px 8px; */
-   /* align-items: flex-start; */
 }
 
 #replHeaderText {
@@ -139,31 +144,31 @@ pre.code:active {
 }
 
 #repl input[type=text], textarea {
-   color: #bbb;
-   background: #222;
+   color: #aaa;
+   background: linear-gradient(to bottom right, #111, #131313);
+   background: #131313;
    border: 1px solid #303357;
 }
 
 .edit input[type=text], textarea {
-   color: #bbb;
-   background: #222;
+   color: #aaa;
+   background: linear-gradient(to bottom right, #111, #131313);
    border: 1px solid #303357;
 }
 
 #repl input[type=text]:focus, #repl textarea:focus {
-   color: #bbb;
-   background: #222;
+   color: #aaa;
+   background: linear-gradient(to bottom right, #111, #131313);
    border: 1px solid #393d69;
 }
 
 .edit input[type=text]:focus, textarea:focus {
-   color: #bbb;
-   background: #222;
+   color: #aaa;
+   background: linear-gradient(to bottom right, #111, #131313);
    border: 1px solid #393d69;
 }
 
 .edit hr, #repl hr {
-   /* color: #262946; */
    color: #1c1e34;
    margin-right: 8px;
 }
@@ -179,14 +184,14 @@ pre.code:active {
 
 #searchGrp input[type=text] {
    color: #bbb;
-   background: #222;
    border: 1px solid #303357;
+   background: linear-gradient(to bottom right, #111, #131313);
    padding: 2px 4px;
 }
 
 #searchGrp input[type=text]:focus {
    color: #bbb;
-   background: #222;
+   background: linear-gradient(to bottom right, #111, #131313);
    border: 1px solid #393d69;
 }
 
@@ -234,6 +239,8 @@ pre.code:active {
    box-shadow: unset;
 }
 
+
+/* buttons */
 #repl .modal-inner .submit,
 button.submit,
 #repl .submit,
@@ -285,13 +292,13 @@ button.submit:active,
 
 .chart td {
    color: #aaa;
-   background-color: #262946;
+   background-color: #131423;
    padding: 0px 4px 2px;
    border-radius: 3px;
 }
 
 .chart td.T {
-   background-color: #262946;
+   background-color: #131423;
 }
 
 .chart td.nil {
@@ -388,7 +395,7 @@ button.submit:active,
 }
 
 .dot-menu::after {
-   color: #999;
+   color: #888;
 }
 
 
@@ -427,7 +434,7 @@ button.submit:active,
 
 
 input[type="file"] {
-   background: #222;
+   background: linear-gradient(to bottom right, #111, #131313);
    border: 1px solid #303357;
 }
 
@@ -448,10 +455,6 @@ input[type="file"]::file-selector-button {
    position: absolute;
    top: 16px;
    left: 16px;
-   /* background: #ddd; */
-   /* border: 1px solid #ccc; */
-   /* border-radius: 4px; */
-   /* padding: 0px 0px 8px 8px; */
    z-index: 20;
 }
 
@@ -478,9 +481,13 @@ input[type="file"]::file-selector-button {
    color: #000;
    font-weight: normal;
    font-size: 30px;
-   /* background: none; */
+   background: #ddd;
    border: none;
    box-shadow: none;
+}
+
+#touchSvgButtons .submit:focus {
+   background: none;
 }
 
 #touchSvgFab .submit {
@@ -504,8 +511,6 @@ input[type="file"]::file-selector-button {
    background-position:center;
    background-size: 40% 3px, 3px 40%;
    background-repeat:no-repeat;
-   /* border: 2px solid #ccc; */
-   /* box-shadow: 0 2px 4px -1px #222; */
 }
 
 #touchSvgFab .submit:hover {
@@ -516,8 +521,6 @@ input[type="file"]::file-selector-button {
    background-position:center;
    background-size: 40% 3px, 3px 40%;
    background-repeat:no-repeat;
-   /* border: 2px solid #ccc; */
-   /* box-shadow: 0 2px 4px -1px #222; */
 }
 
 #touchSvgFab .submit:active {
